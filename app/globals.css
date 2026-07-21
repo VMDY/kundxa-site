@@ -30,7 +30,9 @@
   --radius-full: 9999px;
 
   /* echelle typo fluide — chaque taille porte son interlignage et son crenage */
-  --text-display: clamp(2.75rem, 1.1rem + 7.3vw, 7rem);
+  /* Plafonne a 4.5rem : au-dela, la headline (7 mots) mange tout le premier ecran
+     et repousse les CTA sous le pli sur un portable standard. */
+  --text-display: clamp(2.5rem, 1.35rem + 5.1vw, 4.5rem);
   --text-display--line-height: 0.95;
   --text-display--letter-spacing: -0.02em;
   --text-display--font-weight: 800;

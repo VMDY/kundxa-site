@@ -36,10 +36,10 @@ export function SiteHeader() {
           <Image
             src="/logos/kundxa-logo.png"
             alt={`${site.nom} — accueil`}
-            width={148}
-            height={40}
+            width={560}
+            height={178}
             priority
-            className="h-8 w-auto sm:h-9"
+            className="h-7 w-auto sm:h-8"
           />
         </a>
 

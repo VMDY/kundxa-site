@@ -23,19 +23,36 @@ export function RevealProvider() {
 
     root.classList.add("js-reveal");
 
+    const reveler = (el: Element) => {
+      el.classList.add("is-visible");
+      observer.unobserve(el);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+          // Cas normal : l'element entre dans le viewport.
+          if (entry.isIntersecting) {
+            reveler(entry.target);
+            continue;
+          }
+          // Filet de securite : sur un scroll qui saute (molette rapide, Page bas,
+          // touche Fin, arrivee directe sur une ancre), un bloc peut passer de
+          // « sous le viewport » a « au-dessus » sans jamais croiser le seuil.
+          // Sans ce cas, il resterait invisible pour toujours.
+          if (entry.boundingClientRect.bottom < 0) reveler(entry.target);
         }
       },
       { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
     );
 
     const observe = () =>
-      root.querySelectorAll("[data-reveal]:not(.is-visible)").forEach((el) => observer.observe(el));
+      root.querySelectorAll("[data-reveal]:not(.is-visible)").forEach((el) => {
+        // Deja au-dessus du viewport au moment ou on l'observe (chargement sur une
+        // ancre, restauration de scroll) : on le montre sans animation.
+        if (el.getBoundingClientRect().bottom < 0) el.classList.add("is-visible");
+        else observer.observe(el);
+      });
 
     observe();
 
