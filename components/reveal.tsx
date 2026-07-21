@@ -4,66 +4,64 @@ import { useEffect, type ElementType, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /**
- * Moteur d'animation du site. Un seul IntersectionObserver pour toute la page :
- * chaque element porteur de [data-reveal] recoit `is-visible` en entrant dans le
- * viewport, puis n'est plus observe (l'animation ne joue qu'une fois).
+ * Moteur d'animation du site.
  *
- * Degradation : la classe `js-reveal` est posee sur <html> par ce composant. Le CSS
- * ne masque les elements QUE sous cette classe -> sans JS, la page reste lisible.
+ * Le MASQUAGE (`.js-reveal` sur <html>) est pose par un script bloquant dans le
+ * <head> (voir app/layout.tsx), donc AVANT le premier paint : pas de flash de
+ * contenu (FOUC), et l'etat ne depend pas du timing d'un effet React.
+ * Sous `prefers-reduced-motion`, ce script n'ajoute pas la classe -> la page
+ * s'affiche directement, sans animation.
+ *
+ * Ce composant ne gere que la REVELATION :
+ *  - IntersectionObserver : chaque bloc recoit `is-visible` en entrant a l'ecran.
+ *  - Le setup passe par requestAnimationFrame pour que les blocs deja visibles
+ *    au chargement soient peints masques AVANT d'etre reveles -> la transition joue.
+ *  - `bottom < 0` : un bloc qui saute au-dessus du viewport (scroll rapide, ancre)
+ *    est revele quand meme, sinon il ne croiserait jamais le seuil.
+ *  - Filet de securite : tout est revele apres 3s, quoi qu'il arrive.
  */
 export function RevealProvider() {
   useEffect(() => {
     const root = document.documentElement;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reduced || !("IntersectionObserver" in window)) {
-      root.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
-
-    root.classList.add("js-reveal");
-
-    const reveler = (el: Element) => {
-      el.classList.add("is-visible");
-      observer.unobserve(el);
-    };
+    // Pas de masquage pose (reduced-motion, ou pas de JS au chargement) : rien a faire.
+    if (!root.classList.contains("js-reveal")) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          // Cas normal : l'element entre dans le viewport.
-          if (entry.isIntersecting) {
-            reveler(entry.target);
-            continue;
+          if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
           }
-          // Filet de securite : sur un scroll qui saute (molette rapide, Page bas,
-          // touche Fin, arrivee directe sur une ancre), un bloc peut passer de
-          // « sous le viewport » a « au-dessus » sans jamais croiser le seuil.
-          // Sans ce cas, il resterait invisible pour toujours.
-          if (entry.boundingClientRect.bottom < 0) reveler(entry.target);
         }
       },
       { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
     );
 
-    const observe = () =>
-      root.querySelectorAll("[data-reveal]:not(.is-visible)").forEach((el) => {
-        // Deja au-dessus du viewport au moment ou on l'observe (chargement sur une
-        // ancre, restauration de scroll) : on le montre sans animation.
-        if (el.getBoundingClientRect().bottom < 0) el.classList.add("is-visible");
-        else observer.observe(el);
-      });
+    const setup = () =>
+      root
+        .querySelectorAll("[data-reveal]:not(.is-visible)")
+        .forEach((el) => observer.observe(el));
 
-    observe();
+    // Appel synchrone (pas de rAF) : l'etat masque a deja ete peint par le script
+    // <head> avant l'hydratation, donc observer maintenant laisse la transition
+    // jouer. Et surtout, l'IntersectionObserver fonctionne meme dans un onglet en
+    // arriere-plan, la ou requestAnimationFrame est gele.
+    setup();
 
-    // Le contenu injecte apres coup (embed Cal.com) doit lui aussi etre pris en compte.
-    const mutation = new MutationObserver(observe);
+    // Contenu injecte apres coup (facade Cal.com remplacee par l'iframe, etc.).
+    const mutation = new MutationObserver(setup);
     mutation.observe(document.body, { childList: true, subtree: true });
+
+    // Filet de securite : rien ne reste jamais cache.
+    const failsafe = window.setTimeout(() => {
+      root.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
+    }, 2500);
 
     return () => {
       observer.disconnect();
       mutation.disconnect();
-      root.classList.remove("js-reveal");
+      window.clearTimeout(failsafe);
     };
   }, []);
 

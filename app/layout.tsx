@@ -79,6 +79,17 @@ const jsonLd = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr" className={montserrat.variable}>
+      <head>
+        {/* Masque les blocs a animer AVANT le premier paint (pas de FOUC), sauf si
+            l'utilisateur demande moins d'animations. La revelation est ensuite
+            geree par components/reveal.tsx. Script bloquant volontaire, minuscule. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-reveal')}catch(e){}",
+          }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"

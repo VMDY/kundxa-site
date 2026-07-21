@@ -14,6 +14,7 @@ export const site = {
   email: "contact@kundxa.com",
   calcom: "kundxa/appel-de-cadrage",
   calcomUrl: "https://cal.com/kundxa/appel-de-cadrage",
+  photo: "/photos/valdo.png",
 } as const;
 
 export const liens = {
