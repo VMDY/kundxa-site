@@ -18,7 +18,8 @@ import { cn } from "@/lib/cn";
  *    au chargement soient peints masques AVANT d'etre reveles -> la transition joue.
  *  - `bottom < 0` : un bloc qui saute au-dessus du viewport (scroll rapide, ancre)
  *    est revele quand meme, sinon il ne croiserait jamais le seuil.
- *  - Filet de securite : tout est revele apres 3s, quoi qu'il arrive.
+ *  - Filet de securite : balayage toutes les 2s qui revele les blocs masques
+ *    presents dans le viewport. Les blocs hors ecran gardent leur animation.
  */
 export function RevealProvider() {
   useEffect(() => {
@@ -53,15 +54,22 @@ export function RevealProvider() {
     const mutation = new MutationObserver(setup);
     mutation.observe(document.body, { childList: true, subtree: true });
 
-    // Filet de securite : rien ne reste jamais cache.
-    const failsafe = window.setTimeout(() => {
-      root.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
-    }, 2500);
+    // Filet de securite : toutes les 2s, revele tout bloc masque situe dans le
+    // viewport OU au-dessus (deja depasse). Indispensable : un saut de scroll
+    // plus grand que le viewport (flick mobile, PgDn, ancre) fait passer un bloc
+    // de "sous l'ecran" a "au-dessus" sans AUCUN callback IO — le ratio reste a 0,
+    // aucun seuil n'est franchi. Seuls les blocs encore sous l'ecran sont
+    // laisses masques : eux gardent leur animation d'entree au scroll.
+    const failsafe = window.setInterval(() => {
+      root.querySelectorAll("[data-reveal]:not(.is-visible)").forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-visible");
+      });
+    }, 2000);
 
     return () => {
       observer.disconnect();
       mutation.disconnect();
-      window.clearTimeout(failsafe);
+      window.clearInterval(failsafe);
     };
   }, []);
 
