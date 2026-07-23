@@ -1,0 +1,9 @@
+# Déploiement Netlify — Next.js 15.
+# Le runtime Next.js de Netlify (@netlify/plugin-nextjs) prend en charge
+# Server Actions, ISR et images ; `publish = .next` est la valeur documentée.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
