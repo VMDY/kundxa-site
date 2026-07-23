@@ -77,8 +77,10 @@ const jsonLd = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  // suppressHydrationWarning : le script du head ajoute `js-reveal` sur <html>
+  // avant l'hydratation — divergence attendue, limitee a cet element.
   return (
-    <html lang="fr" className={montserrat.variable}>
+    <html lang="fr" className={montserrat.variable} suppressHydrationWarning>
       <head>
         {/* Masque les blocs a animer AVANT le premier paint (pas de FOUC), sauf si
             l'utilisateur demande moins d'animations. La revelation est ensuite

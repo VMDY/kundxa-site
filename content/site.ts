@@ -28,6 +28,7 @@ export const nav = [
   { libelle: "Le problème", href: "#probleme" },
   { libelle: "La solution", href: "#solution" },
   { libelle: "Les offres", href: "#offres" },
+  { libelle: "Notre newsletter", href: liens.newsletter },
 ] as const;
 
 export const cta = {

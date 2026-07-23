@@ -39,20 +39,27 @@ export function SiteHeader() {
             width={560}
             height={178}
             priority
-            className="h-7 w-auto sm:h-8"
+            className="h-9 w-auto sm:h-10"
           />
         </a>
 
         <nav aria-label="Navigation principale" className="hidden items-center gap-8 md:flex">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-sm text-caption font-semibold text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              {item.libelle}
-            </a>
-          ))}
+          {nav.map((item) => {
+            // Les ancres (#...) scrollent sur place ; tout autre lien (newsletter)
+            // est externe et s'ouvre dans un nouvel onglet.
+            const externe = !item.href.startsWith("#");
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                target={externe ? "_blank" : undefined}
+                rel={externe ? "noopener noreferrer" : undefined}
+                className="rounded-sm text-caption font-semibold text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                {item.libelle}
+              </a>
+            );
+          })}
         </nav>
 
         <ButtonLink href="#appel" size="sm" className="shrink-0">
