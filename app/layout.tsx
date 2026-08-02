@@ -97,9 +97,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Premier element focusable de la page : sauter la nav au clavier */}
+        {/* Premier element focusable de la page : sauter la nav au clavier.
+            Cible <main> et non #haut : #haut n'existe que sur l'accueil, le lien
+            ne menait donc nulle part sur /contact et les pages legales. */}
         <a
-          href="#haut"
+          href="#contenu"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-bg"
         >
           Aller au contenu
@@ -107,7 +109,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ScrollProgress />
         <RevealProvider />
         <SiteHeader />
-        <main>{children}</main>
+        <main id="contenu" tabIndex={-1}>
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

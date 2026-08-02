@@ -29,8 +29,10 @@ export function SiteHeader() {
       )}
     >
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
+        {/* « / » et non « #haut » : le header est sur toutes les pages, et une
+            ancre nue ne ramenait pas a l'accueil depuis /contact. */}
         <a
-          href="#haut"
+          href="/"
           className="flex items-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           <Image

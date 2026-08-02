@@ -33,10 +33,15 @@ export const liens = {
   newsletter: "https://newsletter.kundxa.com",
 } as const;
 
+// Ancres prefixees par « / » : le header est affiche sur TOUTES les pages. Une
+// ancre nue (#probleme) pointe vers la page courante — depuis /contact elle
+// visait /contact#probleme, qui n'existe pas, et le clic ne faisait rien.
+// Avec « /#probleme », le navigateur revient a l'accueil puis descend ; depuis
+// l'accueil il scrolle sans recharger.
 export const nav = [
-  { libelle: "Le problème", href: "#probleme" },
-  { libelle: "La solution", href: "#solution" },
-  { libelle: "Les offres", href: "#offres" },
+  { libelle: "Le problème", href: "/#probleme" },
+  { libelle: "La solution", href: "/#solution" },
+  { libelle: "Les offres", href: "/#offres" },
   { libelle: "Contact", href: "/contact" },
   { libelle: "Notre newsletter", href: liens.newsletter },
 ] as const;
