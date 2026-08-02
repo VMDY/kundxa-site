@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Déclaration des formulaires Netlify</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <!--
+      Ce fichier n'est jamais affiché. Il existe pour une seule raison : Netlify
+      détecte les formulaires en parsant le HTML statique au moment du build, et
+      un formulaire rendu par React ne lui est jamais visible. On déclare donc
+      ici les champs, une fois, et le composant React poste vers cette URL.
+
+      Toute modification des champs de components/contact-form.tsx doit être
+      répercutée ici, sinon Netlify rejette la soumission (422).
+
+      netlify-honeypot : si le champ « bot-field » est rempli, c'est un robot.
+      La soumission est silencieusement écartée.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="nom" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>

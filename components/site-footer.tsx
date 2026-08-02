@@ -6,11 +6,21 @@ import { footer, legal, liens, site } from "@/content/site";
 
 // Chaque reseau porte un aria-label explicite : l'icone seule ne dit rien a un
 // lecteur d'ecran.
+//
+// `couleur` = couleur officielle de la marque, appliquee en style inline (les
+// icones sont en `currentColor`). Deux choix a connaitre :
+//  - X n'a pas de couleur : son glyphe est noir ou blanc. Sur notre fond sombre,
+//    c'est blanc.
+//  - LinkedIn : #378FE9 et non #0A66C2. C'est la declinaison que LinkedIn lui-meme
+//    prescrit sur fond sombre ; le bleu standard tombe a 3,4:1 de contraste ici,
+//    et parait terne a cote du rouge YouTube.
+// La newsletter n'est pas une marque tierce : elle garde l'accent du site
+// (couleur nulle -> la classe `text-accent` s'applique).
 const reseaux = [
-  { href: liens.youtube, libelle: "Chaîne YouTube de Kundxa", Icone: IconYoutube },
-  { href: liens.x, libelle: "Compte X de Kundxa", Icone: IconX },
-  { href: liens.linkedin, libelle: "Profil LinkedIn de Valdo Mendy", Icone: IconLinkedin },
-  { href: liens.newsletter, libelle: "La newsletter Kundxa", Icone: IconMail },
+  { href: liens.youtube, libelle: "Chaîne YouTube de Kundxa", Icone: IconYoutube, couleur: "#FF0000" },
+  { href: liens.x, libelle: "Compte X de Kundxa", Icone: IconX, couleur: "#FFFFFF" },
+  { href: liens.linkedin, libelle: "Profil LinkedIn de Valdo Mendy", Icone: IconLinkedin, couleur: "#378FE9" },
+  { href: liens.newsletter, libelle: "La newsletter Kundxa", Icone: IconMail, couleur: null },
 ];
 
 export function SiteFooter() {
@@ -29,7 +39,7 @@ export function SiteFooter() {
             <p className="mt-5 max-w-sm text-body text-muted">{site.tagline}</p>
 
             <ul className="mt-8 flex items-center gap-3">
-              {reseaux.map(({ href, libelle, Icone }) => (
+              {reseaux.map(({ href, libelle, Icone, couleur }) => (
                 <li key={href}>
                   <a
                     href={href}
@@ -37,7 +47,11 @@ export function SiteFooter() {
                     rel="noopener noreferrer"
                     aria-label={libelle}
                     title={libelle}
-                    className="flex h-11 w-11 items-center justify-center rounded-md border border-border text-fg transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    // Le survol ne touche plus a la couleur : un style inline la
+                    // rendrait insurchargeable en CSS. Le retour visuel passe
+                    // donc par la bordure seule.
+                    style={couleur ? { color: couleur } : undefined}
+                    className="flex h-11 w-11 items-center justify-center rounded-md border border-border text-accent transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
                     <Icone className="h-5 w-5" />
                   </a>

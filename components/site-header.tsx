@@ -45,9 +45,11 @@ export function SiteHeader() {
 
         <nav aria-label="Navigation principale" className="hidden items-center gap-8 md:flex">
           {nav.map((item) => {
-            // Les ancres (#...) scrollent sur place ; tout autre lien (newsletter)
-            // est externe et s'ouvre dans un nouvel onglet.
-            const externe = !item.href.startsWith("#");
+            // Seuls les liens absolus (newsletter) sont externes et s'ouvrent dans
+            // un nouvel onglet. Les ancres (#...) scrollent sur place, et les
+            // chemins internes (/contact) naviguent dans l'onglet courant —
+            // tester `!startsWith("#")` les expedierait a tort dans un onglet neuf.
+            const externe = item.href.startsWith("http");
             return (
               <a
                 key={item.href}
@@ -62,7 +64,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <ButtonLink href="#appel" size="sm" className="shrink-0">
+        <ButtonLink href="/contact" size="sm" className="shrink-0">
           {cta.principal}
         </ButtonLink>
       </Container>

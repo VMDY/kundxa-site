@@ -35,8 +35,8 @@ const soustraitants = [
   },
   {
     nom: "Netlify",
-    role: "Hébergement du site",
-    donnees: "Journaux techniques, adresse IP",
+    role: "Hébergement du site et réception du formulaire de contact",
+    donnees: "Journaux techniques, adresse IP, nom, e-mail et message envoyés via le formulaire",
     lieu: "États-Unis",
   },
 ];
@@ -61,6 +61,14 @@ export default function Confidentialite() {
                   Votre adresse e-mail, la date d&apos;inscription et votre consentement. Finalité :
                   vous envoyer la newsletter. Base légale : votre consentement, que vous pouvez
                   retirer à tout moment.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Formulaire de contact</dt>
+                <dd className="text-body text-muted">
+                  Votre nom, votre adresse e-mail et le message que vous rédigez. Finalité : vous
+                  répondre. Base légale : mesures précontractuelles prises à votre demande. La
+                  soumission est reçue par Netlify, qui me la transmet par courrier électronique.
                 </dd>
               </div>
               <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
@@ -131,8 +139,9 @@ export default function Confidentialite() {
             <h2 className="text-h3">Combien de temps</h2>
             <p className="mt-4 text-body text-muted">
               Abonnés à la newsletter : jusqu&apos;à votre désinscription, puis suppression sous
-              trois mois. Échanges liés à un rendez-vous : trois ans à compter du dernier contact.
-              Journaux techniques : treize mois au maximum.
+              trois mois. Messages envoyés via le formulaire de contact, et échanges liés à un
+              rendez-vous : trois ans à compter du dernier contact. Journaux techniques : treize
+              mois au maximum.
             </p>
           </section>
 

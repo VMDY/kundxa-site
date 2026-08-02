@@ -44,7 +44,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={240} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ButtonLink href="#appel">
+              <ButtonLink href="/contact">
                 {cta.principal}
                 <IconArrowRight className="h-[1.1em] w-[1.1em]" />
               </ButtonLink>

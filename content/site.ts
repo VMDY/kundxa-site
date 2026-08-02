@@ -3,13 +3,22 @@
  * Les composants ne contiennent aucun texte : pour changer un mot, on edite ici.
  * Voix : brand_context/voice-profile.md — vouvoiement, zero trope gourou,
  * zero cadrage victimaire. Passe par tool-humanizer (deep) le 2026-07-21.
+ *
+ * Personne : « je » pour le prestataire (decision 2026-08-02). Le site melangeait
+ * « je » et « on » ; le « je » a ete retenu — la garantie et la preuve reposent sur
+ * un engagement personnel, que le « on » affaiblit.
+ * Trois « on » subsistent volontairement, et ne sont PAS des oublis :
+ *   1. inclusif — « on regarde votre boite », « on ne travaille pas ensemble » :
+ *      designe le client et moi pendant l'appel. L'inverser sonnerait directif.
+ *   2. impersonnel — « On vous a vendu des outils » : designe le marche, pas moi.
+ *   3. maxime — « un systeme qu'on repare vite » : verite generale.
  */
 
 export const site = {
   nom: "KUNDXA",
   tagline: "Faites tourner votre business, pas vos journées.",
   description:
-    "Des systèmes agentiques éprouvés en production. On installe les systèmes qui livrent à votre place, et on les maintient.",
+    "Des systèmes agentiques éprouvés en production. J'installe les systèmes qui livrent à votre place, et je les maintiens.",
   url: "https://kundxa.com",
   email: "contact@kundxa.com",
   calcom: "kundxa/appel-de-cadrage",
@@ -28,6 +37,7 @@ export const nav = [
   { libelle: "Le problème", href: "#probleme" },
   { libelle: "La solution", href: "#solution" },
   { libelle: "Les offres", href: "#offres" },
+  { libelle: "Contact", href: "/contact" },
   { libelle: "Notre newsletter", href: liens.newsletter },
 ] as const;
 
@@ -42,8 +52,10 @@ export const hero = {
   eyebrow: "Systèmes agentiques · Éprouvés en production",
   titreDebut: "Faites tourner votre business, pas ",
   titreAccent: "vos journées",
+  // Le titre porte la promesse, ce sous-titre porte le resultat mesure : delai
+  // annonce (quatorze jours, aligne sur la garantie) + ce que le client garde.
   sousTitre:
-    "Je ne vous vends pas un outil. Je vous sors de la production. On installe les systèmes qui livrent à votre place, et on les maintient.",
+    "Vos tâches répétitives sortent de vos mains en quatorze jours. Vous gardez la décision, la machine fait le reste.",
   stack: ["Claude Code", "n8n", "Hermes Agent", "Agents vocaux"],
   certifications: "Certifié Claude Code (Anthropic) · n8n niveau 1 et 2 · Retell",
 } as const;
@@ -82,6 +94,7 @@ export const probleme = {
     },
   ],
   essaye: {
+    // « On » impersonnel : le marche, les vendeurs d'outils. Pas moi.
     intro:
       "Vous avez déjà essayé. Plusieurs fois. On vous a vendu des outils quand il vous fallait un système.",
     lignes: [
@@ -107,20 +120,20 @@ export const solution = {
   titreAccent: "architecte",
   corps: [
     "Tant que vous êtes la meilleure paire de mains de votre boîte, vous n'en serez jamais le cerveau.",
-    "Il vous manque un système conçu pour tenir sans vous. C'est ce qu'on installe.",
+    "Il vous manque un système conçu pour tenir sans vous. C'est ce que j'installe.",
   ],
   etapes: [
     {
       numero: "01",
       titre: "Diagnostic",
       texte:
-        "On cartographie où votre temps part et ce qui se répète. Vous repartez avec vos goulots classés par ce que chacun vous coûte.",
+        "Je cartographie où votre temps part et ce qui se répète. Vous repartez avec vos goulots classés par ce que chacun vous coûte.",
     },
     {
       numero: "02",
       titre: "Build",
       texte:
-        "On construit le système : n8n, Claude Code, Hermes Agent, agents vocaux quand ça s'y prête. Vous ne touchez pas au technique. Comptez une heure de votre temps par semaine.",
+        "Je construis le système : n8n, Claude Code, Hermes Agent, agents vocaux quand ça s'y prête. Vous ne touchez pas au technique. Comptez une heure de votre temps par semaine.",
     },
     {
       numero: "03",
@@ -132,7 +145,7 @@ export const solution = {
       numero: "04",
       titre: "Évolution",
       texte:
-        "On surveille, on répare, on fait évoluer. Un système qui tient, ce n'est pas un système qui ne casse jamais : c'est un système qu'on répare vite.",
+        "Je surveille, je répare, je fais évoluer. Un système qui tient, ce n'est pas un système qui ne casse jamais : c'est un système qu'on répare vite.",
     },
   ],
   preuve: {
@@ -171,11 +184,12 @@ export const solution = {
 export const offres = {
   eyebrow: "Les offres",
   titre: "Quatre façons de travailler ensemble.",
+  // « quand on sait » : inclusif — apres l'appel, vous et moi savons.
   sousTitre: "Tout est sur devis. Le prix se décide après l'appel, quand on sait ce qu'on répare.",
   principale: {
     badge: "Le cœur de l'offre",
     titre: "Build agentique sur-mesure",
-    accroche: "On construit votre système. Vous ne touchez pas au technique.",
+    accroche: "Je construis votre système. Vous ne touchez pas au technique.",
     pourQui: "Vous savez ce qui vous bloque, et vous voulez que ce soit réglé, pas appris.",
     livre: [
       "Audit de friction",
@@ -196,12 +210,12 @@ export const offres = {
       titre: "Accompagnement et formation",
       accroche: "Vous voulez que votre équipe sache faire.",
       texte:
-        "On construit à côté de vous, et on vous laisse capables de faire évoluer le système sans moi.",
+        "Je construis à côté de vous, et je vous laisse capables de faire évoluer le système sans moi.",
     },
     {
       titre: "Maintenance et évolution",
       accroche: "Le système tourne. Il doit continuer.",
-      texte: "On surveille, on répare vite, on fait évoluer au rythme de votre boîte.",
+      texte: "Je surveille, je répare vite, je fais évoluer au rythme de votre boîte.",
     },
   ],
   mention: "Sur devis",
@@ -213,6 +227,8 @@ export const appel = {
   eyebrow: "Prochaine étape",
   titreDebut: "Un appel de cadrage. ",
   titreAccent: "Soixante minutes.",
+  // Les « on » de cette section sont inclusifs : ce qui se passe pendant l'appel,
+  // vous et moi. Le « je » revient des qu'il s'agit de mon engagement.
   corps:
     "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
   puces: [
@@ -231,6 +247,84 @@ export const appel = {
   ],
   closer:
     "Vous pouvez regarder ça de loin. Ou on regarde ensemble, ce mois-ci, ce qui peut sortir de vos mains.",
+  ctaPage: "Voir les trois façons de me joindre",
+} as const;
+
+/* --------------------------------------------------------------- CONTACT */
+/* L'appel de soixante minutes est l'engagement le plus lourd du site. Ce bloc
+   est la marche du dessous : ecrire, sans bloquer de creneau. */
+
+export const contact = {
+  eyebrow: "Vous préférez écrire",
+  titre: "Dites-moi en deux lignes ce qui vous bloque.",
+  // Espaces insecables (U+00A0) avant « ? » et dans « 24 h » : sans elles, le
+  // navigateur rejette le point d'interrogation seul en debut de ligne.
+  texte:
+    "Pas envie de bloquer soixante minutes tout de suite ? Écrivez. Je lis tout, et je réponds sous 24 h ouvrées.",
+  champs: {
+    nom: "Votre nom",
+    email: "Votre e-mail",
+    message: "Ce qui vous bloque",
+    messagePlaceholder: "En deux lignes : ce qui vous prend le plus de temps aujourd'hui.",
+  },
+  bouton: "Envoyer",
+  envoi: "Envoi…",
+  succes: "Message reçu. Je vous réponds sous 24 h ouvrées.",
+  erreur: "L'envoi n'a pas abouti. Réessayez, ou écrivez-moi directement à contact@kundxa.com.",
+  ouEmail: "Ou directement :",
+} as const;
+
+/* ----------------------------------------------------------- PAGE CONTACT */
+/* Les trois canaux sont ordonnes par engagement croissant : ecrire un message,
+   puis bloquer un creneau. L'e-mail direct ferme la marche — c'est la sortie de
+   secours de ceux qui ne veulent ni formulaire ni agenda. */
+
+export const pageContact = {
+  titre: "Trois façons de me joindre.",
+  intro:
+    "Choisissez celle qui vous arrange. Les trois arrivent au même endroit, et c'est moi qui réponds.",
+  canaux: [
+    {
+      ancre: "ecrire",
+      eyebrow: "Le plus simple",
+      titre: "Le formulaire",
+      pourQui: "Vous voulez poser le décor à votre rythme, sans bloquer de créneau.",
+      repere: "Réponse sous 24 h ouvrées",
+    },
+    {
+      ancre: "appeler",
+      eyebrow: "Le plus direct",
+      titre: "L'appel de cadrage",
+      pourQui: "Vous voulez qu'on nomme votre goulot, et qu'on chiffre ce que coûte de le régler.",
+      repere: "Soixante minutes, en visio",
+    },
+    {
+      ancre: "email",
+      eyebrow: "Sans intermédiaire",
+      titre: "L'e-mail",
+      pourQui: "Vous préférez votre messagerie, ou vous avez des documents à joindre.",
+      repere: "contact@kundxa.com",
+    },
+  ],
+  ecrire: {
+    eyebrow: "Écrire",
+    titre: "Dites-moi en deux lignes ce qui vous bloque.",
+    texte:
+      "Pas besoin d'un dossier complet. Ce qui vous prend le plus de temps aujourd'hui suffit à démarrer la conversation.",
+  },
+  appeler: {
+    eyebrow: "Parler",
+    titre: "Un appel de cadrage. Soixante minutes.",
+    texte:
+      "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
+  },
+  email: {
+    eyebrow: "En direct",
+    titre: "Ou simplement un e-mail.",
+    texte:
+      "Pas de formulaire, pas d'agenda. J'y réponds moi-même, dans les mêmes délais.",
+    bouton: "Écrire à contact@kundxa.com",
+  },
 } as const;
 
 /* ---------------------------------------------------------------- FOOTER */
