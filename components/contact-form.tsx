@@ -79,7 +79,9 @@ export function ContactForm() {
           </label>
           <input
             id="contact-nom"
-            name="nom"
+            // « name » et non « nom » : Netlify remonte les champs `name` et
+            // `email` en colonnes de son tableau de bord.
+            name="name"
             type="text"
             required
             maxLength={120}
