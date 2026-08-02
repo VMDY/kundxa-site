@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/button";
@@ -30,8 +31,9 @@ export function SiteHeader() {
     >
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
         {/* « / » et non « #haut » : le header est sur toutes les pages, et une
-            ancre nue ne ramenait pas a l'accueil depuis /contact. */}
-        <a
+            ancre nue ne ramenait pas a l'accueil depuis /contact. Link plutot
+            que <a> : navigation cote client, sans rechargement complet. */}
+        <Link
           href="/"
           className="flex items-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
@@ -43,7 +45,7 @@ export function SiteHeader() {
             priority
             className="h-9 w-auto sm:h-10"
           />
-        </a>
+        </Link>
 
         <nav aria-label="Navigation principale" className="hidden items-center gap-8 md:flex">
           {nav.map((item) => {
