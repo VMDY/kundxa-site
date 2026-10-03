@@ -8,6 +8,19 @@ const nextConfig: NextConfig = {
   turbopack: { root: path.resolve(__dirname) },
   outputFileTracingRoot: path.resolve(__dirname),
 
+  // Adresse de retour OAuth de l'application TikTok « Kundxa ». TikTok exige une URL
+  // sur un domaine verifie (kundxa.com) : on la renvoie vers le callback Composio,
+  // qui recoit les parametres code et state tels quels (Next.js conserve la query).
+  async redirects() {
+    return [
+      {
+        source: "/oauth/tiktok/callback",
+        destination: "https://backend.composio.dev/api/v1/auth-apps/add",
+        permanent: false,
+      },
+    ];
+  },
+
   // En-tetes de securite. Le site n'a pas de zone authentifiee : ces trois-la
   // suffisent, et aucune ne casse l'iframe Cal.com (qui est sortante, pas entrante).
   async headers() {
