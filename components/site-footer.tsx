@@ -77,7 +77,7 @@ export function SiteFooter() {
               {site.email}
             </a>
           </p>
-          <nav aria-label="Liens légaux" className="flex gap-6">
+          <nav aria-label="Liens légaux" className="flex flex-wrap gap-x-6 gap-y-2">
             <a
               href="/mentions-legales"
               className="rounded-sm text-caption text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
@@ -89,6 +89,12 @@ export function SiteFooter() {
               className="rounded-sm text-caption text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
             >
               Confidentialité
+            </a>
+            <a
+              href="/conditions-utilisation"
+              className="rounded-sm text-caption text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            >
+              Conditions d&apos;utilisation
             </a>
           </nav>
         </div>

@@ -23,5 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${site.url}/conditions-utilisation`,
+      lastModified: maj,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }
