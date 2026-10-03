@@ -9,14 +9,15 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.resolve(__dirname),
 
   // Adresse de retour OAuth de l'application TikTok « Kundxa ». TikTok exige une URL
-  // sur un domaine verifie (kundxa.com) : on la renvoie vers le callback Composio,
+  // sur un domaine verifie (kundxa.com) : on la renvoie vers le callback Composio v3,
   // qui recoit les parametres code et state tels quels (Next.js conserve la query).
   async redirects() {
     return [
       {
         source: "/oauth/tiktok/callback",
-        destination: "https://backend.composio.dev/api/v1/auth-apps/add",
-        permanent: false,
+        destination: "https://backend.composio.dev/api/v3/toolkits/auth/callback",
+        // Composio exige une redirection 302 (navigateur), query conservee.
+        statusCode: 302,
       },
     ];
   },
