@@ -39,6 +39,13 @@ const soustraitants = [
     donnees: "Journaux techniques, adresse IP, nom, e-mail et message envoyés via le formulaire",
     lieu: "États-Unis",
   },
+  {
+    nom: "Composio",
+    role: "Connexion aux API de TikTok et de X (jetons d'accès, exécution des requêtes)",
+    donnees:
+      "Jetons d'accès, données de profil, statistiques et contenus des comptes connectés",
+    lieu: "États-Unis",
+  },
 ];
 
 export default function Confidentialite() {
@@ -87,6 +94,80 @@ export default function Confidentialite() {
                 </dd>
               </div>
             </dl>
+          </section>
+
+          <section>
+            <h2 className="text-h3">Comptes TikTok et X connectés</h2>
+            <p className="mt-4 text-body text-muted">
+              Kundxa utilise une application connectée à TikTok et à X pour publier et suivre les
+              contenus de ses propres comptes. Ces connexions ne concernent que les comptes dont le
+              titulaire a lui-même donné son autorisation sur l&apos;écran de connexion de TikTok ou
+              de X ; aucune donnée des visiteurs du site n&apos;est collectée par ce biais.
+            </p>
+            <dl className="mt-5 divide-y divide-border border-y border-border">
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Données TikTok</dt>
+                <dd className="text-body text-muted">
+                  Identifiant TikTok (open_id), nom affiché et photo de profil ; lien du profil,
+                  biographie et statut vérifié ; nombre d&apos;abonnés, d&apos;abonnements, de mentions
+                  « J&apos;aime » et de vidéos ; liste des vidéos publiques du compte ; vidéos,
+                  légendes et paramètres de publication que le titulaire choisit de publier.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Données X</dt>
+                <dd className="text-body text-muted">
+                  Informations de profil, publications et statistiques du compte connecté, ainsi
+                  que les contenus que le titulaire choisit de publier.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Finalité et base légale</dt>
+                <dd className="text-body text-muted">
+                  Publier sur le compte du titulaire les contenus qu&apos;il a préparés, et suivre
+                  les performances de ces publications. Base légale : le consentement donné lors
+                  de l&apos;autorisation, retirable à tout moment.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Ce qui n&apos;est jamais fait</dt>
+                <dd className="text-body text-muted">
+                  Aucune vente ni location de ces données, aucun usage publicitaire, aucun
+                  croisement avec d&apos;autres sources, aucune publication sans action du
+                  titulaire.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Retirer l&apos;accès</dt>
+                <dd className="text-body text-muted">
+                  À tout moment depuis TikTok (Paramètres et confidentialité, Sécurité et
+                  autorisations, Gérer les applications), depuis X (Paramètres, Sécurité et accès
+                  au compte, Applications et sessions), ou en écrivant à l&apos;adresse indiquée
+                  plus bas. L&apos;accès est alors révoqué et les jetons supprimés.
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-5 text-caption text-muted">
+              Les règles de ces plateformes s&apos;appliquent également :{" "}
+              <a
+                href="https://www.tiktok.com/legal/privacy-policy-eea"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                politique de confidentialité de TikTok
+              </a>{" "}
+              et{" "}
+              <a
+                href="https://x.com/fr/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                politique de confidentialité de X
+              </a>
+              .
+            </p>
           </section>
 
           <section>
@@ -141,7 +222,9 @@ export default function Confidentialite() {
               Abonnés à la newsletter : jusqu&apos;à votre désinscription, puis suppression sous
               trois mois. Messages envoyés via le formulaire de contact, et échanges liés à un
               rendez-vous : trois ans à compter du dernier contact. Journaux techniques : treize
-              mois au maximum.
+              mois au maximum. Comptes TikTok et X connectés : jetons d&apos;accès conservés tant
+              que la connexion est active, supprimés à la déconnexion ; statistiques et données
+              de publication conservées treize mois au maximum.
             </p>
           </section>
 
