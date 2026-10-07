@@ -5,11 +5,17 @@ import { Container } from "@/components/ui/container";
 import { IconLinkedin, IconMail, IconX, IconYoutube } from "@/components/ui/icons";
 import { footer, legal, liens, nav, site } from "@/content/site";
 
+// `couleur` = couleur officielle de la marque, en style inline (les icones sont
+// en `currentColor`). Deux choix a connaitre :
+//  - X n'a pas de couleur : son glyphe est noir ou blanc. Sur fond sombre, blanc.
+//  - LinkedIn : #378FE9 et non #0A66C2. C'est la declinaison que LinkedIn prescrit
+//    sur fond sombre ; le bleu standard tombe a 3,4:1 de contraste ici.
+// L'e-mail n'est pas une marque tierce : il garde l'or du site.
 const reseaux = [
-  { libelle: "YouTube", href: liens.youtube, Icone: IconYoutube },
-  { libelle: "LinkedIn", href: liens.linkedin, Icone: IconLinkedin },
-  { libelle: "X", href: liens.x, Icone: IconX },
-  { libelle: "E-mail", href: `mailto:${site.email}`, Icone: IconMail },
+  { libelle: "YouTube", href: liens.youtube, Icone: IconYoutube, couleur: "#FF0000" },
+  { libelle: "LinkedIn", href: liens.linkedin, Icone: IconLinkedin, couleur: "#378FE9" },
+  { libelle: "X", href: liens.x, Icone: IconX, couleur: "#FFFFFF" },
+  { libelle: "E-mail", href: `mailto:${site.email}`, Icone: IconMail, couleur: "var(--color-gold)" },
 ];
 
 const legaux = [
@@ -36,13 +42,14 @@ export function SiteFooter() {
             />
             <p className="mt-5 font-serif text-h3 italic text-paper">{site.signature}</p>
             <ul className="mt-8 flex gap-3">
-              {reseaux.map(({ libelle, href, Icone }) => (
+              {reseaux.map(({ libelle, href, Icone, couleur }) => (
                 <li key={libelle}>
                   <a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="grid h-10 w-10 place-items-center rounded-sm border border-white/12 text-muted transition-colors hover:border-gold hover:text-gold focus-visible:outline-2 focus-visible:outline-gold"
+                    style={{ color: couleur }}
+                    className="grid h-10 w-10 place-items-center rounded-sm border border-white/12 bg-white/[0.03] transition-[border-color,background-color] hover:border-current hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-gold"
                   >
                     <span className="sr-only">{libelle}</span>
                     <Icone className="h-[18px] w-[18px]" />
@@ -77,6 +84,10 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {site.nom} · {legal.editeur} · Angers ·{" "}
             <a href={`mailto:${site.email}`} className={lien}>
               {site.email}
+            </a>{" "}
+            ·{" "}
+            <a href={site.telephoneUrl} className={lien}>
+              {site.telephone}
             </a>
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">

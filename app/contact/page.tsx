@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/contact-form";
 import { PageHero } from "@/components/blocks/page-hero";
 import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
-import { IconArrowDown, IconArrowRight } from "@/components/ui/icons";
+import { IconArrowDown, IconArrowRight, IconPhone } from "@/components/ui/icons";
 import { Kicker } from "@/components/ui/kicker";
 import { Section } from "@/components/ui/section";
 import { pageContact, site } from "@/content/site";
@@ -19,12 +19,13 @@ export default function Contact() {
   return (
     <>
       <PageHero surtitre={pageContact.surtitre} titre={pageContact.titre} texte={pageContact.intro}>
-        {/* Sommaire des trois canaux : chaque carte saute a sa section. */}
-        <ul className="mt-12 grid gap-4 md:grid-cols-3">
+        {/* Sommaire des canaux : chaque carte saute a sa section, sauf le
+            telephone qui lance l'appel. */}
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {pageContact.canaux.map((canal) => (
             <li key={canal.ancre}>
               <a
-                href={`#${canal.ancre}`}
+                href={"href" in canal ? canal.href : `#${canal.ancre}`}
                 className="glass flex h-full flex-col rounded-lg p-6 transition-colors hover:border-gold/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
                 <span className="font-mono text-label uppercase text-gold">{canal.surtitre}</span>
@@ -32,7 +33,11 @@ export default function Contact() {
                 <span className="mt-3 grow text-small text-muted">{canal.pourQui}</span>
                 <span className="mt-5 inline-flex items-center gap-2 text-small font-semibold">
                   {canal.repere}
-                  <IconArrowDown className="h-[1.1em] w-[1.1em] text-gold" />
+                  {"href" in canal ? (
+                    <IconPhone className="h-[1.1em] w-[1.1em] text-gold" />
+                  ) : (
+                    <IconArrowDown className="h-[1.1em] w-[1.1em] text-gold" />
+                  )}
                 </span>
               </a>
             </li>

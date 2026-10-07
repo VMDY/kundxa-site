@@ -20,6 +20,12 @@ export function NewsletterForm() {
 
   return (
     <form action={action} className="mt-5">
+      {/* Piège à robots : invisible et hors du parcours clavier (voir l'action). */}
+      <p className="hidden">
+        <label>
+          Ne remplissez pas ce champ <input name="site_web" tabIndex={-1} autoComplete="off" />
+        </label>
+      </p>
       <div className="flex flex-col gap-3 sm:flex-row">
         <label htmlFor="newsletter-email" className="sr-only">
           Votre adresse e-mail
@@ -45,6 +51,7 @@ export function NewsletterForm() {
       >
         {etat?.message ?? ""}
       </p>
+      {!etat?.ok && <p className="mt-3 text-caption text-muted/80">{footer.newsletter.mention}</p>}
     </form>
   );
 }

@@ -32,6 +32,9 @@ export const site = {
     "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
   url: "https://kundxa.com",
   email: "contact@kundxa.com",
+  // Espaces insécables : le numéro ne se coupe jamais en fin de ligne.
+  telephone: "09 74 06 47 40",
+  telephoneUrl: "tel:+33974064740",
   calcom: "kundxa/appel-de-cadrage",
   calcomUrl: "https://cal.com/kundxa/appel-de-cadrage",
   photo: "/photos/valdo.png",
@@ -40,7 +43,7 @@ export const site = {
 
 export const liens = {
   youtube: "https://www.youtube.com/@Kundxa-ai",
-  linkedin: "https://www.linkedin.com/in/valdo-mendy-2a3304377",
+  linkedin: "https://www.linkedin.com/in/valdomendy",
   x: "https://x.com/Mendy_Valdo_58",
   newsletter: "https://newsletter.kundxa.com",
 } as const;
@@ -566,11 +569,11 @@ export const pageContact = fr({
   meta: {
     titre: "Contact",
     description:
-      "Réservez un appel de cadrage de soixante minutes, écrivez en deux lignes ou envoyez un e-mail. Réponse sous 24 h ouvrées.",
+      "Réservez un appel de cadrage de soixante minutes, appelez, écrivez en deux lignes ou envoyez un e-mail. Réponse sous 24 h ouvrées.",
   },
   surtitre: "Contact",
-  titre: ["Trois façons de me ", "joindre", "."],
-  intro: "Choisissez celle qui vous arrange. Les trois arrivent au même endroit, et c'est moi qui réponds.",
+  titre: ["Quatre façons de me ", "joindre", "."],
+  intro: "Choisissez celle qui vous arrange. Tout arrive au même endroit, et c'est moi qui donne suite.",
   canaux: [
     {
       ancre: "appeler",
@@ -593,6 +596,14 @@ export const pageContact = fr({
       pourQui: "Vous préférez votre messagerie, ou vous avez des documents à joindre.",
       repere: "contact@kundxa.com",
     },
+    {
+      ancre: "telephone",
+      href: site.telephoneUrl,
+      surtitre: "À toute heure",
+      titre: "Le téléphone",
+      pourQui: "Vous préférez parler tout de suite. Mon assistant IA répond à vos questions et réserve votre appel de cadrage.",
+      repere: site.telephone,
+    },
   ],
   appeler: {
     surtitre: "Parler",
@@ -612,7 +623,7 @@ export const pageContact = fr({
     texte: "Pas de formulaire, pas d'agenda. J'y réponds moi-même, dans les mêmes délais.",
     bouton: "Écrire à contact@kundxa.com",
   },
-  coordonnees: "Kundxa · Valdo Mendy · 48 rue de Brissac, 49000 Angers",
+  coordonnees: `Kundxa · Valdo Mendy · 48 rue de Brissac, 49000 Angers · ${site.telephone}`,
   cal: {
     surtitre: "Appel de cadrage",
     titre: "Soixante minutes, en visio.",
@@ -631,7 +642,8 @@ export const footer = fr({
     texte: "Chaque semaine, ce que je construis vraiment. Ce qui marche, et ce qui a cassé.",
     placeholder: "vous@votreboite.fr",
     bouton: "S'abonner",
-    succes: "C'est fait. Vous recevrez la prochaine.",
+    mention: "Un e-mail de confirmation vous attend. Désinscription en un clic.",
+    succes: "Vérifiez votre boîte : un e-mail de confirmation vient de partir.",
     erreur: "L'inscription n'a pas abouti. Réessayez, ou écrivez-moi directement.",
     emailInvalide: "Cette adresse ne semble pas valide.",
   },

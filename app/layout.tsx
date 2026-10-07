@@ -50,6 +50,7 @@ const jsonLd = {
   name: legal.nomCommercial,
   url: site.url,
   email: site.email,
+  telephone: "+33974064740",
   slogan: site.signature,
   description: site.description,
   founder: { "@type": "Person", name: legal.editeur },

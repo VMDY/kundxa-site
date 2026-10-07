@@ -1,79 +1,63 @@
 "use server";
 
 /**
- * Inscription newsletter -> Airtable, base « Newsletter Kundxa ».
+ * Inscription newsletter -> le circuit de newsletter.kundxa.com (/api/subscribe).
  *
- * Server Action : la cle Airtable ne quitte jamais le serveur. Ne jamais exposer
- * ces valeurs via NEXT_PUBLIC_*.
+ * Un seul circuit pour les deux sites : la fonction Netlify du projet
+ * kundxa-newsletter range l'adresse dans Notion (Statut « En attente »), envoie
+ * l'e-mail de confirmation (double opt-in), puis le message de bienvenue avec la
+ * checklist. Valdo reçoit l'alerte Telegram quand l'inscription est confirmée.
  *
- * Table « Abonnés » (tblIQYyqpuVObtDKc) — champs et options verifies sur la base
- * reelle le 2026-07-21 :
- *   Email (email) · Statut (singleSelect) · Source (singleSelect)
- *   Date d'inscription (dateTime) · Consentement RGPD (checkbox)
+ * Appel serveur a serveur : pas de CORS, rien a exposer au navigateur.
+ * NEWSLETTER_API_URL permet de viser un deploy preview ; par defaut, la prod.
  */
 
-const BASE_ID = "appHjTuCtKith5glD";
-const TABLE_ID = "tblIQYyqpuVObtDKc";
+import { footer } from "@/content/site";
 
 export type EtatInscription = { ok: boolean; message: string } | null;
 
 // Validation volontairement simple : on refuse ce qui est manifestement faux,
-// la verification reelle se fait a l'envoi du premier email.
+// la verification reelle se fait par l'e-mail de confirmation.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const API = process.env.NEWSLETTER_API_URL ?? "https://newsletter.kundxa.com/api/subscribe";
+const { succes: SUCCES, erreur: ECHEC, emailInvalide } = footer.newsletter;
 
 export async function inscrireNewsletter(
   _precedent: EtatInscription,
   formData: FormData,
 ): Promise<EtatInscription> {
+  // Piège à robots : un humain ne voit pas ce champ. Rempli -> on fait comme si
+  // tout s'était bien passé, sans rien enregistrer.
+  if (String(formData.get("site_web") ?? "") !== "") {
+    return { ok: true, message: SUCCES };
+  }
+
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
 
   if (!EMAIL_RE.test(email)) {
-    return { ok: false, message: "Cette adresse ne semble pas valide." };
-  }
-
-  const token = process.env.AIRTABLE_TOKEN;
-  if (!token) {
-    console.error("[newsletter] AIRTABLE_TOKEN absent — inscription impossible");
-    return { ok: false, message: "L'inscription n'a pas abouti. Réessayez, ou écrivez-moi directement." };
+    return { ok: false, message: emailInvalide };
   }
 
   try {
-    const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
+    const res = await fetch(API, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        records: [
-          {
-            fields: {
-              Email: email,
-              Statut: "En attente",
-              Source: "Landing page",
-              "Date d'inscription": new Date().toISOString(),
-              "Consentement RGPD": true,
-            },
-          },
-        ],
-      }),
+      headers: { "Content-Type": "application/json" },
+      // Le consentement est l'envoi du formulaire, sous la mention affichée ; le
+      // double opt-in le confirme.
+      body: JSON.stringify({ email, consentement: true, website: "", source: "kundxa.com" }),
       cache: "no-store",
+      signal: AbortSignal.timeout(15_000),
     });
 
     if (!res.ok) {
-      const detail = await res.text();
-      // Deja inscrit : on ne le traite pas comme une erreur cote visiteur.
-      if (detail.includes("INVALID_MULTIPLE_CHOICE_OPTIONS") || res.status === 422) {
-        console.error("[newsletter] Airtable a refuse l'enregistrement:", detail.slice(0, 400));
-      } else {
-        console.error("[newsletter] Airtable", res.status, detail.slice(0, 400));
-      }
-      return { ok: false, message: "L'inscription n'a pas abouti. Réessayez, ou écrivez-moi directement." };
+      console.error("[newsletter] /api/subscribe", res.status, (await res.text()).slice(0, 400));
+      return { ok: false, message: ECHEC };
     }
 
-    return { ok: true, message: "C'est fait. Vous recevrez la prochaine." };
+    return { ok: true, message: SUCCES };
   } catch (err) {
     console.error("[newsletter] echec reseau", err);
-    return { ok: false, message: "L'inscription n'a pas abouti. Réessayez, ou écrivez-moi directement." };
+    return { ok: false, message: ECHEC };
   }
 }
