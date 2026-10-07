@@ -23,8 +23,8 @@ import { contact, site } from "@/content/site";
 type Etat = { ok: boolean; message: string } | null;
 
 const champ =
-  "w-full rounded-md border border-border bg-bg px-4 py-2.5 text-body text-fg placeholder:text-muted/70 focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const etiquette = "block text-caption uppercase tracking-[0.14em] text-accent";
+  "w-full rounded-sm border border-white/15 bg-white/5 px-4 py-3 text-body text-paper placeholder:text-muted/70 focus-visible:border-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
+const etiquette = "block font-mono text-label uppercase text-gold";
 
 export function ContactForm() {
   const [etat, setEtat] = useState<Etat>(null);
@@ -61,7 +61,7 @@ export function ContactForm() {
   }
 
   return (
-    <form name="contact" onSubmit={envoyer} className="mt-8">
+    <form name="contact" onSubmit={envoyer}>
       <input type="hidden" name="form-name" value="contact" />
 
       {/* Piège à robots : invisible et hors du parcours clavier. Un humain ne le
@@ -131,7 +131,7 @@ export function ContactForm() {
           {contact.ouEmail}{" "}
           <a
             href={`mailto:${site.email}`}
-            className="rounded-sm text-accent underline underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="rounded-sm text-gold underline underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
           >
             {site.email}
           </a>
@@ -142,7 +142,7 @@ export function ContactForm() {
       <p
         id="contact-retour"
         aria-live="polite"
-        className={etat ? `mt-4 text-caption ${etat.ok ? "text-accent" : "text-muted"}` : "sr-only"}
+        className={etat ? `mt-4 text-caption ${etat.ok ? "text-gold" : "text-muted"}` : "sr-only"}
       >
         {etat?.message ?? ""}
       </p>

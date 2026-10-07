@@ -22,9 +22,33 @@ const soustraitants = [
     lieu: "Union européenne / États-Unis",
   },
   {
-    nom: "Airtable",
+    nom: "Notion",
     role: "Base des abonnés à la newsletter",
     donnees: "Adresse e-mail, date d'inscription, consentement",
+    lieu: "États-Unis",
+  },
+  {
+    nom: "Hostinger (n8n)",
+    role: "Serveur d'automatisation qui reçoit les inscriptions, rendez-vous, messages et résumés d'appel",
+    donnees: "Adresse e-mail, nom, message, résumé de l'appel",
+    lieu: "France (Paris)",
+  },
+  {
+    nom: "Telegram",
+    role: "Notification interne de chaque demande",
+    donnees: "Nom, e-mail, numéro de téléphone, résumé de la demande",
+    lieu: "Hors Union européenne",
+  },
+  {
+    nom: "Retell AI",
+    role: "Assistant vocal du standard téléphonique",
+    donnees: "Numéro de téléphone, enregistrement et transcription de l'appel, informations données pendant l'appel",
+    lieu: "États-Unis",
+  },
+  {
+    nom: "Telnyx",
+    role: "Acheminement des appels téléphoniques",
+    donnees: "Numéro de téléphone, date et durée de l'appel",
     lieu: "États-Unis",
   },
   {
@@ -84,6 +108,16 @@ export default function Confidentialite() {
                   Les informations que vous saisissez dans le calendrier Cal.com. Finalité :
                   organiser l&apos;appel et vous recontacter. Base légale : mesures précontractuelles
                   prises à votre demande.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Appel téléphonique</dt>
+                <dd className="text-body text-muted">
+                  Au {site.telephone}, un assistant vocal (une intelligence artificielle) vous
+                  répond, ce qu&apos;il annonce dès le début de l&apos;appel. Votre numéro,
+                  l&apos;enregistrement, la transcription et un résumé de l&apos;appel sont
+                  conservés. Finalité : répondre à votre demande, organiser un rendez-vous et vous
+                  rappeler. Base légale : mesures précontractuelles prises à votre demande.
                 </dd>
               </div>
               <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
@@ -220,8 +254,10 @@ export default function Confidentialite() {
             <h2 className="text-h3">Combien de temps</h2>
             <p className="mt-4 text-body text-muted">
               Abonnés à la newsletter : jusqu&apos;à votre désinscription, puis suppression sous
-              trois mois. Messages envoyés via le formulaire de contact, et échanges liés à un
-              rendez-vous : trois ans à compter du dernier contact. Journaux techniques : treize
+              trente jours, sauf le strict minimum qui permet de respecter votre choix de ne plus
+              être recontacté. Messages envoyés via le formulaire de contact, appels téléphoniques
+              (enregistrement, transcription, résumé) et échanges liés à un rendez-vous : trois ans
+              à compter du dernier contact. Journaux techniques : treize
               mois au maximum. Comptes TikTok et X connectés : jetons d&apos;accès conservés tant
               que la connexion est active, supprimés à la déconnexion ; statistiques et données
               de publication conservées treize mois au maximum.

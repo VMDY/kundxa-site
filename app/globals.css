@@ -1,107 +1,167 @@
 /* app/globals.css
-   Source unique des tokens. Transcrit UNE fois depuis
-   agentic-os/brand_context/visual-identity/tokens.json — jamais importe au runtime.
+   Source unique des tokens. Transcrit depuis
+   agentic-os/brand_context/visual-identity/tokens.json (Brand Book v1.0) —
+   jamais importe au runtime.
 
-   Correspondance token -> variable :
-     colors.bg_dark / primary   -> --color-bg            #0A0A0A
-     palette "Dark Charcoal"    -> --color-surface       #1A1A1C
-     colors.text_on_dark        -> --color-fg            #FFFFFF
-     colors.text_muted          -> --color-muted         #B0A890
-     colors.accent              -> --color-accent        #FBED12  (KUNDXA Gold, aplat, ~10% max)
-     colors.accent_secondary    -> --color-accent-hover  #D4A017  (ambre : survol / fin de degrade)
-     derive (blanc a 8%)        -> --color-border        rgba(255,255,255,0.08)
+   Regle de composition : ~60 % midnight + dusk, ~30 % blanc, ~10 % dore.
+   Dore uniquement sur midnight ou dusk (8,3:1). Sur blanc, l'accent est dusk.
+   Texte sur dore : toujours midnight. Bronze : petits details, jamais du texte.
 */
 @import "tailwindcss";
 
 @theme {
-  /* couleurs */
-  --color-bg: #0a0a0a;
-  --color-surface: #1a1a1c;
+  /* palette de marque */
+  --color-midnight: #16253d;
+  --color-dusk: #002c54;
+  --color-deep: #0f1c31; /* midnight assombri : fonds de section profonds */
+  --color-panel: #13213a; /* bandeaux et cartes pleines sur fond sombre */
+  --color-gold: #efb509;
+  --color-gold-hover: #f6c635;
+  --color-gold-soft: #fbebc0;
+  --color-bronze: #cd7213;
+  --color-paper: #ffffff;
+  --color-raised: #f5f6f8;
+  --color-ink: #16253d;
+  --color-ink-muted: #5a6270;
+  --color-line-light: #e3e6eb;
+
+  /* alias semantiques (pages legales, formulaires) */
+  --color-bg: #16253d;
+  --color-surface: #1c2c46;
   --color-fg: #ffffff;
-  --color-muted: #b0a890;
-  --color-accent: #fbed12;
-  --color-accent-hover: #d4a017;
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-muted: #a9b4c4;
+  --color-accent: #efb509;
+  --color-accent-hover: #f6c635;
+  --color-border: rgba(255, 255, 255, 0.12);
 
   /* rayons */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-full: 9999px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
 
-  /* echelle typo fluide — chaque taille porte son interlignage et son crenage */
-  /* Plafonne a 4.5rem : au-dela, la headline (7 mots) mange tout le premier ecran
-     et repousse les CTA sous le pli sur un portable standard. */
-  --text-display: clamp(2.5rem, 1.35rem + 5.1vw, 4.5rem);
-  --text-display--line-height: 0.95;
-  --text-display--letter-spacing: -0.02em;
-  --text-display--font-weight: 800;
+  /* echelle typo fluide — Fraunces pour les titres, Plex Sans pour le texte */
+  --text-display: clamp(2.6rem, 1.55rem + 4.4vw, 4.625rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.025em;
 
-  --text-h1: clamp(2.25rem, 1.56rem + 3.04vw, 4rem);
-  --text-h1--line-height: 1.1;
-  --text-h1--letter-spacing: -0.02em;
-  --text-h1--font-weight: 800;
+  --text-h1: clamp(2.4rem, 1.65rem + 3.2vw, 4rem);
+  --text-h1--line-height: 1.06;
+  --text-h1--letter-spacing: -0.022em;
 
-  --text-h2: clamp(1.75rem, 1.46rem + 1.3vw, 2.5rem);
-  --text-h2--line-height: 1.2;
+  --text-h2: clamp(2rem, 1.45rem + 2.3vw, 3.375rem);
+  --text-h2--line-height: 1.08;
   --text-h2--letter-spacing: -0.02em;
-  --text-h2--font-weight: 700;
 
-  --text-h3: clamp(1.375rem, 1.23rem + 0.65vw, 1.75rem);
-  --text-h3--line-height: 1.3;
-  --text-h3--letter-spacing: -0.02em;
-  --text-h3--font-weight: 600;
+  --text-h3: clamp(1.3rem, 1.18rem + 0.5vw, 1.625rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
 
-  --text-body: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
-  --text-body--line-height: 1.6;
-  --text-body--font-weight: 400;
+  --text-quote: clamp(1.6rem, 1.25rem + 1.5vw, 2.5rem);
+  --text-quote--line-height: 1.2;
+  --text-quote--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.075rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.55;
 
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.5;
-  --text-caption--font-weight: 300;
 
-  --text-eyebrow: 0.8125rem;
-  --text-eyebrow--line-height: 1.4;
-  --text-eyebrow--letter-spacing: 0.14em;
-  --text-eyebrow--font-weight: 600;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.14em;
 
-  /* rythme fluide */
-  --section-py: clamp(4.5rem, 8vw, 8.5rem);
-  --container-px: clamp(1.25rem, 4vw, 2rem);
+  /* rythme */
+  --section-py: clamp(5rem, 9vw, 8.5rem);
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
 
-  /* courbe partagee par toutes les animations */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* la police vient d'une variable posee au runtime par next/font -> `inline` obligatoire */
+/* les polices viennent de variables posees au runtime par next/font -> `inline` */
 @theme inline {
-  --font-sans: var(--font-montserrat), Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-plex-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 :root {
   color-scheme: dark;
   scroll-behavior: smooth;
-  /* hauteur du header : sert au scroll-margin des ancres */
-  --header-h: 4.5rem;
+  --header-h: 5rem;
 }
 
 body {
-  background: var(--color-bg);
+  background: var(--color-midnight);
   color: var(--color-fg);
   font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
-/* les ancres ne doivent jamais passer sous le header sticky */
+/* Tous les titres en Fraunces, y compris dans les pages legales. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Un enfant de grille ne doit jamais elargir sa colonne au-dela de l'ecran
+   (min-width: auto par defaut) : c'etait la source du debordement mobile. */
+.grid > * {
+  min-width: 0;
+}
+
 [id] {
   scroll-margin-top: calc(var(--header-h) + 1.5rem);
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: var(--color-gold);
+  color: var(--color-midnight);
+}
+
+/* Fonds de marque, en pur CSS. */
+.bg-gradient-night {
+  background: linear-gradient(160deg, #16253d 0%, #002c54 100%);
+}
+.bg-hero {
+  background:
+    radial-gradient(70% 60% at 78% 38%, rgba(239, 181, 9, 0.13), transparent 60%),
+    linear-gradient(170deg, #0f1c31 0%, #002c54 100%);
+}
+.bg-cta {
+  background:
+    radial-gradient(60% 70% at 18% 28%, rgba(239, 181, 9, 0.12), transparent 60%),
+    linear-gradient(160deg, #16253d 0%, #002c54 100%);
+}
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Verre depoli : cartes flottantes et panneaux sur fond sombre. */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
 
 /* ---------------------------------------------------------------
@@ -111,13 +171,13 @@ body {
    --------------------------------------------------------------- */
 .js-reveal [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
 }
 
 [data-reveal] {
   transition:
-    opacity 0.6s var(--ease-out-expo),
-    transform 0.6s var(--ease-out-expo);
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -126,20 +186,30 @@ body {
   transform: none;
 }
 
-/* trame technique discrete — pur CSS, aucune image */
-.bg-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 32px 32px;
+/* Cartes flottantes du hero : derive lente, purement decorative. */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.float-slow {
+  animation: float-y 7s ease-in-out infinite;
+}
+.float-slower {
+  animation: float-y 9s ease-in-out infinite;
+  animation-delay: -3s;
 }
 
-/* halo dore : le seul endroit ou le dore couvre de la surface, a tres basse opacite */
-.bg-glow {
-  background: radial-gradient(
-    60% 55% at 50% 0%,
-    rgba(251, 237, 18, 0.13) 0%,
-    rgba(251, 237, 18, 0.04) 38%,
-    transparent 70%
-  );
+/* FAQ : details/summary sans marqueur natif. */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -147,7 +217,6 @@ body {
     scroll-behavior: auto;
   }
 
-  /* neutralisation totale : le contenu s'affiche, rien ne bouge */
   .js-reveal [data-reveal],
   [data-reveal] {
     opacity: 1 !important;

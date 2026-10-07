@@ -1,27 +1,28 @@
 import type { Metadata } from "next";
-import { montserrat } from "./fonts";
+import { fraunces, plexMono, plexSans } from "./fonts";
 import "./globals.css";
 import { RevealProvider } from "@/components/reveal";
-import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { legal, liens, site } from "@/content/site";
+import { accueil, legal, liens, offres, site } from "@/content/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.nom} — ${site.tagline}`,
+    default: accueil.meta.titre,
     template: `%s · ${site.nom}`,
   },
-  description: site.description,
+  description: accueil.meta.description,
   keywords: [
     "automatisation",
-    "systèmes agentiques",
     "agents IA",
+    "agent vocal",
     "n8n",
-    "Claude Code",
-    "agents vocaux",
-    "automatisation entreprise",
+    "Claude",
+    "relance factures impayées",
+    "TPE",
+    "PME",
+    "dirigeant",
   ],
   authors: [{ name: legal.editeur, url: liens.linkedin }],
   creator: legal.editeur,
@@ -31,13 +32,13 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: site.url,
     siteName: site.nom,
-    title: `${site.nom} — ${site.tagline}`,
-    description: site.description,
+    title: accueil.meta.titre,
+    description: accueil.meta.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.nom} — ${site.tagline}`,
-    description: site.description,
+    title: accueil.meta.titre,
+    description: accueil.meta.description,
   },
   robots: { index: true, follow: true },
 };
@@ -49,7 +50,8 @@ const jsonLd = {
   name: legal.nomCommercial,
   url: site.url,
   email: site.email,
-  slogan: site.tagline,
+  telephone: "+33974064740",
+  slogan: site.signature,
   description: site.description,
   founder: { "@type": "Person", name: legal.editeur },
   address: {
@@ -60,19 +62,16 @@ const jsonLd = {
     addressCountry: "FR",
   },
   areaServed: "FR",
-  sameAs: [liens.youtube, liens.x, liens.linkedin],
+  sameAs: [liens.youtube, liens.linkedin, liens.x],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Systèmes agentiques",
-    itemListElement: [
-      "Build agentique sur-mesure",
-      "Audit et diagnostic d'automatisation",
-      "Accompagnement et formation",
-      "Maintenance et évolution",
-    ].map((nom) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: nom },
-    })),
+    name: "Systèmes IA pour dirigeants",
+    itemListElement: [offres.principale.titre, ...offres.secondaires.map((o) => o.titre)].map(
+      (nom) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: nom },
+      }),
+    ),
   },
 };
 
@@ -80,7 +79,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   // suppressHydrationWarning : le script du head ajoute `js-reveal` sur <html>
   // avant l'hydratation — divergence attendue, limitee a cet element.
   return (
-    <html lang="fr" className={montserrat.variable} suppressHydrationWarning>
+    <html
+      lang="fr"
+      className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Masque les blocs a animer AVANT le premier paint (pas de FOUC), sauf si
             l'utilisateur demande moins d'animations. La revelation est ensuite
@@ -97,19 +100,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Premier element focusable de la page : sauter la nav au clavier.
-            Cible <main> et non #haut : #haut n'existe que sur l'accueil, le lien
-            ne menait donc nulle part sur /contact et les pages legales. */}
+        {/* Premier element focusable : sauter la nav au clavier. */}
         <a
           href="#contenu"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-bg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:font-semibold focus:text-midnight"
         >
           Aller au contenu
         </a>
-        <ScrollProgress />
         <RevealProvider />
         <SiteHeader />
-        <main id="contenu" tabIndex={-1}>
+        <main id="contenu" tabIndex={-1} className="outline-none">
           {children}
         </main>
         <SiteFooter />

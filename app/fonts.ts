@@ -1,12 +1,30 @@
-// Montserrat est la seule famille de la marque (moves.md #11 : « typo mono-famille »).
-// next/font/google telecharge la police au BUILD et l'auto-heberge : aucune requete
-// runtime vers Google (RGPD + Lighthouse). Ne jamais ajouter de <link> Google Fonts.
-import { Montserrat } from "next/font/google";
+// Les trois familles du Brand Book v1.0 (brand_context/visual-identity/identity.md) :
+// Fraunces pour les titres (un seul mot en italique), IBM Plex Sans pour le texte,
+// IBM Plex Mono pour les reperes, chiffres et etiquettes.
+// next/font/google telecharge les polices au BUILD et les auto-heberge : aucune
+// requete runtime vers Google (RGPD + Lighthouse). Ne jamais ajouter de <link> Google Fonts.
+import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 
-export const montserrat = Montserrat({
+// Police variable : on omet `weight` pour charger l'axe complet, et on garde
+// l'axe optique (opsz) qui affine le dessin aux grandes tailles.
+export const fraunces = Fraunces({
   subsets: ["latin"],
-  // Montserrat est une police variable. On omet `weight` volontairement : cela charge
-  // l'axe complet (100-900), qui couvre toute l'echelle typo (300/400/600/700/800).
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
-  variable: "--font-montserrat",
+  variable: "--font-fraunces",
+});
+
+export const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-plex-sans",
+});
+
+export const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-plex-mono",
 });

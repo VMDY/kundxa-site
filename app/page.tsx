@@ -1,16 +1,30 @@
-import { Appel } from "@/components/sections/appel";
-import { Hero } from "@/components/sections/hero";
-import { Offres } from "@/components/sections/offres";
-import { Probleme } from "@/components/sections/probleme";
-import { Solution } from "@/components/sections/solution";
+import { Appel } from "@/components/blocks/appel";
+import { Faq } from "@/components/blocks/faq";
+import { Hero } from "@/components/home/hero";
+import {
+  Fondateur,
+  Limites,
+  MethodeApercu,
+  OffresApercu,
+  Ouverture,
+  Preuves,
+  RealisationsApercu,
+  Systeme,
+} from "@/components/home/sections";
 
 export default function Accueil() {
   return (
     <>
       <Hero />
-      <Probleme />
-      <Solution />
-      <Offres />
+      <Preuves />
+      <Ouverture />
+      <Systeme />
+      <RealisationsApercu />
+      <MethodeApercu />
+      <Limites />
+      <OffresApercu />
+      <Fondateur />
+      <Faq />
       <Appel />
     </>
   );
