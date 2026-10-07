@@ -1,271 +1,554 @@
 /**
- * Toute la copy du site, en un seul endroit.
- * Les composants ne contiennent aucun texte : pour changer un mot, on edite ici.
- * Voix : brand_context/voice-profile.md — vouvoiement, zero trope gourou,
- * zero cadrage victimaire. Passe par tool-humanizer (deep) le 2026-07-21.
+ * Toute la copy du site, en un seul endroit. Les composants ne contiennent aucun
+ * texte : pour changer un mot, on edite ici.
  *
- * Personne : « je » pour le prestataire (decision 2026-08-02). Le site melangeait
- * « je » et « on » ; le « je » a ete retenu — la garantie et la preuve reposent sur
- * un engagement personnel, que le « on » affaiblit.
- * Trois « on » subsistent volontairement, et ne sont PAS des oublis :
- *   1. inclusif — « on regarde votre boite », « on ne travaille pas ensemble » :
- *      designe le client et moi pendant l'appel. L'inverser sonnerait directif.
- *   2. impersonnel — « On vous a vendu des outils » : designe le marche, pas moi.
- *   3. maxime — « un systeme qu'on repare vite » : verite generale.
+ * Source : agentic-os/projects/briefs/kundxa-site/2026-10-06_copy-site.md
+ * (mkt-copywriting + tool-humanizer deep, 2026-10-07). Angle « Ce qui merite un
+ * dirigeant » (brand_context/positioning.md). Voix : vouvoiement, « je » pour le
+ * prestataire, zero promesse gourou, zero cadrage par la peur, aucun chiffre invente.
+ *
+ * Typographie francaise : `fr()` pose les espaces insecables (U+00A0) avant
+ * « ? ! : ; » et a l'interieur des guillemets. Ecrire ici avec des espaces normales.
  */
 
+function fr<T>(valeur: T): T {
+  if (typeof valeur === "string") {
+    return valeur
+      .replace(/ ([?!:;»])/g, " $1")
+      .replace(/« /g, "« ")
+      .replace(/(\d) (%|h\b)/g, "$1 $2") as T;
+  }
+  if (Array.isArray(valeur)) return valeur.map(fr) as T;
+  if (valeur && typeof valeur === "object") {
+    return Object.fromEntries(Object.entries(valeur).map(([k, v]) => [k, fr(v)])) as T;
+  }
+  return valeur;
+}
+
 export const site = {
-  nom: "KUNDXA",
-  tagline: "Faites tourner votre business, pas vos journées.",
+  nom: "Kundxa",
+  signature: "Ce qui mérite un dirigeant.",
   description:
-    "Des systèmes agentiques éprouvés en production. J'installe les systèmes qui livrent à votre place, et je les maintiens.",
+    "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
   url: "https://kundxa.com",
   email: "contact@kundxa.com",
   calcom: "kundxa/appel-de-cadrage",
   calcomUrl: "https://cal.com/kundxa/appel-de-cadrage",
   photo: "/photos/valdo.png",
+  videoRelance: "https://youtu.be/9ZJqZRpblBs",
 } as const;
 
 export const liens = {
   youtube: "https://www.youtube.com/@Kundxa-ai",
-  x: "https://x.com/Mendy_Valdo_58",
   linkedin: "https://www.linkedin.com/in/valdo-mendy-2a3304377",
+  x: "https://x.com/Mendy_Valdo_58",
   newsletter: "https://newsletter.kundxa.com",
 } as const;
 
-// Ancres prefixees par « / » : le header est affiche sur TOUTES les pages. Une
-// ancre nue (#probleme) pointe vers la page courante — depuis /contact elle
-// visait /contact#probleme, qui n'existe pas, et le clic ne faisait rien.
-// Avec « /#probleme », le navigateur revient a l'accueil puis descend ; depuis
-// l'accueil il scrolle sans recharger.
 export const nav = [
-  { libelle: "Le problème", href: "/#probleme" },
-  { libelle: "La solution", href: "/#solution" },
-  { libelle: "Les offres", href: "/#offres" },
+  { libelle: "Réalisations", href: "/realisations" },
+  { libelle: "Méthode", href: "/methode" },
+  { libelle: "Offres", href: "/offres" },
+  { libelle: "À propos", href: "/a-propos" },
   { libelle: "Contact", href: "/contact" },
-  { libelle: "Notre newsletter", href: liens.newsletter },
 ] as const;
 
-export const cta = {
-  principal: "Réserver un appel",
-  secondaire: "Voir comment ça marche",
-} as const;
+export const cta = fr({
+  court: "Réserver un appel",
+  principal: "Réserver un appel de cadrage",
+  final: "Réserver mon appel de cadrage",
+  ecrire: "Ou m'écrire en deux lignes",
+  realisations: "Voir les réalisations",
+} as const);
 
-/* ------------------------------------------------------------------ HERO */
+/* ------------------------------------------------------------------ PREUVES */
 
-export const hero = {
-  eyebrow: "Systèmes agentiques · Éprouvés en production",
-  titreDebut: "Faites tourner votre business, pas ",
-  titreAccent: "vos journées",
-  // Le titre porte la promesse, ce sous-titre porte le resultat mesure : delai
-  // annonce (quatorze jours, aligne sur la garantie) + ce que le client garde.
-  sousTitre:
-    "Vos tâches répétitives sortent de vos mains en quatorze jours. Vous gardez la décision, la machine fait le reste.",
-  stack: ["Claude Code", "n8n", "Hermes Agent", "Agents vocaux"],
-  certifications: "Certifié Claude Code (Anthropic) · n8n niveau 1 et 2 · Retell",
-} as const;
+export const preuves = fr([
+  { avant: "Construit avec", fort: "n8n · Claude · Retell", apres: "" },
+  { avant: "Certifié", fort: "Claude Code", apres: "(Anthropic)" },
+  { avant: "", fort: "n8n", apres: "niveaux 1 et 2" },
+  { avant: "Coulisses sur", fort: "YouTube", apres: ", ratés compris" },
+] as const);
 
-/* -------------------------------------------------------------- PROBLÈME */
+/* -------------------------------------------------------------------- ACCUEIL */
 
-export const probleme = {
-  eyebrow: "Le vrai problème",
-  titreDebut: "Votre boîte tient debout tant que ",
-  titreAccent: "vous",
-  titreFin: " tenez debout.",
-  recit: [
-    "Dimanche, 22 h. Vous rouvrez l'ordinateur « juste pour prendre un peu d'avance ». Vous le faites chaque semaine. Ce n'est plus de l'avance, c'est de la survie.",
-    "Rien ne sort de votre boîte sans passer par vous. Vous validez chaque livrable. Vous êtes le seul à connaître les accès et la logique de ce qui tourne.",
-    "Vous aviez monté cette boîte pour être libre.",
-  ],
-  frictions: [
-    {
-      titre: "« Je fais trop de choses moi-même. »",
-      texte:
-        "Chaque livrable attend votre validation. Votre agenda est devenu la file d'attente de votre boîte.",
-    },
-    {
-      titre: "« Ça ne tiendra pas comme ça. »",
-      texte:
-        "Vous savez que le modèle casse si le volume double. Alors vous ralentissez, et la croissance attend.",
-    },
-    {
-      titre: "« Je veux du concret, pas des prompts. »",
-      texte: "Vous avez assez lu sur l'IA. Vous voulez quelque chose qui tourne, sur votre vrai flux.",
-    },
-    {
-      titre: "Le client que vous avez refusé.",
-      texte:
-        "Le gros. Celui que vous attendiez depuis le début. Vous avez dit non parce que vous saviez ne pas pouvoir livrer.",
-    },
-  ],
-  essaye: {
-    // « On » impersonnel : le marche, les vendeurs d'outils. Pas moi.
-    intro:
-      "Vous avez déjà essayé. Plusieurs fois. On vous a vendu des outils quand il vous fallait un système.",
-    lignes: [
-      { quoi: "ChatGPT", pourquoi: "Règle le ponctuel, jamais le systémique." },
-      { quoi: "Make, Zapier", pourquoi: "Casse dès que la logique se complexifie." },
-      {
-        quoi: "Un freelance à la tâche",
-        pourquoi: "Vous repartez avec un livrable que personne ne maintient.",
+export const accueil = fr({
+  meta: {
+    titre: "Kundxa · Systèmes IA pour dirigeants de TPE et PME",
+    description:
+      "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
+  },
+  hero: {
+    surtitre: "Agents IA et automatisations · En production",
+    titre: ["Gardez votre énergie pour ce qui mérite un ", "dirigeant", "."],
+    sousTitre:
+      "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent chaque jour, sans vous. Les décisions, elles, restent les vôtres.",
+    micro: "Soixante minutes en visio · votre goulot numéro un nommé",
+    photoAlt: "Valdo Mendy, fondateur de Kundxa",
+    // Cartes d'interface du hero : illustration d'une matinee type, pas un rapport client.
+    cartes: {
+      resume: {
+        titre: "Résumé du matin",
+        heure: "08:00",
+        lignes: [
+          ["Relances envoyées", "3"],
+          ["Paiements reçus", "1"],
+          ["Décisions pour vous", "1"],
+        ],
       },
-      { quoi: "Une formation", pourquoi: "Du contenu. Personne pour le mettre en production." },
-      { quoi: "Embaucher", pourquoi: "Cher, lent, et le fond reste le même." },
+      relance: {
+        titre: "Palier 2 · J+10",
+        etat: "Envoyée",
+        texte: "Facture n° 2026-114 · « Quelle date de règlement ? »",
+      },
+      decision: {
+        titre: "Décision de dirigeant",
+        etat: "Maintenant",
+        texte: ["Dossier complet à J+45. ", "Mise en demeure, ou échéancier", " pour ce client fidèle ?"],
+        boutons: ["Échéancier", "Je l'appelle"],
+      },
+    },
+  },
+  ouverture: {
+    surtitre: "Ce que fait un système",
+    titre: ["Votre boîte peut aller plus ", "loin", "."],
+    texte:
+      "Ce qui la retient, c'est le temps que vous passez sur des tâches qui ne méritent pas un dirigeant. Un système bien construit prend ce travail en charge, chaque jour, à l'heure.",
+    colonnes: [
+      {
+        icone: "repeat",
+        surtitre: "Le répétitif",
+        titre: "Ce qui revient chaque semaine tourne tout seul.",
+        texte:
+          "Relances de factures, suivi des commandes, reporting, saisie. Sans attendre que vous y pensiez.",
+      },
+      {
+        icone: "search",
+        surtitre: "La recherche",
+        titre: "Vos soirées de recherche, prêtes quand il faut.",
+        texte:
+          "Veille sur votre marché, analyse de vos chiffres, comparaison des options avant une grande décision.",
+      },
+      {
+        icone: "decision",
+        surtitre: "Ce qui vous revient",
+        titre: "Un résumé chaque matin. Les décisions, à vous.",
+        texte:
+          "Ce qui s'est passé, l'état de votre trésorerie, et seulement ce qui mérite un dirigeant.",
+      },
     ],
   },
-  punchlineDebut: "Vous n'avez pas un problème d'outil. Vous avez un problème de ",
-  punchlineAccent: "place",
-} as const;
-
-/* -------------------------------------------------------------- SOLUTION */
-
-export const solution = {
-  eyebrow: "Le retournement",
-  titreDebut: "Arrêtez d'être le meilleur exécutant de votre boîte. Devenez son ",
-  titreAccent: "architecte",
-  corps: [
-    "Tant que vous êtes la meilleure paire de mains de votre boîte, vous n'en serez jamais le cerveau.",
-    "Il vous manque un système conçu pour tenir sans vous. C'est ce que j'installe.",
-  ],
-  etapes: [
-    {
-      numero: "01",
-      titre: "Diagnostic",
-      texte:
-        "Je cartographie où votre temps part et ce qui se répète. Vous repartez avec vos goulots classés par ce que chacun vous coûte.",
+  systeme: {
+    surtitre: "En production",
+    titre: ["Le système qui relance vos factures ", "impayées", "."],
+    texte:
+      "Seules 26 % des entreprises françaises automatisent leurs relances de factures. Les autres relancent à la main, par e-mail ou par téléphone. Ce système suit cinq paliers et s'arrête dès que le paiement arrive.",
+    source: {
+      libelle: "Baromètre Payt × Ipsos, avril 2026",
+      href: "https://finyear.com/impayes-53-des-entreprises-francaises-ont-vu-leur-perennite-financiere-menacee-selon-le-premier-barometre-payt-x-ipsos",
     },
-    {
-      numero: "02",
-      titre: "Build",
-      texte:
-        "Je construis le système : n8n, Claude Code, Hermes Agent, agents vocaux quand ça s'y prête. Vous ne touchez pas au technique. Comptez une heure de votre temps par semaine.",
+    faits: [
+      { cle: "Coût", texte: "1 centime par facture, tout au plus." },
+      { cle: "Règle", texte: "Un paiement reçu arrête tout." },
+      { cle: "Garde-fou", texte: "Il ne devine jamais une adresse." },
+      { cle: "Limite", texte: "Il n'appelle pas vos clients. En tout cas, pas le mien." },
+    ],
+    video: "Voir le système tourner, en vidéo",
+    // Les cinq paliers tels que decrits dans la video « Factures impayees ».
+    schema: {
+      fenetre: "relance-factures · en production",
+      noeuds: [
+        { id: "lecture", cle: "Chaque matin, 8 h", texte: "Lit les factures à payer" },
+        { id: "p1", cle: "Palier 1 · J+3", texte: "Rappel simple, facture jointe" },
+        { id: "p2", cle: "Palier 2 · J+10", texte: "« Quelle date de règlement ? »" },
+        { id: "p3", cle: "Palier 3 · J+20", texte: "Récapitulatif, pénalités annoncées" },
+        { id: "p4", cle: "Palier 4 · J+30", texte: "Appel : c'est vous qui décrochez" },
+        { id: "p5", cle: "Palier 5 · J+45", texte: "Le dossier complet vous revient" },
+        { id: "stop", cle: "Règle", texte: "Paiement reçu : tout s'arrête" },
+        { id: "garde", cle: "Garde-fou", texte: "Adresse absente : on vous demande" },
+      ],
     },
-    {
-      numero: "03",
-      titre: "Mise en production",
-      texte:
-        "Le système passe en prod sur votre vrai flux, avec vos vrais clients. Premier système en production sous quatorze jours.",
-    },
-    {
-      numero: "04",
-      titre: "Évolution",
-      texte:
-        "Je surveille, je répare, je fais évoluer. Un système qui tient, ce n'est pas un système qui ne casse jamais : c'est un système qu'on répare vite.",
-    },
-  ],
-  preuve: {
-    titre: "Ce qui tourne chez moi avant de tourner chez vous.",
-    intro:
-      "J'ai monté ma boîte, je me suis retrouvé au même endroit que vous, et aucun outil n'a réglé ça. Alors j'ai construit. Ce que je vous installe, je le fais tourner d'abord chez moi :",
+  },
+  realisations: {
+    surtitre: "Réalisations",
+    titre: ["Ce qui tourne déjà chez d'autres ", "dirigeants", "."],
+    texte: "Des cas réels. Les noms des clients restent confidentiels.",
+    lien: "Toutes les réalisations",
+  },
+  methode: {
+    surtitre: "Méthode",
+    titre: ["Automatiser une mauvaise relance, c'est relancer mal plus ", "vite", "."],
+    texte: "Je commence donc par votre vraie semaine, jamais par un catalogue d'outils.",
+    lien: "La méthode en détail",
+  },
+  limites: {
+    surtitre: "Limites",
+    titre: ["Ce que mes systèmes ne feront pas, et c'est ", "voulu", "."],
     items: [
       {
-        titre: "Kundxa OS",
-        texte: "L'assistant qui pilote mon marketing, mes projets et ma mémoire de travail.",
+        titre: "Décider à votre place",
+        texte:
+          "Les choix de dirigeant vous reviennent, avec une alerte claire et les éléments pour trancher.",
       },
       {
-        titre: "Une newsletter entièrement automatisée",
-        texte: "De la recherche à l'envoi, sans intervention.",
+        titre: "Deviner",
+        texte: "Quand une information manque, le système s'arrête et vous pose la question.",
       },
-      { titre: "Hermes Agent", texte: "Mon agent IA, en ligne en permanence." },
-      { titre: "Des workflows n8n en production", texte: "Pas des démos." },
+      {
+        titre: "Remplacer votre expert-comptable",
+        texte: "Les questions juridiques, fiscales et financières se règlent avec votre conseil.",
+      },
     ],
-    closer: "Si ça ne tient pas en prod, je ne vous le vends pas. Les coulisses sont sur YouTube. Les ratés aussi.",
-    lienLibelle: "Voir les coulisses",
   },
-  garanties: [
-    {
-      titre: "Premier système sous quatorze jours, ou vous ne payez pas cette phase.",
-      note: null,
-    },
+  offres: {
+    surtitre: "Offres",
+    titre: ["Quatre façons de travailler ", "ensemble", "."],
+    lien: "Le détail des offres",
+  },
+  fondateur: {
+    surtitre: "Le fondateur",
+    citation: [
+      "« Les dirigeants ne manquaient pas d'ambition. Il leur manquait quelqu'un pour leur montrer comment faire, ",
+      "concrètement",
+      ". »",
+    ],
+    texte: [
+      "En 2024, je faisais tourner seul ma boutique en ligne. J'ai automatisé ce qui m'empêchait d'avancer, par nécessité, pas par curiosité.",
+      "Ce que je vous installe tourne d'abord chez moi. Les coulisses sont sur YouTube, ratés compris.",
+    ],
+    badgeNom: "Valdo Mendy",
+    badgeRole: "fondateur de Kundxa · Angers",
+    badgeCertifs: "Claude Code (Anthropic) · n8n niveaux 1 et 2 · Retell",
+    lien: "Mon parcours",
+  },
+  faq: {
+    surtitre: "Questions",
+    titre: ["Ce qu'on me demande avant de ", "commencer", "."],
+  },
+} as const);
+
+export const faq = fr([
+  {
+    q: "Je ne suis pas technique. Est-ce que je saurai m'en servir ?",
+    r: "Vous n'avez rien à configurer. Le système vous écrit en français clair, par e-mail ou sur votre téléphone. La maintenance fait partie de mon travail.",
+  },
+  {
+    q: "Et si l'IA se trompe avec mes clients ?",
+    r: "Chaque étape sensible a un garde-fou. Le système ne devine jamais. Quand une information manque, il s'arrête et vous pose la question.",
+  },
+  {
+    q: "J'ai déjà essayé des outils, ça n'a rien changé.",
+    r: "Un outil posé sur une organisation ne la change pas. Je pars de votre semaine réelle, je construis le système autour, et je reste pour le maintenir.",
+  },
+  {
+    q: "Pourquoi pas une embauche ?",
+    r: "Une embauche se paie à l'heure et s'arrête le soir. Un système tourne en continu, et son coût de fonctionnement se compte souvent en centimes : 1 centime par facture pour le système de relance. Gardez l'humain pour ce qui demande un humain.",
+  },
+  {
+    q: "Combien de temps ça me demande ?",
+    r: "Environ une heure par semaine pendant la construction. Ensuite, le temps de lire votre résumé du matin.",
+  },
+] as const);
+
+/* -------------------------------------------------------------- APPEL FINAL */
+
+export const appel = fr({
+  surtitre: "Prochaine étape",
+  titre: ["Un appel de cadrage. Soixante ", "minutes", "."],
+  texte:
+    "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
+  puces: [
+    { titre: "Ce qu'on fait", texte: "On cartographie où passe votre temps et ce qui peut sortir de vos mains." },
+    { titre: "Ce que vous repartez avec", texte: "Votre goulot numéro un nommé, et ce que coûterait de le régler." },
+    { titre: "Ce que ça ne sera pas", texte: "Une démo, ni un argumentaire de vente déguisé." },
+  ],
+  closer: "Vous pouvez regarder ça de loin, ou construire avec.",
+  carte: {
+    titre: "Appel de cadrage",
+    sousTitre: "60 min · visio · avec Valdo",
+    jours: ["LUN", "MAR", "MER", "JEU", "VEN"],
+    creneaux: ["09:00", "10:30", "14:00", "15:30", "17:00", "18:00"],
+    note: "Ou écrivez-moi en deux lignes · contact@kundxa.com",
+  },
+} as const);
+
+/* --------------------------------------------------------------- MÉTHODE */
+
+export const etapes = fr([
+  {
+    numero: "01",
+    titre: "Diagnostic",
+    court: "Je cartographie où part votre temps. Vous repartez avec vos goulots classés par coût.",
+    jeFais: "Un entretien sur votre semaine réelle, la cartographie de ce qui se répète, le coût de chaque goulot.",
+    vousFaites: "Vous me montrez comment ça se passe aujourd'hui.",
+    vousRecevez: "Vos goulots classés par coût, et l'ordre dans lequel les régler.",
+  },
+  {
+    numero: "02",
+    titre: "Construction",
+    court: "Brique par brique, testé sur vos vrais cas. Une heure de votre temps par semaine.",
+    jeFais: "Je construis le système brique par brique et je le teste sur vos vrais cas.",
+    vousFaites: "Une heure par semaine pour valider ce qui part en production.",
+    vousRecevez: "Un système testé avant de toucher à vos clients.",
+  },
+  {
+    numero: "03",
+    titre: "Mise en production",
+    court: "Sur votre vrai flux, avec un garde-fou à chaque étape sensible.",
+    jeFais: "Je branche le système sur votre vrai flux, avec un garde-fou à chaque étape sensible.",
+    vousFaites: "Vous suivez une courte formation pour piloter.",
+    vousRecevez: "Un résumé chaque matin, et une alerte quand une décision vous revient.",
+  },
+  {
+    numero: "04",
+    titre: "Suivi",
+    court: "Tout système casse un jour. Celui-ci est surveillé, et je le répare vite.",
+    jeFais: "Je surveille, je répare, je fais évoluer le système avec votre boîte.",
+    vousFaites: "Vous me dites ce qui change chez vous.",
+    vousRecevez: "Un système qui tient dans la durée. Tout système casse un jour. Celui-ci est surveillé, et je le répare vite.",
+  },
+] as const);
+
+export const methode = fr({
+  meta: {
+    titre: "Méthode",
+    description:
+      "Diagnostic, construction, mise en production, suivi. Comment je construis des systèmes qui tiennent, et ce qu'ils vous rendent.",
+  },
+  hero: {
+    surtitre: "Méthode",
+    titre: ["Je commence par votre ", "semaine", "."],
+    texte:
+      "Automatiser une mauvaise relance, c'est relancer mal plus vite. Avant de choisir un outil, je regarde comment le travail circule chez vous, où il bloque et ce que chaque blocage vous coûte.",
+  },
+  colonnes: { jeFais: "Je fais", vousFaites: "Vous faites", vousRecevez: "Vous recevez" },
+  principes: {
+    surtitre: "Principes",
+    titre: ["Quatre règles, sur chaque ", "système", "."],
+    items: [
+      { titre: "Le processus avant l'outil", texte: "Un mauvais processus automatisé produit des erreurs plus vite." },
+      { titre: "Un garde-fou à chaque étape sensible", texte: "Le système ne devine jamais. Il s'arrête et demande." },
+      { titre: "Les décisions restent les vôtres", texte: "Le système prépare, vous tranchez." },
+      { titre: "Tout est montré", texte: "Ce qui marche et ce qui casse, sur YouTube." },
+    ],
+  },
+  outils: {
+    surtitre: "Les outils",
+    titre: ["Chaque outil, en une ", "ligne", "."],
+    items: [
+      { nom: "n8n", texte: "relie vos logiciels entre eux et déclenche les actions au bon moment." },
+      { nom: "Claude", texte: "l'IA d'Anthropic, lit, rédige et analyse vos documents." },
+      { nom: "Retell", texte: "fait tourner des agents vocaux qui répondent au téléphone selon un script que vous avez validé." },
+      {
+        nom: "Hermes Agent",
+        texte:
+          "un assistant IA open source qui tourne en continu sur votre propre serveur, répond sur Telegram ou WhatsApp et exécute vos tâches récurrentes à heure fixe.",
+      },
+    ],
+  },
+} as const);
+
+/* ----------------------------------------------------------- ENGAGEMENTS */
+
+export const engagements = fr({
+  surtitre: "Engagements",
+  titre: ["Ce qui est écrit dans le ", "devis", "."],
+  items: [
     {
       titre: "Ça tient en production, ou je continue gratuitement jusqu'à ce que ça tienne.",
-      note: "Sur un périmètre défini ensemble à l'avance : un cas d'usage, un critère de réussite.",
+      note: "Le périmètre est défini ensemble à l'avance : un cas d'usage, un critère de réussite.",
+    },
+    {
+      titre: "La date de mise en production est écrite dans le devis.",
+      note: "Si elle glisse de mon fait, la phase en cours ne vous est pas facturée.",
     },
   ],
-} as const;
+} as const);
 
 /* ---------------------------------------------------------------- OFFRES */
 
-export const offres = {
-  eyebrow: "Les offres",
-  titre: "Quatre façons de travailler ensemble.",
-  // « quand on sait » : inclusif — apres l'appel, vous et moi savons.
-  sousTitre: "Tout est sur devis. Le prix se décide après l'appel, quand on sait ce qu'on répare.",
+export const offres = fr({
+  meta: {
+    titre: "Offres",
+    description:
+      "Build sur-mesure, audit, accompagnement, maintenance. Quatre façons de travailler avec Kundxa, chiffrées après un appel de cadrage.",
+  },
+  hero: {
+    surtitre: "Offres",
+    titre: ["Quatre façons de travailler ", "ensemble", "."],
+    texte: "Chaque projet est chiffré sur devis, après l'appel de cadrage, quand on sait ce qu'on construit.",
+  },
   principale: {
     badge: "Le cœur de l'offre",
-    titre: "Build agentique sur-mesure",
-    accroche: "Je construis votre système. Vous ne touchez pas au technique.",
+    titre: "Build sur-mesure",
+    accroche: "Je construis votre système et je le maintiens. Vous ne touchez pas au technique.",
     pourQui: "Vous savez ce qui vous bloque, et vous voulez que ce soit réglé, pas appris.",
     livre: [
       "Audit de friction",
       "Système en production sur votre flux réel",
       "Intégration à vos outils",
       "Maintenance incluse",
-      "Mini-formation pour piloter",
+      "Courte formation pour piloter",
     ],
+    duree: "Premier système en production en 2 à 6 semaines selon le périmètre.",
   },
   secondaires: [
     {
+      surtitre: "Pour commencer",
       titre: "Audit et diagnostic",
       accroche: "Vous ne savez pas par où commencer.",
       texte:
-        "Cartographie de ce qui peut être automatisé, et plan chiffré. Vous repartez avec le plan, même si on ne travaille pas ensemble ensuite.",
+        "La cartographie de ce qui peut être automatisé, vos goulots classés par coût, un plan chiffré. Le plan est à vous, même si on ne travaille pas ensemble ensuite.",
+      duree: "1 à 2 semaines",
     },
     {
+      surtitre: "Pour votre équipe",
       titre: "Accompagnement et formation",
       accroche: "Vous voulez que votre équipe sache faire.",
-      texte:
-        "Je construis à côté de vous, et je vous laisse capables de faire évoluer le système sans moi.",
+      texte: "Je construis à côté de vous, et je vous laisse capables de faire évoluer le système sans moi.",
+      duree: "1 à 3 mois, une séance par semaine",
     },
     {
+      surtitre: "Pour durer",
       titre: "Maintenance et évolution",
       accroche: "Le système tourne. Il doit continuer.",
-      texte: "Je surveille, je répare vite, je fais évoluer au rythme de votre boîte.",
+      texte: "Surveillance, réparations rapides, évolutions au rythme de votre boîte.",
+      duree: "Abonnement mensuel, résiliable chaque mois",
     },
   ],
-  mention: "Sur devis",
-} as const;
+  livreLibelle: "Ce qui est livré",
+  pourQuiLibelle: "Pour qui",
+  dureeLibelle: "Durée type",
+  mention: "Chaque projet est chiffré sur devis, après l'appel de cadrage.",
+  choisir: {
+    surtitre: "Comment choisir",
+    titre: ["Partez de votre ", "situation", "."],
+    lignes: [
+      ["Vous ne savez pas par où commencer", "Audit et diagnostic"],
+      ["Vous savez ce qui bloque et voulez que ce soit réglé", "Build sur-mesure"],
+      ["Vous voulez que votre équipe sache construire", "Accompagnement et formation"],
+      ["Vous avez déjà un système qui doit tenir", "Maintenance et évolution"],
+    ],
+  },
+} as const);
 
-/* ------------------------------------------------------------ CTA FINAL */
+/* ----------------------------------------------------------- RÉALISATIONS */
 
-export const appel = {
-  eyebrow: "Prochaine étape",
-  titreDebut: "Un appel de cadrage. ",
-  titreAccent: "Soixante minutes.",
-  // Les « on » de cette section sont inclusifs : ce qui se passe pendant l'appel,
-  // vous et moi. Le « je » revient des qu'il s'agit de mon engagement.
-  corps:
-    "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
-  puces: [
-    {
-      titre: "Ce qu'on fait",
-      texte: "On cartographie où passe votre temps et ce qui peut sortir de vos mains.",
-    },
-    {
-      titre: "Ce que vous repartez avec",
-      texte: "Votre goulot numéro un nommé, et ce que coûterait de le régler.",
-    },
-    {
-      titre: "Ce que ça ne sera pas",
-      texte: "Une démo, ni un argumentaire de vente déguisé.",
-    },
-  ],
-  closer:
-    "Vous pouvez regarder ça de loin. Ou on regarde ensemble, ce mois-ci, ce qui peut sortir de vos mains.",
-  ctaPage: "Voir les trois façons de me joindre",
-} as const;
+export const cas = fr([
+  {
+    slug: "video-produit",
+    surtitre: "Marque de produits · Application web",
+    titre: "Une photo produit en entrée, une vidéo promotionnelle en sortie.",
+    image: "/images/3d/cas-video.webp",
+    situation:
+      "Chaque produit avait besoin d'une vidéo pour être vendu en ligne, et chaque vidéo demandait un tournage, un montage ou un prestataire.",
+    systeme:
+      "Une application web construite pour elle. Elle y dépose la photo d'un produit (une robe, un parfum, des chaussures, n'importe quel article), choisit le format voulu (récit de marque, contenu façon UGC, c'est-à-dire tourné comme par un client, ou un autre format), et récupère une vidéo promotionnelle prête à publier.",
+    revient: "Choisir les vidéos qui partent, et où elles partent.",
+  },
+  {
+    slug: "tri-emails",
+    surtitre: "Tri des e-mails · Alertes",
+    titre: "Les e-mails urgents ne restent plus sans réponse.",
+    image: "/images/3d/cas-emails.webp",
+    situation:
+      "Les messages importants se perdaient au milieu du reste de la boîte de réception, et certains attendaient trop longtemps une réponse.",
+    systeme:
+      "Chaque e-mail entrant est trié. Quand un message est important ou urgent, le dirigeant reçoit une alerte sur WhatsApp ou Telegram. S'il n'a pas répondu dans l'heure, un agent vocal (Retell, un outil qui passe des appels avec une voix de synthèse) l'appelle pour le lui rappeler.",
+    revient: "La réponse. Le système trie et insiste, c'est lui qui répond.",
+  },
+  {
+    slug: "agent-vocal-logistique",
+    surtitre: "Logistique · Agent vocal",
+    titre: "Un agent vocal répond quand le dirigeant ne peut pas.",
+    image: "/images/3d/cas-vocal.webp",
+    situation:
+      "Un entrepreneur de la logistique, souvent sur le terrain, ne peut pas toujours décrocher. Chaque appel manqué était un client qui attendait.",
+    systeme:
+      "Un agent vocal construit sur Retell et entraîné sur ses données. Il répond aux clients, et il planifie des rendez-vous en son nom dans son agenda.",
+    revient: "Les demandes qui sortent du cadre lui sont transmises.",
+  },
+] as const);
 
-/* --------------------------------------------------------------- CONTACT */
-/* L'appel de soixante minutes est l'engagement le plus lourd du site. Ce bloc
-   est la marche du dessous : ecrire, sans bloquer de creneau. */
+export const realisations = fr({
+  meta: {
+    titre: "Réalisations",
+    description:
+      "Des systèmes en production chez des dirigeants de TPE et PME : la situation de départ, le système construit, et ce qui revient au dirigeant.",
+  },
+  hero: {
+    surtitre: "Réalisations",
+    titre: ["Ce qui tourne en ", "production", "."],
+    texte:
+      "Chaque cas suit le même ordre : la situation de départ, le système construit, et ce qui revient au dirigeant. Les noms des clients restent confidentiels.",
+  },
+  libelles: { situation: "La situation", systeme: "Le système", revient: "Ce qui revient au dirigeant" },
+  chezMoi: {
+    surtitre: "Chez moi d'abord",
+    titre: ["Ce qui tourne chez moi avant de tourner chez ", "vous", "."],
+    items: [
+      {
+        titre: "Relance des factures impayées",
+        texte: "Cinq paliers de J+3 à J+45, s'arrête au paiement, 1 centime par facture tout au plus.",
+        lien: "Voir la vidéo",
+      },
+      { titre: "Kundxa OS", texte: "L'assistant qui pilote mon marketing, mes projets et ma mémoire de travail." },
+      { titre: "L'Atelier Kundxa", texte: "Ma newsletter, automatisée de la recherche à l'envoi." },
+      { titre: "Hermes Agent", texte: "Mon agent IA, en ligne en permanence." },
+    ],
+  },
+  suite: { titre: ["Le prochain cas peut être le ", "vôtre", "."] },
+} as const);
 
-export const contact = {
-  eyebrow: "Vous préférez écrire",
+/* --------------------------------------------------------------- À PROPOS */
+
+export const aPropos = fr({
+  meta: {
+    titre: "À propos",
+    description:
+      "Valdo Mendy construit à Angers des systèmes IA pour dirigeants de TPE et PME. Venu à l'automatisation par nécessité, il montre ce qui tourne et ce qui casse.",
+  },
+  hero: {
+    surtitre: "À propos",
+    titre: ["Les dirigeants ne manquent pas d'", "ambition", "."],
+    texte: "Il leur manque quelqu'un pour leur montrer comment faire, concrètement. C'est mon travail.",
+  },
+  parcours: {
+    surtitre: "Mon parcours",
+    titre: ["Par nécessité, pas par ", "curiosité", "."],
+    texte: [
+      "En 2024, je faisais tourner seul ma boutique en ligne. Je suis venu à l'automatisation par nécessité : c'était ça ou ne plus avancer.",
+      "J'ai appris à construire des systèmes qui tiennent en production, avec n8n, Claude et des agents vocaux. Ils doivent tourner un lundi matin sans que personne n'y touche. Une démo qui marche une fois ne suffit pas.",
+      "Aujourd'hui, je construis ces systèmes pour des dirigeants de TPE et PME. Je montre mon travail sur YouTube, y compris ce qui casse, parce qu'un système qui tient, ça se prouve.",
+    ],
+  },
+  valeurs: {
+    surtitre: "Ce qui guide mon travail",
+    titre: ["Cinq principes, tenus sur chaque ", "projet", "."],
+    items: [
+      { numero: "01", titre: "Diagnostiquer avant de construire", texte: "Je pars de votre vraie semaine, jamais d'un catalogue d'outils." },
+      { numero: "02", titre: "Construit pour tenir, montré ouvertement", texte: "Ça part quand ça tourne en production. Je montre où ça a cassé." },
+      { numero: "03", titre: "Honnête sur les limites", texte: "Je dis ce que le système ne fera pas, et pourquoi." },
+      { numero: "04", titre: "Les décisions restent au dirigeant", texte: "Chaque système vous rend ce qui mérite un dirigeant." },
+      { numero: "05", titre: "L'ambition, jamais la peur", texte: "Je parle de ce que votre boîte peut devenir." },
+    ],
+  },
+  enBref: {
+    surtitre: "En bref",
+    lignes: [
+      ["Basé à", "Angers. J'interviens partout en France, en visio."],
+      ["Certifications", "Claude Code (Anthropic), n8n niveaux 1 et 2, Retell."],
+      ["Chaîne YouTube", "@Kundxa-ai"],
+      ["Newsletter", "L'Atelier Kundxa"],
+    ],
+  },
+  suite: { titre: ["On regarde votre semaine ", "ensemble", " ?"] },
+} as const);
+
+/* ---------------------------------------------------------------- CONTACT */
+
+export const contact = fr({
   titre: "Dites-moi en deux lignes ce qui vous bloque.",
-  // Espaces insecables (U+00A0) avant « ? » et dans « 24 h » : sans elles, le
-  // navigateur rejette le point d'interrogation seul en debut de ligne.
-  texte:
-    "Pas envie de bloquer soixante minutes tout de suite ? Écrivez. Je lis tout, et je réponds sous 24 h ouvrées.",
   champs: {
     nom: "Votre nom",
     email: "Votre e-mail",
@@ -274,77 +557,86 @@ export const contact = {
   },
   bouton: "Envoyer",
   envoi: "Envoi…",
-  succes: "Message reçu. Je vous réponds sous 24 h ouvrées.",
+  succes: "Message reçu. Je vous réponds sous 24 h ouvrées.",
   erreur: "L'envoi n'a pas abouti. Réessayez, ou écrivez-moi directement à contact@kundxa.com.",
-  ouEmail: "Ou directement :",
-} as const;
+  ouEmail: "Ou directement :",
+} as const);
 
-/* ----------------------------------------------------------- PAGE CONTACT */
-/* Les trois canaux sont ordonnes par engagement croissant : ecrire un message,
-   puis bloquer un creneau. L'e-mail direct ferme la marche — c'est la sortie de
-   secours de ceux qui ne veulent ni formulaire ni agenda. */
-
-export const pageContact = {
-  titre: "Trois façons de me joindre.",
-  intro:
-    "Choisissez celle qui vous arrange. Les trois arrivent au même endroit, et c'est moi qui réponds.",
+export const pageContact = fr({
+  meta: {
+    titre: "Contact",
+    description:
+      "Réservez un appel de cadrage de soixante minutes, écrivez en deux lignes ou envoyez un e-mail. Réponse sous 24 h ouvrées.",
+  },
+  surtitre: "Contact",
+  titre: ["Trois façons de me ", "joindre", "."],
+  intro: "Choisissez celle qui vous arrange. Les trois arrivent au même endroit, et c'est moi qui réponds.",
   canaux: [
     {
-      ancre: "ecrire",
-      eyebrow: "Le plus simple",
-      titre: "Le formulaire",
-      pourQui: "Vous voulez poser le décor à votre rythme, sans bloquer de créneau.",
-      repere: "Réponse sous 24 h ouvrées",
-    },
-    {
       ancre: "appeler",
-      eyebrow: "Le plus direct",
+      surtitre: "Le plus direct",
       titre: "L'appel de cadrage",
       pourQui: "Vous voulez qu'on nomme votre goulot, et qu'on chiffre ce que coûte de le régler.",
       repere: "Soixante minutes, en visio",
     },
     {
+      ancre: "ecrire",
+      surtitre: "Le plus simple",
+      titre: "Le formulaire",
+      pourQui: "Vous voulez poser le décor à votre rythme, sans bloquer de créneau.",
+      repere: "Réponse sous 24 h ouvrées",
+    },
+    {
       ancre: "email",
-      eyebrow: "Sans intermédiaire",
+      surtitre: "Sans intermédiaire",
       titre: "L'e-mail",
       pourQui: "Vous préférez votre messagerie, ou vous avez des documents à joindre.",
       repere: "contact@kundxa.com",
     },
   ],
-  ecrire: {
-    eyebrow: "Écrire",
-    titre: "Dites-moi en deux lignes ce qui vous bloque.",
-    texte:
-      "Pas besoin d'un dossier complet. Ce qui vous prend le plus de temps aujourd'hui suffit à démarrer la conversation.",
-  },
   appeler: {
-    eyebrow: "Parler",
+    surtitre: "Parler",
     titre: "Un appel de cadrage. Soixante minutes.",
     texte:
       "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
   },
-  email: {
-    eyebrow: "En direct",
-    titre: "Ou simplement un e-mail.",
+  ecrire: {
+    surtitre: "Écrire",
+    titre: "Dites-moi en deux lignes ce qui vous bloque.",
     texte:
-      "Pas de formulaire, pas d'agenda. J'y réponds moi-même, dans les mêmes délais.",
+      "Pas besoin d'un dossier complet. Ce qui vous prend le plus de temps aujourd'hui suffit à démarrer la conversation.",
+  },
+  email: {
+    surtitre: "En direct",
+    titre: "Ou simplement un e-mail.",
+    texte: "Pas de formulaire, pas d'agenda. J'y réponds moi-même, dans les mêmes délais.",
     bouton: "Écrire à contact@kundxa.com",
   },
-} as const;
+  coordonnees: "Kundxa · Valdo Mendy · 48 rue de Brissac, 49000 Angers",
+  cal: {
+    surtitre: "Appel de cadrage",
+    titre: "Soixante minutes, en visio.",
+    texte:
+      "Le calendrier s'ouvre ici même. Il est fourni par Cal.com, qui dépose ses propres cookies : il ne se charge donc qu'à votre demande.",
+    bouton: "Voir les créneaux disponibles",
+    lien: "ou ouvrir le calendrier dans un nouvel onglet",
+  },
+} as const);
 
 /* ---------------------------------------------------------------- FOOTER */
 
-export const footer = {
+export const footer = fr({
   newsletter: {
-    titre: "La newsletter",
-    texte: "Une fois par semaine, ce que je construis vraiment. Ce qui marche, et ce qui a cassé.",
+    titre: "L'Atelier Kundxa",
+    texte: "Chaque semaine, ce que je construis vraiment. Ce qui marche, et ce qui a cassé.",
     placeholder: "vous@votreboite.fr",
     bouton: "S'abonner",
     succes: "C'est fait. Vous recevrez la prochaine.",
     erreur: "L'inscription n'a pas abouti. Réessayez, ou écrivez-moi directement.",
     emailInvalide: "Cette adresse ne semble pas valide.",
   },
-} as const;
+  colonnes: { site: "Le site", suivre: "Suivre" },
+} as const);
 
 /* ------------------------------------------------- IDENTITÉ LÉGALE (LCEN) */
 

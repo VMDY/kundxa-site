@@ -87,3 +87,58 @@ export const IconMail = (p: Props) => (
     <path d="m3.5 7 8.5 6 8.5-6" />
   </Line>
 );
+
+/* --------------------------------------------------------------- refonte */
+
+export const IconRepeat = (p: Props) => (
+  <Line {...p}>
+    <path d="M21 12a9 9 0 1 1-3-6.7L21 8" />
+    <path d="M21 3v5h-5" />
+  </Line>
+);
+
+export const IconSearch = (p: Props) => (
+  <Line {...p}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </Line>
+);
+
+// Une decision qui remonte vers le dirigeant : fleche montante posee sur un socle.
+export const IconDecision = (p: Props) => (
+  <Line {...p}>
+    <path d="M12 16V4" />
+    <path d="M7 9l5-5 5 5" />
+    <path d="M5 20h14" />
+  </Line>
+);
+
+export const IconPlay = (p: Props) => (
+  <Solid {...p}>
+    <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
+  </Solid>
+);
+
+export const IconClose = (p: Props) => (
+  <Line {...p}>
+    <path d="M6 6l12 12M18 6 6 18" />
+  </Line>
+);
+
+export const IconPlus = (p: Props) => (
+  <Line {...p}>
+    <path d="M12 5v14M5 12h14" />
+  </Line>
+);
+
+export const IconMenu = (p: Props) => (
+  <Line {...p}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </Line>
+);
+
+export const IconArrowUpRight = (p: Props) => (
+  <Line {...p}>
+    <path d="M7 17 17 7M8 7h9v9" />
+  </Line>
+);

@@ -13,8 +13,8 @@ export function Container({
   return (
     <div
       className={cn(
-        "mx-auto w-full px-[var(--container-px)]",
-        size === "narrow" ? "max-w-3xl" : "max-w-6xl",
+        "mx-auto w-full px-[var(--gutter)]",
+        size === "narrow" ? "max-w-3xl" : "max-w-[80rem]",
         className,
       )}
     >

@@ -1,102 +1,93 @@
 import Image from "next/image";
+import Link from "next/link";
 import { NewsletterForm } from "@/components/newsletter-form";
 import { Container } from "@/components/ui/container";
 import { IconLinkedin, IconMail, IconX, IconYoutube } from "@/components/ui/icons";
-import { footer, legal, liens, site } from "@/content/site";
+import { footer, legal, liens, nav, site } from "@/content/site";
 
-// Chaque reseau porte un aria-label explicite : l'icone seule ne dit rien a un
-// lecteur d'ecran.
-//
-// `couleur` = couleur officielle de la marque, appliquee en style inline (les
-// icones sont en `currentColor`). Deux choix a connaitre :
-//  - X n'a pas de couleur : son glyphe est noir ou blanc. Sur notre fond sombre,
-//    c'est blanc.
-//  - LinkedIn : #378FE9 et non #0A66C2. C'est la declinaison que LinkedIn lui-meme
-//    prescrit sur fond sombre ; le bleu standard tombe a 3,4:1 de contraste ici,
-//    et parait terne a cote du rouge YouTube.
-// La newsletter n'est pas une marque tierce : elle garde l'accent du site
-// (couleur nulle -> la classe `text-accent` s'applique).
 const reseaux = [
-  { href: liens.youtube, libelle: "Chaîne YouTube de Kundxa", Icone: IconYoutube, couleur: "#FF0000" },
-  { href: liens.x, libelle: "Compte X de Kundxa", Icone: IconX, couleur: "#FFFFFF" },
-  { href: liens.linkedin, libelle: "Profil LinkedIn de Valdo Mendy", Icone: IconLinkedin, couleur: "#378FE9" },
-  { href: liens.newsletter, libelle: "La newsletter Kundxa", Icone: IconMail, couleur: null },
+  { libelle: "YouTube", href: liens.youtube, Icone: IconYoutube },
+  { libelle: "LinkedIn", href: liens.linkedin, Icone: IconLinkedin },
+  { libelle: "X", href: liens.x, Icone: IconX },
+  { libelle: "E-mail", href: `mailto:${site.email}`, Icone: IconMail },
 ];
+
+const legaux = [
+  { libelle: "Mentions légales", href: "/mentions-legales" },
+  { libelle: "Confidentialité", href: "/confidentialite" },
+  { libelle: "Conditions d'utilisation", href: "/conditions-utilisation" },
+];
+
+const lien =
+  "rounded-sm text-muted transition-colors hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-surface py-16">
+    <footer className="border-t border-white/10 bg-deep pt-20 pb-10">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.6fr_1.3fr] lg:gap-16">
           <div>
             <Image
-              src="/logos/kundxa-logo.png"
+              src="/logos/kundxa-lockup-golden.png"
               alt={site.nom}
-              width={560}
-              height={178}
-              className="h-10 w-auto"
+              width={871}
+              height={269}
+              className="h-8 w-auto"
             />
-            <p className="mt-5 max-w-sm text-body text-muted">{site.tagline}</p>
-
-            <ul className="mt-8 flex items-center gap-3">
-              {reseaux.map(({ href, libelle, Icone, couleur }) => (
-                <li key={href}>
+            <p className="mt-5 font-serif text-h3 italic text-paper">{site.signature}</p>
+            <ul className="mt-8 flex gap-3">
+              {reseaux.map(({ libelle, href, Icone }) => (
+                <li key={libelle}>
                   <a
                     href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={libelle}
-                    title={libelle}
-                    // Le survol ne touche plus a la couleur : un style inline la
-                    // rendrait insurchargeable en CSS. Le retour visuel passe
-                    // donc par la bordure seule.
-                    style={couleur ? { color: couleur } : undefined}
-                    className="flex h-11 w-11 items-center justify-center rounded-md border border-border text-accent transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="grid h-10 w-10 place-items-center rounded-sm border border-white/12 text-muted transition-colors hover:border-gold hover:text-gold focus-visible:outline-2 focus-visible:outline-gold"
                   >
-                    <Icone className="h-5 w-5" />
+                    <span className="sr-only">{libelle}</span>
+                    <Icone className="h-[18px] w-[18px]" />
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="lg:pl-10">
-            <h2 className="text-h3">{footer.newsletter.titre}</h2>
-            <p className="mt-3 max-w-md text-body text-muted">{footer.newsletter.texte}</p>
+          <nav aria-label="Pied de page">
+            <p className="font-mono text-label uppercase text-gold">{footer.colonnes.site}</p>
+            <ul className="mt-5 space-y-3 text-small">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={lien}>
+                    {item.libelle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <p className="font-serif text-h3 text-paper">{footer.newsletter.titre}</p>
+            <p className="mt-3 max-w-md text-small text-muted">{footer.newsletter.texte}</p>
             <NewsletterForm />
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-caption text-muted">
-            © {new Date().getFullYear()} {legal.nomCommercial} · {legal.editeur} ·{" "}
-            <a
-              href={`mailto:${site.email}`}
-              className="rounded-sm underline underline-offset-4 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-caption text-muted md:flex-row md:items-center md:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.nom} · {legal.editeur} · Angers ·{" "}
+            <a href={`mailto:${site.email}`} className={lien}>
               {site.email}
             </a>
           </p>
-          <nav aria-label="Liens légaux" className="flex flex-wrap gap-x-6 gap-y-2">
-            <a
-              href="/mentions-legales"
-              className="rounded-sm text-caption text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              Mentions légales
-            </a>
-            <a
-              href="/confidentialite"
-              className="rounded-sm text-caption text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              Confidentialité
-            </a>
-            <a
-              href="/conditions-utilisation"
-              className="rounded-sm text-caption text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              Conditions d&apos;utilisation
-            </a>
-          </nav>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {legaux.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={lien}>
+                  {item.libelle}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </footer>
