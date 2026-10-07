@@ -254,7 +254,8 @@ export default function Confidentialite() {
             <h2 className="text-h3">Combien de temps</h2>
             <p className="mt-4 text-body text-muted">
               Abonnés à la newsletter : jusqu&apos;à votre désinscription, puis suppression sous
-              trois mois. Messages envoyés via le formulaire de contact, appels téléphoniques
+              trente jours, sauf le strict minimum qui permet de respecter votre choix de ne plus
+              être recontacté. Messages envoyés via le formulaire de contact, appels téléphoniques
               (enregistrement, transcription, résumé) et échanges liés à un rendez-vous : trois ans
               à compter du dernier contact. Journaux techniques : treize
               mois au maximum. Comptes TikTok et X connectés : jetons d&apos;accès conservés tant
