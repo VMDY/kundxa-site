@@ -4,8 +4,8 @@
  *
  * Source : agentic-os/projects/briefs/kundxa-site/2026-10-06_copy-site.md
  * (mkt-copywriting + tool-humanizer deep, 2026-10-07). Angle « Ce qui merite un
- * dirigeant » (brand_context/positioning.md). Voix : vouvoiement, « je » pour le
- * prestataire, zero promesse gourou, zero cadrage par la peur, aucun chiffre invente.
+ * dirigeant » (brand_context/positioning.md). Voix : vouvoiement, « nous » pour
+ * Kundxa (le parcours du fondateur à la troisième personne), zero promesse gourou, zero cadrage par la peur, aucun chiffre invente.
  *
  * Typographie francaise : `fr()` pose les espaces insecables (U+00A0) avant
  * « ? ! : ; » et a l'interieur des guillemets. Ecrire ici avec des espaces normales.
@@ -29,7 +29,7 @@ export const site = {
   nom: "Kundxa",
   signature: "Ce qui mérite un dirigeant.",
   description:
-    "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
+    "Nous construisons les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
   url: "https://kundxa.com",
   email: "contact@kundxa.com",
   // Espaces insécables : le numéro ne se coupe jamais en fin de ligne.
@@ -45,6 +45,8 @@ export const liens = {
   youtube: "https://www.youtube.com/@Kundxa-ai",
   linkedin: "https://www.linkedin.com/in/valdomendy",
   x: "https://x.com/Mendy_Valdo_58",
+  tiktok: "https://www.tiktok.com/@kundxa_ai",
+  instagram: "https://www.instagram.com/valdo_kundxa/",
   newsletter: "https://newsletter.kundxa.com",
 } as const;
 
@@ -60,7 +62,7 @@ export const cta = fr({
   court: "Réserver un appel",
   principal: "Réserver un appel de cadrage",
   final: "Réserver mon appel de cadrage",
-  ecrire: "Ou m'écrire en deux lignes",
+  ecrire: "Ou nous écrire en deux lignes",
   realisations: "Voir les réalisations",
 } as const);
 
@@ -79,13 +81,13 @@ export const accueil = fr({
   meta: {
     titre: "Kundxa · Systèmes IA pour dirigeants de TPE et PME",
     description:
-      "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
+      "Nous construisons les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent en production. Les décisions restent les vôtres.",
   },
   hero: {
     surtitre: "Agents IA et automatisations · En production",
     titre: ["Gardez votre énergie pour ce qui mérite un ", "dirigeant", "."],
     sousTitre:
-      "Je construis les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent chaque jour, sans vous. Les décisions, elles, restent les vôtres.",
+      "Nous construisons les systèmes qui prennent en charge vos tâches répétitives et la recherche qui prépare vos décisions. Ils tournent chaque jour, sans vous. Les décisions, elles, restent les vôtres.",
     micro: "Soixante minutes en visio · votre goulot numéro un nommé",
     photoAlt: "Valdo Mendy, fondateur de Kundxa",
     // Cartes d'interface du hero : illustration d'une matinee type, pas un rapport client.
@@ -154,7 +156,7 @@ export const accueil = fr({
       { cle: "Coût", texte: "1 centime par facture, tout au plus." },
       { cle: "Règle", texte: "Un paiement reçu arrête tout." },
       { cle: "Garde-fou", texte: "Il ne devine jamais une adresse." },
-      { cle: "Limite", texte: "Il n'appelle pas vos clients. En tout cas, pas le mien." },
+      { cle: "Limite", texte: "Il n'appelle pas vos clients. En tout cas, pas le nôtre." },
     ],
     video: "Voir le système tourner, en vidéo",
     // Les cinq paliers tels que decrits dans la video « Factures impayees ».
@@ -181,12 +183,12 @@ export const accueil = fr({
   methode: {
     surtitre: "Méthode",
     titre: ["Automatiser une mauvaise relance, c'est relancer mal plus ", "vite", "."],
-    texte: "Je commence donc par votre vraie semaine, jamais par un catalogue d'outils.",
+    texte: "Nous commençons donc par votre vraie semaine, jamais par un catalogue d'outils.",
     lien: "La méthode en détail",
   },
   limites: {
     surtitre: "Limites",
-    titre: ["Ce que mes systèmes ne feront pas, et c'est ", "voulu", "."],
+    titre: ["Ce que nos systèmes ne feront pas, et c'est ", "voulu", "."],
     items: [
       {
         titre: "Décider à votre place",
@@ -216,24 +218,24 @@ export const accueil = fr({
       ". »",
     ],
     texte: [
-      "En 2024, je faisais tourner seul ma boutique en ligne. J'ai automatisé ce qui m'empêchait d'avancer, par nécessité, pas par curiosité.",
-      "Ce que je vous installe tourne d'abord chez moi. Les coulisses sont sur YouTube, ratés compris.",
+      "En 2024, Valdo faisait tourner seul sa boutique en ligne. Il a automatisé ce qui l'empêchait d'avancer, par nécessité, pas par curiosité.",
+      "Ce que nous vous installons tourne d'abord chez nous. Les coulisses sont sur YouTube, ratés compris.",
     ],
     badgeNom: "Valdo Mendy",
-    badgeRole: "fondateur de Kundxa · Angers",
+    badgeRole: "fondateur de Kundxa",
     badgeCertifs: "Claude Code (Anthropic) · n8n niveaux 1 et 2 · Retell",
-    lien: "Mon parcours",
+    lien: "Son parcours",
   },
   faq: {
     surtitre: "Questions",
-    titre: ["Ce qu'on me demande avant de ", "commencer", "."],
+    titre: ["Ce qu'on nous demande avant de ", "commencer", "."],
   },
 } as const);
 
 export const faq = fr([
   {
     q: "Je ne suis pas technique. Est-ce que je saurai m'en servir ?",
-    r: "Vous n'avez rien à configurer. Le système vous écrit en français clair, par e-mail ou sur votre téléphone. La maintenance fait partie de mon travail.",
+    r: "Vous n'avez rien à configurer. Le système vous écrit en français clair, par e-mail ou sur votre téléphone. La maintenance fait partie de notre travail.",
   },
   {
     q: "Et si l'IA se trompe avec mes clients ?",
@@ -241,7 +243,7 @@ export const faq = fr([
   },
   {
     q: "J'ai déjà essayé des outils, ça n'a rien changé.",
-    r: "Un outil posé sur une organisation ne la change pas. Je pars de votre semaine réelle, je construis le système autour, et je reste pour le maintenir.",
+    r: "Un outil posé sur une organisation ne la change pas. Nous partons de votre semaine réelle, nous construisons le système autour, et nous restons pour le maintenir.",
   },
   {
     q: "Pourquoi pas une embauche ?",
@@ -259,7 +261,7 @@ export const appel = fr({
   surtitre: "Prochaine étape",
   titre: ["Un appel de cadrage. Soixante ", "minutes", "."],
   texte:
-    "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
+    "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, nous vous le disons.",
   puces: [
     { titre: "Ce qu'on fait", texte: "On cartographie où passe votre temps et ce qui peut sortir de vos mains." },
     { titre: "Ce que vous repartez avec", texte: "Votre goulot numéro un nommé, et ce que coûterait de le régler." },
@@ -271,7 +273,7 @@ export const appel = fr({
     sousTitre: "60 min · visio · avec Valdo",
     jours: ["LUN", "MAR", "MER", "JEU", "VEN"],
     creneaux: ["09:00", "10:30", "14:00", "15:30", "17:00", "18:00"],
-    note: "Ou écrivez-moi en deux lignes · contact@kundxa.com",
+    note: "Ou écrivez-nous en deux lignes · contact@kundxa.com",
   },
 } as const);
 
@@ -281,16 +283,16 @@ export const etapes = fr([
   {
     numero: "01",
     titre: "Diagnostic",
-    court: "Je cartographie où part votre temps. Vous repartez avec vos goulots classés par coût.",
-    jeFais: "Un entretien sur votre semaine réelle, la cartographie de ce qui se répète, le coût de chaque goulot.",
-    vousFaites: "Vous me montrez comment ça se passe aujourd'hui.",
+    court: "Nous cartographions où part votre temps. Vous repartez avec vos goulots classés par coût.",
+    nousFaisons: "Un entretien sur votre semaine réelle, la cartographie de ce qui se répète, le coût de chaque goulot.",
+    vousFaites: "Vous nous montrez comment ça se passe aujourd'hui.",
     vousRecevez: "Vos goulots classés par coût, et l'ordre dans lequel les régler.",
   },
   {
     numero: "02",
     titre: "Construction",
     court: "Brique par brique, testé sur vos vrais cas. Une heure de votre temps par semaine.",
-    jeFais: "Je construis le système brique par brique et je le teste sur vos vrais cas.",
+    nousFaisons: "Nous construisons le système brique par brique et nous le testons sur vos vrais cas.",
     vousFaites: "Une heure par semaine pour valider ce qui part en production.",
     vousRecevez: "Un système testé avant de toucher à vos clients.",
   },
@@ -298,17 +300,17 @@ export const etapes = fr([
     numero: "03",
     titre: "Mise en production",
     court: "Sur votre vrai flux, avec un garde-fou à chaque étape sensible.",
-    jeFais: "Je branche le système sur votre vrai flux, avec un garde-fou à chaque étape sensible.",
+    nousFaisons: "Nous branchons le système sur votre vrai flux, avec un garde-fou à chaque étape sensible.",
     vousFaites: "Vous suivez une courte formation pour piloter.",
     vousRecevez: "Un résumé chaque matin, et une alerte quand une décision vous revient.",
   },
   {
     numero: "04",
     titre: "Suivi",
-    court: "Tout système casse un jour. Celui-ci est surveillé, et je le répare vite.",
-    jeFais: "Je surveille, je répare, je fais évoluer le système avec votre boîte.",
-    vousFaites: "Vous me dites ce qui change chez vous.",
-    vousRecevez: "Un système qui tient dans la durée. Tout système casse un jour. Celui-ci est surveillé, et je le répare vite.",
+    court: "Tout système casse un jour. Celui-ci est surveillé, et nous le réparons vite.",
+    nousFaisons: "Nous surveillons, nous réparons, nous faisons évoluer le système avec votre boîte.",
+    vousFaites: "Vous nous dites ce qui change chez vous.",
+    vousRecevez: "Un système qui tient dans la durée. Tout système casse un jour. Celui-ci est surveillé, et nous le réparons vite.",
   },
 ] as const);
 
@@ -316,15 +318,15 @@ export const methode = fr({
   meta: {
     titre: "Méthode",
     description:
-      "Diagnostic, construction, mise en production, suivi. Comment je construis des systèmes qui tiennent, et ce qu'ils vous rendent.",
+      "Diagnostic, construction, mise en production, suivi. Comment nous construisons des systèmes qui tiennent, et ce qu'ils vous rendent.",
   },
   hero: {
     surtitre: "Méthode",
-    titre: ["Je commence par votre ", "semaine", "."],
+    titre: ["Nous commençons par votre ", "semaine", "."],
     texte:
-      "Automatiser une mauvaise relance, c'est relancer mal plus vite. Avant de choisir un outil, je regarde comment le travail circule chez vous, où il bloque et ce que chaque blocage vous coûte.",
+      "Automatiser une mauvaise relance, c'est relancer mal plus vite. Avant de choisir un outil, nous regardons comment le travail circule chez vous, où il bloque et ce que chaque blocage vous coûte.",
   },
-  colonnes: { jeFais: "Je fais", vousFaites: "Vous faites", vousRecevez: "Vous recevez" },
+  colonnes: { nousFaisons: "Nous faisons", vousFaites: "Vous faites", vousRecevez: "Vous recevez" },
   principes: {
     surtitre: "Principes",
     titre: ["Quatre règles, sur chaque ", "système", "."],
@@ -358,12 +360,12 @@ export const engagements = fr({
   titre: ["Ce qui est écrit dans le ", "devis", "."],
   items: [
     {
-      titre: "Ça tient en production, ou je continue gratuitement jusqu'à ce que ça tienne.",
+      titre: "Ça tient en production, ou nous continuons gratuitement jusqu'à ce que ça tienne.",
       note: "Le périmètre est défini ensemble à l'avance : un cas d'usage, un critère de réussite.",
     },
     {
       titre: "La date de mise en production est écrite dans le devis.",
-      note: "Si elle glisse de mon fait, la phase en cours ne vous est pas facturée.",
+      note: "Si elle glisse de notre fait, la phase en cours ne vous est pas facturée.",
     },
   ],
 } as const);
@@ -384,7 +386,7 @@ export const offres = fr({
   principale: {
     badge: "Le cœur de l'offre",
     titre: "Build sur-mesure",
-    accroche: "Je construis votre système et je le maintiens. Vous ne touchez pas au technique.",
+    accroche: "Nous construisons votre système et nous le maintenons. Vous ne touchez pas au technique.",
     pourQui: "Vous savez ce qui vous bloque, et vous voulez que ce soit réglé, pas appris.",
     livre: [
       "Audit de friction",
@@ -408,7 +410,7 @@ export const offres = fr({
       surtitre: "Pour votre équipe",
       titre: "Accompagnement et formation",
       accroche: "Vous voulez que votre équipe sache faire.",
-      texte: "Je construis à côté de vous, et je vous laisse capables de faire évoluer le système sans moi.",
+      texte: "Nous construisons à côté de vous, et nous vous laissons capables de faire évoluer le système sans nous.",
       duree: "1 à 3 mois, une séance par semaine",
     },
     {
@@ -486,18 +488,18 @@ export const realisations = fr({
       "Chaque cas suit le même ordre : la situation de départ, le système construit, et ce qui revient au dirigeant. Les noms des clients restent confidentiels.",
   },
   libelles: { situation: "La situation", systeme: "Le système", revient: "Ce qui revient au dirigeant" },
-  chezMoi: {
-    surtitre: "Chez moi d'abord",
-    titre: ["Ce qui tourne chez moi avant de tourner chez ", "vous", "."],
+  chezNous: {
+    surtitre: "Chez nous d'abord",
+    titre: ["Ce qui tourne chez nous avant de tourner chez ", "vous", "."],
     items: [
       {
         titre: "Relance des factures impayées",
         texte: "Cinq paliers de J+3 à J+45, s'arrête au paiement, 1 centime par facture tout au plus.",
         lien: "Voir la vidéo",
       },
-      { titre: "Kundxa OS", texte: "L'assistant qui pilote mon marketing, mes projets et ma mémoire de travail." },
-      { titre: "L'Atelier Kundxa", texte: "Ma newsletter, automatisée de la recherche à l'envoi." },
-      { titre: "Hermes Agent", texte: "Mon agent IA, en ligne en permanence." },
+      { titre: "Kundxa OS", texte: "L'assistant qui pilote notre marketing, nos projets et notre mémoire de travail." },
+      { titre: "L'Atelier Kundxa", texte: "Notre newsletter, automatisée de la recherche à l'envoi." },
+      { titre: "Hermes Agent", texte: "Notre agent IA, en ligne en permanence." },
     ],
   },
   suite: { titre: ["Le prochain cas peut être le ", "vôtre", "."] },
@@ -509,37 +511,37 @@ export const aPropos = fr({
   meta: {
     titre: "À propos",
     description:
-      "Valdo Mendy construit à Angers des systèmes IA pour dirigeants de TPE et PME. Venu à l'automatisation par nécessité, il montre ce qui tourne et ce qui casse.",
+      "Kundxa construit des systèmes IA pour dirigeants de TPE et PME. Son fondateur, Valdo Mendy, est venu à l'automatisation par nécessité. Nous montrons ce qui tourne et ce qui casse.",
   },
   hero: {
     surtitre: "À propos",
     titre: ["Les dirigeants ne manquent pas d'", "ambition", "."],
-    texte: "Il leur manque quelqu'un pour leur montrer comment faire, concrètement. C'est mon travail.",
+    texte: "Il leur manque quelqu'un pour leur montrer comment faire, concrètement. C'est notre travail.",
   },
   parcours: {
-    surtitre: "Mon parcours",
+    surtitre: "Le parcours du fondateur",
     titre: ["Par nécessité, pas par ", "curiosité", "."],
     texte: [
-      "En 2024, je faisais tourner seul ma boutique en ligne. Je suis venu à l'automatisation par nécessité : c'était ça ou ne plus avancer.",
-      "J'ai appris à construire des systèmes qui tiennent en production, avec n8n, Claude et des agents vocaux. Ils doivent tourner un lundi matin sans que personne n'y touche. Une démo qui marche une fois ne suffit pas.",
-      "Aujourd'hui, je construis ces systèmes pour des dirigeants de TPE et PME. Je montre mon travail sur YouTube, y compris ce qui casse, parce qu'un système qui tient, ça se prouve.",
+      "En 2024, Valdo Mendy faisait tourner seul sa boutique en ligne. Il est venu à l'automatisation par nécessité : c'était ça ou ne plus avancer.",
+      "Il a appris à construire des systèmes qui tiennent en production, avec n8n, Claude et des agents vocaux. Ils doivent tourner un lundi matin sans que personne n'y touche. Une démo qui marche une fois ne suffit pas.",
+      "Aujourd'hui, Kundxa construit ces systèmes pour des dirigeants de TPE et PME. Nous montrons notre travail sur YouTube, y compris ce qui casse, parce qu'un système qui tient, ça se prouve.",
     ],
   },
   valeurs: {
-    surtitre: "Ce qui guide mon travail",
+    surtitre: "Ce qui guide notre travail",
     titre: ["Cinq principes, tenus sur chaque ", "projet", "."],
     items: [
-      { numero: "01", titre: "Diagnostiquer avant de construire", texte: "Je pars de votre vraie semaine, jamais d'un catalogue d'outils." },
-      { numero: "02", titre: "Construit pour tenir, montré ouvertement", texte: "Ça part quand ça tourne en production. Je montre où ça a cassé." },
-      { numero: "03", titre: "Honnête sur les limites", texte: "Je dis ce que le système ne fera pas, et pourquoi." },
+      { numero: "01", titre: "Diagnostiquer avant de construire", texte: "Nous partons de votre vraie semaine, jamais d'un catalogue d'outils." },
+      { numero: "02", titre: "Construit pour tenir, montré ouvertement", texte: "Ça part quand ça tourne en production. Nous montrons où ça a cassé." },
+      { numero: "03", titre: "Honnête sur les limites", texte: "Nous disons ce que le système ne fera pas, et pourquoi." },
       { numero: "04", titre: "Les décisions restent au dirigeant", texte: "Chaque système vous rend ce qui mérite un dirigeant." },
-      { numero: "05", titre: "L'ambition, jamais la peur", texte: "Je parle de ce que votre boîte peut devenir." },
+      { numero: "05", titre: "L'ambition, jamais la peur", texte: "Nous parlons de ce que votre boîte peut devenir." },
     ],
   },
   enBref: {
     surtitre: "En bref",
     lignes: [
-      ["Basé à", "Angers. J'interviens partout en France, en visio."],
+      ["Où", "Partout en France, en visio."],
       ["Certifications", "Claude Code (Anthropic), n8n niveaux 1 et 2, Retell."],
       ["Chaîne YouTube", "@Kundxa-ai"],
       ["Newsletter", "L'Atelier Kundxa"],
@@ -551,7 +553,7 @@ export const aPropos = fr({
 /* ---------------------------------------------------------------- CONTACT */
 
 export const contact = fr({
-  titre: "Dites-moi en deux lignes ce qui vous bloque.",
+  titre: "Dites-nous en deux lignes ce qui vous bloque.",
   champs: {
     nom: "Votre nom",
     email: "Votre e-mail",
@@ -560,8 +562,8 @@ export const contact = fr({
   },
   bouton: "Envoyer",
   envoi: "Envoi…",
-  succes: "Message reçu. Je vous réponds sous 24 h ouvrées.",
-  erreur: "L'envoi n'a pas abouti. Réessayez, ou écrivez-moi directement à contact@kundxa.com.",
+  succes: "Message reçu. Nous vous répondons sous 24 h ouvrées.",
+  erreur: "L'envoi n'a pas abouti. Réessayez, ou écrivez-nous directement à contact@kundxa.com.",
   ouEmail: "Ou directement :",
 } as const);
 
@@ -572,8 +574,8 @@ export const pageContact = fr({
       "Réservez un appel de cadrage de soixante minutes, appelez, écrivez en deux lignes ou envoyez un e-mail. Réponse sous 24 h ouvrées.",
   },
   surtitre: "Contact",
-  titre: ["Quatre façons de me ", "joindre", "."],
-  intro: "Choisissez celle qui vous arrange. Tout arrive au même endroit, et c'est moi qui donne suite.",
+  titre: ["Quatre façons de nous ", "joindre", "."],
+  intro: "Choisissez celle qui vous arrange. Tout arrive au même endroit, et c'est nous qui donnons suite.",
   canaux: [
     {
       ancre: "appeler",
@@ -601,7 +603,7 @@ export const pageContact = fr({
       href: site.telephoneUrl,
       surtitre: "À toute heure",
       titre: "Le téléphone",
-      pourQui: "Vous préférez parler tout de suite. Mon assistante IA répond à vos questions et réserve votre appel de cadrage.",
+      pourQui: "Vous préférez parler tout de suite. Notre assistante IA répond à vos questions et réserve votre appel de cadrage.",
       repere: site.telephone,
     },
   ],
@@ -609,21 +611,21 @@ export const pageContact = fr({
     surtitre: "Parler",
     titre: "Un appel de cadrage. Soixante minutes.",
     texte:
-      "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, je vous le dis.",
+      "On regarde votre boîte, on nomme le goulot qui vous coûte le plus cher, et on décide si un système règle le problème. Si ce n'est pas le cas, nous vous le disons.",
   },
   ecrire: {
     surtitre: "Écrire",
-    titre: "Dites-moi en deux lignes ce qui vous bloque.",
+    titre: "Dites-nous en deux lignes ce qui vous bloque.",
     texte:
       "Pas besoin d'un dossier complet. Ce qui vous prend le plus de temps aujourd'hui suffit à démarrer la conversation.",
   },
   email: {
     surtitre: "En direct",
     titre: "Ou simplement un e-mail.",
-    texte: "Pas de formulaire, pas d'agenda. J'y réponds moi-même, dans les mêmes délais.",
+    texte: "Pas de formulaire, pas d'agenda. Nous y répondons nous-mêmes, dans les mêmes délais.",
     bouton: "Écrire à contact@kundxa.com",
   },
-  coordonnees: `Kundxa · Valdo Mendy · 48 rue de Brissac, 49000 Angers · ${site.telephone}`,
+  coordonnees: `Kundxa · ${site.email} · ${site.telephone}`,
   cal: {
     surtitre: "Appel de cadrage",
     titre: "Soixante minutes, en visio.",
@@ -639,12 +641,12 @@ export const pageContact = fr({
 export const footer = fr({
   newsletter: {
     titre: "L'Atelier Kundxa",
-    texte: "Chaque semaine, ce que je construis vraiment. Ce qui marche, et ce qui a cassé.",
+    texte: "Chaque semaine, ce que nous construisons vraiment. Ce qui marche, et ce qui a cassé.",
     placeholder: "vous@votreboite.fr",
     bouton: "S'abonner",
     mention: "Un e-mail de confirmation vous attend. Désinscription en un clic.",
     succes: "Vérifiez votre boîte : un e-mail de confirmation vient de partir.",
-    erreur: "L'inscription n'a pas abouti. Réessayez, ou écrivez-moi directement.",
+    erreur: "L'inscription n'a pas abouti. Réessayez, ou écrivez-nous directement.",
     emailInvalide: "Cette adresse ne semble pas valide.",
   },
   colonnes: { site: "Le site", suivre: "Suivre" },

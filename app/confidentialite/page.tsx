@@ -99,7 +99,7 @@ export default function Confidentialite() {
                 <dd className="text-body text-muted">
                   Votre nom, votre adresse e-mail et le message que vous rédigez. Finalité : vous
                   répondre. Base légale : mesures précontractuelles prises à votre demande. La
-                  soumission est reçue par Netlify, qui me la transmet par courrier électronique.
+                  soumission est reçue par Netlify, qui nous la transmet par courrier électronique.
                 </dd>
               </div>
               <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
