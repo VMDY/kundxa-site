@@ -601,7 +601,7 @@ export const pageContact = fr({
       href: site.telephoneUrl,
       surtitre: "À toute heure",
       titre: "Le téléphone",
-      pourQui: "Vous préférez parler tout de suite. Mon assistant IA répond à vos questions et réserve votre appel de cadrage.",
+      pourQui: "Vous préférez parler tout de suite. Mon assistante IA répond à vos questions et réserve votre appel de cadrage.",
       repere: site.telephone,
     },
   ],
