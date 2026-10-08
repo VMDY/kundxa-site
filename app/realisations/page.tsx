@@ -66,13 +66,13 @@ export default function Realisations() {
       <Section tone="light">
         <Container>
           <Reveal>
-            <Kicker light>{realisations.chezMoi.surtitre}</Kicker>
+            <Kicker light>{realisations.chezNous.surtitre}</Kicker>
             <Heading className="mt-5 max-w-4xl text-ink">
-              <Titre parts={realisations.chezMoi.titre} light />
+              <Titre parts={realisations.chezNous.titre} light />
             </Heading>
           </Reveal>
           <ul className="mt-14 grid gap-5 sm:grid-cols-2">
-            {realisations.chezMoi.items.map((it, i) => (
+            {realisations.chezNous.items.map((it, i) => (
               <Reveal as="li" key={it.titre} delay={i * 70} className="rounded-lg bg-raised p-8">
                 <h3 className="text-h3 text-ink">{it.titre}</h3>
                 <p className="mt-3 text-ink-muted">{it.texte}</p>

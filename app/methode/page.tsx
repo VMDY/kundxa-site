@@ -37,7 +37,7 @@ export default function Methode() {
                 <dl className="grid gap-6 sm:grid-cols-3">
                   {(
                     [
-                      [colonnes.jeFais, e.jeFais],
+                      [colonnes.nousFaisons, e.nousFaisons],
                       [colonnes.vousFaites, e.vousFaites],
                       [colonnes.vousRecevez, e.vousRecevez],
                     ] as const

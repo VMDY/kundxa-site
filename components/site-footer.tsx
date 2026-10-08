@@ -81,7 +81,7 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-caption text-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.nom} · {legal.editeur} · Angers ·{" "}
+            © {new Date().getFullYear()} {site.nom} · {legal.editeur} ·{" "}
             <a href={`mailto:${site.email}`} className={lien}>
               {site.email}
             </a>{" "}

@@ -43,36 +43,55 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// JSON-LD : l'entreprise et ce qu'elle vend, pour les moteurs de recherche et de reponse.
+// JSON-LD : le site, l'entreprise et ce qu'elle vend, pour les moteurs de recherche et
+// de reponse. WebSite donne a Google le nom a afficher (« Kundxa ») ; sameAs relie
+// l'entite a ses comptes, ce qui l'aide a reconnaitre une requete « kundxa ».
+// L'adresse postale reste dans les mentions legales (LCEN), pas dans la presentation.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: legal.nomCommercial,
-  url: site.url,
-  email: site.email,
-  telephone: "+33974064740",
-  slogan: site.signature,
-  description: site.description,
-  founder: { "@type": "Person", name: legal.editeur },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "48 rue de Brissac",
-    postalCode: "49000",
-    addressLocality: "Angers",
-    addressCountry: "FR",
-  },
-  areaServed: "FR",
-  sameAs: [liens.youtube, liens.linkedin, liens.x],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Systèmes IA pour dirigeants",
-    itemListElement: [offres.principale.titre, ...offres.secondaires.map((o) => o.titre)].map(
-      (nom) => ({
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: nom },
-      }),
-    ),
-  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#site`,
+      name: site.nom,
+      alternateName: [legal.nomCommercial, "kundxa.com"],
+      url: site.url,
+      inLanguage: "fr-FR",
+      publisher: { "@id": `${site.url}/#entreprise` },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${site.url}/#entreprise`,
+      name: site.nom,
+      alternateName: legal.nomCommercial,
+      url: site.url,
+      logo: `${site.url}/icon.png`,
+      image: `${site.url}/logos/kundxa-lockup-golden.png`,
+      email: site.email,
+      telephone: "+33974064740",
+      slogan: site.signature,
+      description: site.description,
+      founder: {
+        "@type": "Person",
+        name: legal.editeur,
+        jobTitle: "Fondateur de Kundxa",
+        sameAs: [liens.linkedin, liens.x],
+      },
+      address: { "@type": "PostalAddress", addressCountry: "FR" },
+      areaServed: "FR",
+      sameAs: [liens.youtube, liens.tiktok, liens.instagram, liens.linkedin, liens.x, liens.newsletter],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Systèmes IA pour dirigeants",
+        itemListElement: [offres.principale.titre, ...offres.secondaires.map((o) => o.titre)].map(
+          (nom) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: nom },
+          }),
+        ),
+      },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
