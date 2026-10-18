@@ -35,6 +35,12 @@ const soustraitants = [
     lieu: "France (Paris)",
   },
   {
+    nom: "Hostinger (messagerie)",
+    role: "Boîte e-mail contact@kundxa.com : messages reçus et envoyés, dont les échanges de prospection",
+    donnees: "Adresse e-mail, nom, contenu des messages échangés",
+    lieu: "Europe",
+  },
+  {
     nom: "Telegram",
     role: "Notification interne de chaque demande et de chaque fiche de prospection",
     donnees: "Nom, e-mail, numéro de téléphone, résumé de la demande ou de la fiche",
