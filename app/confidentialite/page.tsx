@@ -23,15 +23,15 @@ const soustraitants = [
   },
   {
     nom: "Notion",
-    role: "Base des abonnés à la newsletter et base des fiches de prospection",
+    role: "Bases des abonnés à la newsletter, des appelants et clients, et des fiches de prospection",
     donnees:
-      "Adresse e-mail, date d'inscription, consentement ; fiches de prospection décrites plus haut, liste d'opposition",
+      "Adresse e-mail, date d'inscription, consentement ; fiches des appelants et clients (nom, entreprise, téléphone, e-mail, besoin, résumé des appels) ; fiches de prospection décrites plus haut, liste d'opposition",
     lieu: "États-Unis",
   },
   {
     nom: "Hostinger (n8n)",
-    role: "Serveur d'automatisation qui reçoit les inscriptions, rendez-vous, messages et résumés d'appel, et prépare les fiches de prospection",
-    donnees: "Adresse e-mail, nom, message, résumé de l'appel ; fiches de prospection",
+    role: "Serveur d'automatisation qui reçoit les inscriptions, rendez-vous, messages et résumés d'appel, tient à jour les fiches des appelants et prépare les fiches de prospection",
+    donnees: "Adresse e-mail, nom, numéro de téléphone, message, résumé de l'appel ; fiches des appelants et de prospection",
     lieu: "France (Paris)",
   },
   {
@@ -137,8 +137,14 @@ export default function Confidentialite() {
                   Au {site.telephone}, un assistant vocal (une intelligence artificielle) vous
                   répond, ce qu&apos;il annonce dès le début de l&apos;appel. Votre numéro,
                   l&apos;enregistrement, la transcription et un résumé de l&apos;appel sont
-                  conservés. Finalité : répondre à votre demande, organiser un rendez-vous et vous
-                  rappeler. Base légale : mesures précontractuelles prises à votre demande.
+                  conservés. Si vous nous avez déjà appelés, votre numéro permet à l&apos;assistant
+                  de retrouver votre fiche avant de décrocher. Après un appel qui donne une suite,
+                  cette fiche est créée ou mise à jour : nom, entreprise, secteur, téléphone,
+                  e-mail, besoin exprimé et résumé du dernier appel. Si vous demandez à parler à
+                  notre fondateur, l&apos;appel peut lui être transféré après un bref résumé.
+                  Finalité : répondre à votre demande, organiser un rendez-vous, vous rappeler et
+                  suivre la relation avec vous. Base légale : mesures précontractuelles prises à
+                  votre demande, puis exécution du contrat si vous devenez client.
                 </dd>
               </div>
               <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
@@ -343,8 +349,9 @@ export default function Confidentialite() {
               Abonnés à la newsletter : jusqu&apos;à votre désinscription, puis suppression sous
               trente jours, sauf le strict minimum qui permet de respecter votre choix de ne plus
               être recontacté. Messages envoyés via le formulaire de contact, appels téléphoniques
-              (enregistrement, transcription, résumé) et échanges liés à un rendez-vous : trois ans
-              à compter du dernier contact. Prospection : une fiche sans suite est supprimée trois
+              (enregistrement, transcription, résumé, fiche de l&apos;appelant) et échanges liés à
+              un rendez-vous : trois ans à compter du dernier contact. Fiches clients : pendant
+              toute la relation commerciale, puis trois ans après le dernier contact. Prospection : une fiche sans suite est supprimée trois
               ans après le dernier contact ; une demande d&apos;opposition (adresse ou nom de
               domaine, date de la demande) est conservée au moins trois ans, durée recommandée par
               la CNIL, pour que nous continuions à la respecter. Journaux techniques : treize
