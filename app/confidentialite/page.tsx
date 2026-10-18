@@ -7,7 +7,7 @@ import { legal, site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description:
-    "Quelles données personnelles sont collectées sur ce site, pourquoi, combien de temps, et comment exercer vos droits.",
+    "Quelles données personnelles Kundxa collecte, sur ce site et pour sa prospection, pourquoi, combien de temps, et comment exercer vos droits.",
   robots: { index: true, follow: true },
   alternates: { canonical: "/confidentialite" },
 };
@@ -23,21 +23,35 @@ const soustraitants = [
   },
   {
     nom: "Notion",
-    role: "Base des abonnés à la newsletter",
-    donnees: "Adresse e-mail, date d'inscription, consentement",
+    role: "Base des abonnés à la newsletter et base des fiches de prospection",
+    donnees:
+      "Adresse e-mail, date d'inscription, consentement ; fiches de prospection décrites plus haut, liste d'opposition",
     lieu: "États-Unis",
   },
   {
     nom: "Hostinger (n8n)",
-    role: "Serveur d'automatisation qui reçoit les inscriptions, rendez-vous, messages et résumés d'appel",
-    donnees: "Adresse e-mail, nom, message, résumé de l'appel",
+    role: "Serveur d'automatisation qui reçoit les inscriptions, rendez-vous, messages et résumés d'appel, et prépare les fiches de prospection",
+    donnees: "Adresse e-mail, nom, message, résumé de l'appel ; fiches de prospection",
     lieu: "France (Paris)",
   },
   {
     nom: "Telegram",
-    role: "Notification interne de chaque demande",
-    donnees: "Nom, e-mail, numéro de téléphone, résumé de la demande",
+    role: "Notification interne de chaque demande et de chaque fiche de prospection",
+    donnees: "Nom, e-mail, numéro de téléphone, résumé de la demande ou de la fiche",
     lieu: "Hors Union européenne",
+  },
+  {
+    nom: "Anthropic (Claude)",
+    role: "Assistant d'intelligence artificielle qui aide à sélectionner les fiches de prospection et à rédiger les messages",
+    donnees:
+      "Nom et activité de l'entreprise, nom et fonction du dirigeant, coordonnées professionnelles, contenu public du site",
+    lieu: "États-Unis",
+  },
+  {
+    nom: "Tavily, SerpApi, Firecrawl",
+    role: "Recherche et lecture du site public d'une entreprise prospectée",
+    donnees: "Nom et ville de l'entreprise, adresse de son site",
+    lieu: "États-Unis",
   },
   {
     nom: "Retell AI",
@@ -78,8 +92,9 @@ export default function Confidentialite() {
       <Container size="narrow">
         <Heading level="h1">Politique de confidentialité</Heading>
         <p className="mt-6 text-body text-muted">
-          Cette page explique quelles données ce site collecte, pourquoi, et ce que vous pouvez
-          exiger à leur sujet. Responsable du traitement : {legal.editeur}, {legal.adresse}.
+          Cette page explique quelles données Kundxa collecte, sur ce site et pour prospecter de
+          nouveaux clients, pourquoi, et ce que vous pouvez exiger à leur sujet. Responsable du
+          traitement : {legal.editeur}, {legal.adresse}.
         </p>
 
         <div className="mt-12 space-y-12">
@@ -125,6 +140,72 @@ export default function Confidentialite() {
                 <dd className="text-body text-muted">
                   Adresse IP et informations de connexion enregistrées par l&apos;hébergeur.
                   Finalité : sécurité et bon fonctionnement du site. Base légale : intérêt légitime.
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section>
+            <h2 className="text-h3">Prospection commerciale</h2>
+            <p className="mt-4 text-body text-muted">
+              Nous contactons des entreprises dont l&apos;activité correspond aux systèmes que nous
+              construisons : par e-mail, par téléphone, par le formulaire de contact de leur site
+              ou sur LinkedIn. Si vous avez reçu l&apos;un de ces messages, voici ce que nous savons
+              de vous, d&apos;où cela vient et comment y mettre fin.
+            </p>
+            <dl className="mt-5 divide-y divide-border border-y border-border">
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Données</dt>
+                <dd className="text-body text-muted">
+                  Nom, numéro SIREN, ville et activité de l&apos;entreprise ; nom et fonction du
+                  dirigeant ; coordonnées professionnelles (e-mail, téléphone, site, page de
+                  contact, page LinkedIn) ; ce que nous avons relevé sur votre site et une note
+                  interne sur l&apos;intérêt que nos services pourraient avoir pour vous ; nos
+                  messages, vos réponses et leurs dates. Jamais d&apos;adresse personnelle, de date
+                  de naissance ni d&apos;information sur votre vie privée.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Source</dt>
+                <dd className="text-body text-muted">
+                  L&apos;annuaire public des entreprises de l&apos;État (API Recherche
+                  d&apos;entreprises, alimentée par l&apos;Insee et le Registre national des
+                  entreprises), puis votre site et vos pages professionnelles publiques. Nous ne
+                  devinons, ne reconstituons ni n&apos;achetons aucune adresse.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Finalité et base légale</dt>
+                <dd className="text-body text-muted">
+                  Vous proposer un service en rapport avec votre activité professionnelle. Base
+                  légale : l&apos;intérêt légitime de Kundxa à faire connaître ses services aux
+                  professionnels (article 6.1.f du RGPD). Par e-mail, le message porte toujours sur
+                  votre métier (article L.34-5 du Code des postes et des communications
+                  électroniques).
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Comment c&apos;est fait</dt>
+                <dd className="text-body text-muted">
+                  Des outils d&apos;automatisation repèrent les entreprises et lisent leur site ; un
+                  assistant d&apos;intelligence artificielle aide à choisir les fiches et à rédiger
+                  les messages. Chaque message est relu et envoyé à la main, une dizaine par jour
+                  au plus. Rien ne vous est envoyé automatiquement.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Ne plus être contacté</dt>
+                <dd className="text-body text-muted">
+                  Répondez « stop » à l&apos;un de nos messages, dites-le au téléphone ou écrivez à{" "}
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  >
+                    {site.email}
+                  </a>
+                  , sans avoir à vous justifier. Votre adresse, ou le nom de domaine de votre
+                  entreprise, entre alors dans notre liste d&apos;opposition, vérifiée avant toute
+                  nouvelle prise de contact, et votre fiche est close.
                 </dd>
               </div>
             </dl>
@@ -257,7 +338,10 @@ export default function Confidentialite() {
               trente jours, sauf le strict minimum qui permet de respecter votre choix de ne plus
               être recontacté. Messages envoyés via le formulaire de contact, appels téléphoniques
               (enregistrement, transcription, résumé) et échanges liés à un rendez-vous : trois ans
-              à compter du dernier contact. Journaux techniques : treize
+              à compter du dernier contact. Prospection : une fiche sans suite est supprimée trois
+              ans après le dernier contact ; une demande d&apos;opposition (adresse ou nom de
+              domaine, date de la demande) est conservée au moins trois ans, durée recommandée par
+              la CNIL, pour que nous continuions à la respecter. Journaux techniques : treize
               mois au maximum. Comptes TikTok et X connectés : jetons d&apos;accès conservés tant
               que la connexion est active, supprimés à la déconnexion ; statistiques et données
               de publication conservées treize mois au maximum.
@@ -270,7 +354,8 @@ export default function Confidentialite() {
               Vous disposez d&apos;un droit d&apos;accès, de rectification, d&apos;effacement, de
               limitation, d&apos;opposition et de portabilité sur vos données, ainsi que du droit de
               retirer votre consentement à tout moment. Chaque newsletter contient un lien de
-              désinscription. Pour toute demande, écrivez à{" "}
+              désinscription. En matière de prospection, votre opposition n&apos;a pas à être
+              motivée : un simple « stop » suffit. Pour toute demande, écrivez à{" "}
               <a
                 href={`mailto:${site.email}`}
                 className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
