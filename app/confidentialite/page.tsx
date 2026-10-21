@@ -201,8 +201,12 @@ export default function Confidentialite() {
                 <dd className="text-body text-muted">
                   Des outils d&apos;automatisation repèrent les entreprises et lisent leur site ; un
                   assistant d&apos;intelligence artificielle aide à choisir les fiches et à rédiger
-                  les messages. Chaque message est relu et envoyé à la main, une dizaine par jour
-                  au plus. Rien ne vous est envoyé automatiquement.
+                  les messages, contrôlés avant tout envoi selon des règles écrites. Les e-mails
+                  partent un par un depuis notre adresse, en semaine et en journée, dix par jour au
+                  plus. Une seule relance suit, et elle ne part pas si vous avez répondu ou demandé
+                  à ne plus être contacté. Les appels et les messages LinkedIn sont faits à la main ;
+                  les formulaires de contact sont remplis par notre assistant ou à la main, sans
+                  jamais contourner une vérification anti-robot.
                 </dd>
               </div>
               <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
