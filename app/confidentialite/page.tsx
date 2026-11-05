@@ -60,6 +60,19 @@ const soustraitants = [
     lieu: "États-Unis",
   },
   {
+    nom: "Adzuna",
+    role: "Recherche des offres d'emploi publiées en France par les entreprises prospectées",
+    donnees: "Intitulé, lieu et date de l'offre, nom de l'entreprise qui recrute",
+    lieu: "Royaume-Uni",
+  },
+  {
+    nom: "Google (Places API) et Apify",
+    role: "Recherche des fiches Google des établissements et lecture de leurs avis publics",
+    donnees:
+      "Nom, adresse, téléphone et site de l'établissement ; texte, note et date des avis (sans le nom ni le profil de leurs auteurs)",
+    lieu: "États-Unis (Google) / Union européenne (Apify)",
+  },
+  {
     nom: "Retell AI",
     role: "Assistant vocal du standard téléphonique",
     donnees: "Numéro de téléphone, enregistrement et transcription de l'appel, informations données pendant l'appel",
@@ -171,7 +184,9 @@ export default function Confidentialite() {
                 <dd className="text-body text-muted">
                   Nom, numéro SIREN, ville et activité de l&apos;entreprise ; nom et fonction du
                   dirigeant ; coordonnées professionnelles (e-mail, téléphone, site, page de
-                  contact, page LinkedIn) ; ce que nous avons relevé sur votre site et une note
+                  contact, page LinkedIn) ; le cas échéant, l&apos;offre d&apos;emploi que vous avez
+                  publiée, ou un extrait d&apos;un avis public laissé sur votre fiche Google (sans le
+                  nom ni le profil de son auteur) ; ce que nous avons relevé sur votre site et une note
                   interne sur l&apos;intérêt que nos services pourraient avoir pour vous ; nos
                   messages, vos réponses et leurs dates. Jamais d&apos;adresse personnelle, de date
                   de naissance ni d&apos;information sur votre vie privée.
@@ -182,7 +197,9 @@ export default function Confidentialite() {
                 <dd className="text-body text-muted">
                   L&apos;annuaire public des entreprises de l&apos;État (API Recherche
                   d&apos;entreprises, alimentée par l&apos;Insee et le Registre national des
-                  entreprises), puis votre site et vos pages professionnelles publiques. Nous ne
+                  entreprises), les offres d&apos;emploi publiées en France (via Adzuna, qui les
+                  regroupe) et les fiches Google des établissements avec leurs avis publics, puis
+                  votre site et vos pages professionnelles publiques. Nous ne
                   devinons, ne reconstituons ni n&apos;achetons aucune adresse.
                 </dd>
               </div>
