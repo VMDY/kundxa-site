@@ -97,6 +97,13 @@ const soustraitants = [
     lieu: "États-Unis",
   },
   {
+    nom: "Google (services d'API YouTube)",
+    role: "Publication et statistiques des chaînes YouTube de Kundxa ; lecture des données publiques de YouTube pour étudier les sujets",
+    donnees:
+      "Vidéos et statistiques de nos chaînes ; informations publiques des vidéos et des chaînes, texte public de commentaires",
+    lieu: "États-Unis",
+  },
+  {
     nom: "Composio",
     role: "Connexion aux API de TikTok et de X (jetons d'accès, exécution des requêtes)",
     donnees:
@@ -319,6 +326,97 @@ export default function Confidentialite() {
           </section>
 
           <section>
+            <h2 className="text-h3">Données YouTube (services d&apos;API YouTube)</h2>
+            <p className="mt-4 text-body text-muted">
+              Kundxa utilise les services d&apos;API YouTube (YouTube Data API, YouTube Analytics API
+              et YouTube Reporting API) pour deux usages internes : publier et suivre les vidéos de
+              ses propres chaînes, et étudier les sujets qui intéressent le public de ces chaînes.
+              Aucun visiteur du site n&apos;a à connecter de compte YouTube, et aucune donnée des
+              visiteurs n&apos;est envoyée à YouTube par ce biais.
+            </p>
+            <dl className="mt-5 divide-y divide-border border-y border-border">
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Nos chaînes</dt>
+                <dd className="text-body text-muted">
+                  Pour les chaînes YouTube de Kundxa, autorisées par leur titulaire sur l&apos;écran
+                  de connexion de Google : envoi des vidéos, titres, descriptions, miniatures et
+                  sous-titres ; statistiques des vidéos (vues, durée de visionnage, rétention, taux
+                  de clics des miniatures, sources de trafic, abonnés gagnés).
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Données publiques étudiées</dt>
+                <dd className="text-body text-muted">
+                  Informations publiques des vidéos et des chaînes renvoyées par l&apos;API : titre,
+                  description, date, durée, nombre de vues, de « J&apos;aime » et de commentaires,
+                  nombre d&apos;abonnés de la chaîne ; texte public des commentaires les plus
+                  pertinents d&apos;une vidéo. Ces données servent à mesurer quels sujets et quels
+                  formats intéressent le public, en chiffres agrégés. Nous ne cherchons pas à
+                  identifier les auteurs des commentaires, nous ne leur écrivons pas et nous ne
+                  constituons aucun profil.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Ce qui n&apos;est jamais fait</dt>
+                <dd className="text-body text-muted">
+                  Aucune vente, location ni transmission de ces données à des tiers, aucun usage
+                  publicitaire, aucun croisement avec d&apos;autres sources pour identifier une
+                  personne. Nous ne déposons aucun cookie et ne lisons aucune information sur
+                  l&apos;appareil des visiteurs pour ces usages.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Conservation</dt>
+                <dd className="text-body text-muted">
+                  Données publiques étudiées : trente jours au plus, puis suppression ; seuls des
+                  chiffres agrégés (médianes, nombre de vidéos par sujet) sont gardés au-delà.
+                  Statistiques de nos chaînes : treize mois au maximum. Jetons d&apos;accès de nos
+                  chaînes : tant que la connexion est active, supprimés à la déconnexion.
+                </dd>
+              </div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="text-body font-semibold">Retirer l&apos;accès</dt>
+                <dd className="text-body text-muted">
+                  Le titulaire d&apos;un compte Google connecté peut retirer l&apos;accès à tout
+                  moment depuis la page{" "}
+                  <a
+                    href="https://security.google.com/settings/security/permissions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  >
+                    autorisations de sécurité de Google
+                  </a>
+                  , ou en écrivant à l&apos;adresse indiquée plus bas. Toute demande de suppression
+                  de données issues de YouTube est traitée sous sept jours.
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-5 text-caption text-muted">
+              En utilisant les fonctions de Kundxa qui reposent sur les services d&apos;API YouTube,
+              vous acceptez les{" "}
+              <a
+                href="https://www.youtube.com/t/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                conditions d&apos;utilisation de YouTube
+              </a>
+              . Les données traitées par Google le sont selon les{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                règles de confidentialité de Google
+              </a>
+              .
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-h3">Traceurs</h2>
             <p className="mt-4 text-body text-muted">
               Ce site ne dépose aucun cookie publicitaire et n&apos;utilise aucun outil de mesure
@@ -378,7 +476,9 @@ export default function Confidentialite() {
               la CNIL, pour que nous continuions à la respecter. Journaux techniques : treize
               mois au maximum. Comptes TikTok et X connectés : jetons d&apos;accès conservés tant
               que la connexion est active, supprimés à la déconnexion ; statistiques et données
-              de publication conservées treize mois au maximum.
+              de publication conservées treize mois au maximum. Données publiques lues avec les services d&apos;API
+              YouTube : trente jours au maximum, seuls des chiffres agrégés étant conservés au-delà ;
+              statistiques de nos chaînes YouTube : treize mois au maximum.
             </p>
           </section>
 
