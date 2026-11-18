@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Appel } from "@/components/blocks/appel";
-import { PageHero } from "@/components/blocks/page-hero";
-import { Reveal } from "@/components/reveal";
-import { Container } from "@/components/ui/container";
-import { Heading, Titre } from "@/components/ui/heading";
-import { Kicker } from "@/components/ui/kicker";
-import { Section } from "@/components/ui/section";
-import { aPropos, site } from "@/content/site";
+import Link from "next/link";
+import { aPropos, cta, site } from "@/content/site";
+import "./a-propos.css";
 
 export const metadata: Metadata = {
   title: aPropos.meta.titre,
@@ -15,75 +10,88 @@ export const metadata: Metadata = {
   alternates: { canonical: "/a-propos" },
 };
 
+/*
+  Grammaire « typographic poster » : l'actif de cette page est une phrase. Les
+  mots arrivent à des échelles très différentes ; aucune photo en fond, un seul
+  portrait en petit dans le texte. La fin s'inverse : les plus petits caractères
+  du site, l'appel en simple lien souligné.
+*/
 export default function APropos() {
+  const { hero, parcours, valeurs, enBref, suite } = aPropos;
   return (
-    <>
-      <PageHero {...aPropos.hero} />
+    <div className="ap">
+      <header className="ap-une">
+        <p className="ap-label">{hero.surtitre}</p>
+        <h1 className="ap-h1">
+          {hero.titre[0]}
+          <em>{hero.titre[1]}</em>
+          {hero.titre[2]}
+        </h1>
+        <p className="ap-chapeau">{hero.texte}</p>
+      </header>
 
-      <Section tone="deep" className="pt-0">
-        <Container className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <Reveal className="relative h-[30rem] overflow-hidden rounded-xl sm:h-[38rem] lg:sticky lg:top-28">
-            <Image
-              src={site.photo}
-              alt="Valdo Mendy, fondateur de Kundxa"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover object-[center_15%]"
-            />
-          </Reveal>
-          <div>
-            <Reveal>
-              <Kicker>{aPropos.parcours.surtitre}</Kicker>
-              <Heading className="mt-5">
-                <Titre parts={aPropos.parcours.titre} />
-              </Heading>
-            </Reveal>
-            {aPropos.parcours.texte.map((t, i) => (
-              <Reveal key={t} delay={i * 60} className="mt-6">
-                <p className="text-lead text-muted">{t}</p>
-              </Reveal>
+      {/* Le pic : la phrase du fondateur, tenue pendant le scroll */}
+      <section className="ap-phrase" data-sc-act="pin" data-sc-span="2.4" aria-labelledby="ap-phrase">
+        <div data-sc-stage className="ap-phrase__scene">
+          <h2 id="ap-phrase" className="ap-phrase__titre">
+            <span className="ap-phrase__a">
+              <span data-sc-cue="0 1 0">Par nécessité,</span>
+            </span>
+            <span className="ap-phrase__b" data-sc-cue="0.3 1 0.42">
+              pas par <em>curiosité</em>.
+            </span>
+          </h2>
+        </div>
+      </section>
+
+      <section className="ap-parcours" aria-label={parcours.surtitre}>
+        <p className="ap-label">{parcours.surtitre}</p>
+        <div className="ap-parcours__corps">
+          <figure className="ap-portrait" data-sc-in>
+            <Image src={site.photo} alt="Valdo Mendy" width={820} height={1232} sizes="(max-width: 859px) 40vw, 14rem" />
+            <figcaption>Valdo Mendy, fondateur</figcaption>
+          </figure>
+          <div className="ap-texte" data-sc-in data-sc-stagger="90">
+            {parcours.texte.map((t) => (
+              <p key={t.slice(0, 24)}>{t}</p>
             ))}
-            <Reveal className="mt-12">
-              <p className="font-mono text-label uppercase text-gold">{aPropos.enBref.surtitre}</p>
-              <dl className="mt-4 divide-y divide-white/10 border-y border-white/10">
-                {aPropos.enBref.lignes.map(([cle, valeur]) => (
-                  <div key={cle} className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6">
-                    <dt className="text-small font-semibold">{cle}</dt>
-                    <dd className="text-small text-muted">{valeur}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      <Section tone="light">
-        <Container>
-          <Reveal>
-            <Kicker light>{aPropos.valeurs.surtitre}</Kicker>
-            <Heading className="mt-5 max-w-4xl text-ink">
-              <Titre parts={aPropos.valeurs.titre} light />
-            </Heading>
-          </Reveal>
-          <ol className="mt-14 divide-y divide-line-light border-y border-line-light">
-            {aPropos.valeurs.items.map((v) => (
-              <Reveal
-                as="li"
-                key={v.numero}
-                className="grid gap-3 py-7 sm:grid-cols-[4rem_1fr_1.2fr] sm:items-baseline sm:gap-8"
-              >
-                <span className="font-mono text-label text-dusk">{v.numero}</span>
-                <h3 className="text-h3 text-ink">{v.titre}</h3>
-                <p className="text-ink-muted">{v.texte}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </Container>
-      </Section>
+      <section className="ap-valeurs" aria-labelledby="ap-valeurs">
+        <p className="ap-label">{valeurs.surtitre}</p>
+        <h2 id="ap-valeurs" className="ap-h2">
+          {valeurs.titre[0]}
+          <em>{valeurs.titre[1]}</em>
+          {valeurs.titre[2]}
+        </h2>
+        <ol className="ap-liste">
+          {valeurs.items.map((v) => (
+            <li key={v.numero} data-sc-in>
+              <span className="ap-num">{v.numero}</span>
+              <span className="ap-valeur">{v.titre}</span>
+              <span className="ap-valeur__texte">{v.texte}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-      <Appel titre={aPropos.suite.titre} />
-    </>
+      <footer className="ap-fin">
+        <dl className="ap-bref">
+          {enBref.lignes.map(([cle, valeur]) => (
+            <div key={cle}>
+              <dt>{cle}</dt>
+              <dd>{valeur}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="ap-suite">
+          {suite.titre[0]}
+          {suite.titre[1]}
+          {suite.titre[2]} <Link href="/contact#appeler">{cta.court}</Link>
+        </p>
+      </footer>
+    </div>
   );
 }

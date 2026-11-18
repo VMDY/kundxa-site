@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { fraunces, plexMono, plexSans } from "./fonts";
 import "./globals.css";
+import "./scrollcraft.css";
 import { RevealProvider } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ScrollCraft } from "@/components/sc/scroll-craft";
 import { accueil, legal, liens, offres, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -113,6 +115,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "try{if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-reveal')}catch(e){}",
           }}
         />
+        {/* Sans JavaScript, rien ne doit rester masque par les etats initiaux du moteur. */}
+        <noscript>
+          <style>{"[data-sc-in],[data-sc-stagger]>*,[data-sc-cue]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
       </head>
       <body>
         <script
@@ -127,6 +133,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Aller au contenu
         </a>
         <RevealProvider />
+        <ScrollCraft />
         <SiteHeader />
         <main id="contenu" tabIndex={-1} className="outline-none">
           {children}

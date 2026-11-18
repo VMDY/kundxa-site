@@ -1,0 +1,303 @@
+/* Offres : une surface de choix. À gauche la situation, à droite l'offre qui
+   se compose, l'objet de l'offre en relief. */
+
+.of {
+  --papier: #f4f2ed;
+  --nuit: #0f1c31;
+  --encre: #16253d;
+  --encre-douce: #4f5b70;
+  --clair: #f5f3ee;
+  --clair-doux: #aab6c7;
+  --or: #efb509;
+  --gout: clamp(1.25rem, 4.2vw, 4.5rem);
+  --serif: var(--font-fraunces), Georgia, serif;
+  --mono: var(--font-plex-mono), ui-monospace, monospace;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  background:
+    radial-gradient(50% 40% at 80% 30%, rgba(239, 181, 9, 0.08), transparent 70%),
+    linear-gradient(170deg, #0f1c31, #0b1628 70%);
+  color: var(--clair);
+}
+.of-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clair-doux);
+}
+.of-label--or {
+  color: var(--or);
+}
+.of-tete {
+  padding: calc(var(--header-h) + clamp(3rem, 8vh, 6rem)) var(--gout) clamp(2.5rem, 5vw, 4rem);
+}
+.of-h1 {
+  margin: 1.2rem 0 0;
+  max-width: 16ch;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.7rem, 1.4rem + 4.4vw, 5.6rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.of-h1 em,
+.of-h2 em,
+.of-situations legend em {
+  font-style: italic;
+  color: var(--or);
+}
+.of-chapeau {
+  margin: 1.4rem 0 0;
+  max-width: 48ch;
+  color: var(--clair-doux);
+  line-height: 1.6;
+}
+
+/* la surface */
+.of-surface {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(1rem, 3vw, 2rem) var(--gout) clamp(5rem, 9vw, 8rem);
+  align-items: start;
+}
+.of-situations {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+}
+.of-situations legend {
+  padding: 0;
+  margin-bottom: 1.2rem;
+}
+.of-legende__titre {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.of-situation {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.2rem;
+  margin-top: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.08rem;
+  line-height: 1.4;
+  color: var(--clair-doux);
+  transition: border-color 160ms var(--ease), color 160ms var(--ease), background-color 160ms var(--ease);
+}
+.of-situation:hover {
+  color: var(--clair);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.of-situation[data-actif] {
+  color: var(--clair);
+  border-color: var(--or);
+  background: rgba(19, 33, 58, 0.8);
+}
+.of-situation input {
+  margin-top: 0.3rem;
+  accent-color: var(--or);
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+.of-situation:focus-within {
+  outline: 2px solid var(--or);
+  outline-offset: 2px;
+}
+.of-offre {
+  position: relative;
+  padding: clamp(1.8rem, 3vw, 2.8rem);
+  border: 1px solid rgba(239, 181, 9, 0.45);
+  border-radius: 14px;
+  background: rgba(19, 33, 58, 0.75);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 30px 60px -24px hsl(218 60% 4% / 0.8);
+  animation: of-entree 360ms var(--ease);
+}
+@keyframes of-entree {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.of-objet {
+  position: absolute;
+  top: -3.5rem;
+  right: -1.5rem;
+  width: clamp(8rem, 13vw, 12rem);
+  height: auto;
+  filter: drop-shadow(0 24px 30px hsl(218 60% 4% / 0.7));
+  animation: of-objet 520ms var(--ease);
+  pointer-events: none;
+}
+@keyframes of-objet {
+  from {
+    opacity: 0;
+    transform: rotate(-14deg) scale(0.92);
+  }
+}
+.of-titre {
+  margin: 0.8rem 0 0;
+  max-width: 14ch;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+.of-accroche {
+  margin: 1.1rem 0 0;
+  max-width: 36ch;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+.of-texte {
+  margin: 0.8rem 0 1.6rem;
+  max-width: 52ch;
+  color: var(--clair-doux);
+  line-height: 1.6;
+}
+.of-livre {
+  margin: 0.6rem 0 1.4rem;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: 2rem;
+}
+.of-livre li {
+  break-inside: avoid;
+  padding: 0.35rem 0 0.35rem 1.1rem;
+  position: relative;
+}
+.of-livre li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85rem;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--or);
+}
+.of-duree {
+  margin: 0.4rem 0 0;
+  font-weight: 600;
+}
+.of-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.6rem;
+  margin-top: 2rem;
+}
+.of-bouton {
+  display: inline-flex;
+  padding: 0.9rem 1.4rem;
+  border-radius: 8px;
+  background: var(--or);
+  color: var(--encre);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 160ms;
+}
+.of-bouton:hover {
+  background: #f6c635;
+}
+.of-bouton:focus-visible {
+  outline: 2px solid var(--clair);
+  outline-offset: 3px;
+}
+.of-lien {
+  font-weight: 600;
+  color: var(--clair);
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+  text-underline-offset: 0.3em;
+}
+.of-lien:hover {
+  color: var(--or);
+}
+
+/* engagements, sur papier */
+.of-engagements {
+  padding: clamp(5rem, 9vw, 8rem) var(--gout);
+  background: var(--papier);
+  color: var(--encre);
+}
+.of-engagements .of-label--or {
+  color: #002c54;
+}
+.of-h2 {
+  margin: 1rem 0 0;
+  max-width: 18ch;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.3rem + 2.2vw, 3.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+}
+.of-engagements .of-h2 em {
+  color: #002c54;
+}
+.of-engagements ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 4rem;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 64rem;
+}
+.of-engagements li {
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(22, 37, 61, 0.2);
+}
+.of-eng__titre {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  line-height: 1.25;
+}
+.of-engagements .of-texte {
+  color: var(--encre-douce);
+}
+.of-mention {
+  margin: 2.5rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--encre-douce);
+}
+
+@media (max-width: 859px) {
+  .of-surface {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .of-situations {
+    position: static;
+  }
+  .of-objet {
+    top: -2.5rem;
+    right: -0.5rem;
+    width: 7rem;
+  }
+  .of-titre {
+    max-width: 11ch;
+  }
+  .of-livre {
+    columns: 1;
+  }
+  .of-engagements ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

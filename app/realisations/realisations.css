@@ -1,0 +1,318 @@
+/* Réalisations : catalogue latéral. Une salle sombre, des objets éclairés,
+   une étiquette identique sous chacun. */
+
+.rz {
+  --nuit: #0f1c31;
+  --clair: #f5f3ee;
+  --clair-doux: #aab6c7;
+  --or: #efb509;
+  --gout: clamp(1.25rem, 4.2vw, 4.5rem);
+  --serif: var(--font-fraunces), Georgia, serif;
+  --mono: var(--font-plex-mono), ui-monospace, monospace;
+  background: var(--nuit);
+  color: var(--clair);
+}
+.rz-scene {
+  background:
+    radial-gradient(70% 55% at 50% 100%, rgba(239, 181, 9, 0.07), transparent 70%),
+    linear-gradient(170deg, #0f1c31 0%, #0b1628 60%, #002c54 140%);
+}
+/* le sol de la salle */
+.rz-scene::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14vh;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1) 20%, rgba(255, 255, 255, 0.1) 80%, transparent);
+  pointer-events: none;
+}
+.rz-rail {
+  height: 100%;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+  padding-inline: var(--gout) 12vw;
+  width: max-content;
+}
+.rz-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clair-doux);
+}
+.rz-label--or {
+  color: var(--or);
+}
+.rz-tete {
+  width: min(26rem, 80vw);
+  padding-top: var(--header-h);
+}
+.rz-h1 {
+  margin: 1rem 0 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 1.3rem + 2.6vw, 3.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+.rz-h1 em {
+  font-style: italic;
+  color: var(--or);
+}
+.rz-texte {
+  margin: 1.2rem 0 0;
+  color: var(--clair-doux);
+  line-height: 1.6;
+}
+.rz-objet {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 30rem);
+  gap: clamp(2rem, 3.5vw, 3.5rem);
+  align-items: center;
+  padding-top: calc(var(--header-h) - 1rem);
+}
+.rz-objet--vous {
+  grid-template-columns: minmax(0, 32rem);
+  padding: 2.5rem;
+  padding-top: 2.5rem;
+  border: 1px solid rgba(239, 181, 9, 0.5);
+  border-radius: 14px;
+  background: rgba(19, 33, 58, 0.7);
+  margin-top: var(--header-h);
+}
+.rz-objet__image {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px hsl(218 60% 4% / 0.4), 0 40px 80px -24px hsl(218 60% 4% / 0.8);
+}
+.rz-objet__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  max-height: 62vh;
+}
+.rz-h2 {
+  margin: 0.8rem 0 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.1rem + 1.1vw, 2.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.rz-etiquette dl {
+  margin: 1.4rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.rz-etiquette dl > div {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.rz-etiquette dt {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clair-doux);
+  padding-top: 0.2rem;
+}
+.rz-etiquette dd {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #d5dce6;
+}
+.rz-revient dt {
+  color: var(--or);
+}
+.rz-revient dd {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: var(--clair);
+}
+.rz-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rz-liste li + li {
+  margin-top: 0.35rem;
+}
+.rz-liste strong {
+  color: var(--clair);
+  font-weight: 600;
+}
+.rz-lien {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-weight: 600;
+  color: var(--clair);
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+  text-underline-offset: 0.3em;
+}
+.rz-lien:hover {
+  color: var(--or);
+}
+.rz-bouton {
+  display: inline-flex;
+  margin-top: 1.6rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 8px;
+  background: var(--or);
+  color: #16253d;
+  font-weight: 600;
+  transition: background-color 160ms;
+}
+.rz-bouton:hover {
+  background: #f6c635;
+}
+.rz-bouton:focus-visible {
+  outline: 2px solid var(--clair);
+  outline-offset: 3px;
+}
+
+/* l'index : il saute */
+.rz-index {
+  position: absolute;
+  left: var(--gout);
+  right: var(--gout);
+  bottom: 3vh;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.rz-index__titre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clair-doux);
+  white-space: nowrap;
+}
+.rz-index ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rz-index button {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  background: rgba(15, 28, 49, 0.7);
+  color: var(--clair-doux);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 160ms, border-color 160ms;
+}
+.rz-index button:hover {
+  color: var(--clair);
+}
+.rz-index button[aria-current="true"] {
+  color: var(--or);
+  border-color: var(--or);
+}
+.rz-index button:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 2px;
+}
+
+@media (max-width: 859px) {
+  .rz-rail {
+    gap: 2.5rem;
+    padding-inline: var(--gout) 10vw;
+  }
+  .rz-tete {
+    width: 78vw;
+  }
+  .rz-objet {
+    grid-template-columns: minmax(0, 82vw);
+    gap: 1.2rem;
+    align-content: center;
+  }
+  .rz-objet__image {
+    width: 46vw;
+  }
+  .rz-objet__image img {
+    max-height: 20vh;
+  }
+  .rz-objet--vous {
+    grid-template-columns: minmax(0, 76vw);
+    padding: 1.5rem;
+  }
+  .rz-etiquette dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+    padding: 0.55rem 0;
+  }
+  .rz-etiquette dd {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+  .rz-etiquette dl {
+    margin-top: 0.8rem;
+  }
+  .rz-index__titre {
+    display: none;
+  }
+  /* sur téléphone, l'index passe en haut : le bas reste aux étiquettes */
+  .rz-index {
+    top: calc(var(--header-h) + 0.6rem);
+    bottom: auto;
+  }
+  .rz-objet,
+  .rz-tete {
+    padding-top: calc(var(--header-h) + 4.6rem);
+  }
+  .rz-objet--vous {
+    margin-top: calc(var(--header-h) + 4.6rem);
+    padding-top: 1.5rem;
+  }
+  .rz-h2 {
+    font-size: 1.35rem;
+  }
+  .rz-index button {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.62rem;
+  }
+  .rz-scene::after {
+    bottom: 10vh;
+  }
+}
+
+@media (max-width: 859px) {
+  .rz-index ol {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .rz-index button {
+    white-space: nowrap;
+  }
+  .rz-objet,
+  .rz-tete {
+    padding-top: calc(var(--header-h) + 3rem);
+  }
+}
+/* petits écrans peu hauts : l'étiquette passe avant l'image */
+@media (max-width: 859px) and (max-height: 720px) {
+  .rz-objet__image {
+    display: none;
+  }
+}

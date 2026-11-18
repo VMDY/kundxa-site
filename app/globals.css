@@ -92,6 +92,17 @@
 }
 
 :root {
+  /* Jetons du moteur scroll-craft, aux couleurs et polices de la marque. */
+  --sc-canvas: #0f1c31;
+  --sc-surface: #13213a;
+  --sc-ink: #f5f3ee;
+  --sc-ink-soft: #aab6c7;
+  --sc-accent: #efb509;
+  --sc-accent-ink: #16253d;
+  --sc-font-display: var(--font-fraunces), Georgia, serif;
+  --sc-font-text: var(--font-plex-sans), system-ui, sans-serif;
+  --sc-font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --sc-shadow-color: 218 60% 4%;
   color-scheme: dark;
   scroll-behavior: smooth;
   --header-h: 5rem;
@@ -231,4 +242,12 @@ summary::-webkit-details-marker {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Si le moteur ne se charge pas, rien ne reste masque. */
+html.sc-off [data-sc-in],
+html.sc-off [data-sc-stagger] > *,
+html.sc-off [data-sc-cue] {
+  opacity: 1;
+  transform: none;
 }

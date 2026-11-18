@@ -1,0 +1,219 @@
+/* À propos : une affiche. L'échelle fait tout le travail. */
+
+.ap {
+  --nuit: #0f1c31;
+  --papier: #f4f2ed;
+  --encre: #16253d;
+  --encre-douce: #4f5b70;
+  --clair: #f5f3ee;
+  --clair-doux: #aab6c7;
+  --or: #efb509;
+  --gout: clamp(1.25rem, 4.2vw, 4.5rem);
+  --serif: var(--font-fraunces), Georgia, serif;
+  --mono: var(--font-plex-mono), ui-monospace, monospace;
+  background: var(--nuit);
+  color: var(--clair);
+}
+.ap-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clair-doux);
+}
+.ap em {
+  font-style: italic;
+  color: var(--or);
+}
+
+/* la une */
+.ap-une {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-h) + 2rem) var(--gout) 4rem;
+}
+.ap-h1 {
+  margin: 1.2rem 0 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 0.8rem + 8.6vw, 10.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  font-variation-settings: "opsz" 144;
+}
+.ap-chapeau {
+  margin: 2.5rem 0 0 auto;
+  max-width: 34ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--clair-doux);
+}
+
+/* la phrase, tenue */
+.ap-phrase__scene {
+  display: grid;
+  place-items: center;
+  padding-inline: var(--gout);
+  background: radial-gradient(60% 50% at 50% 50%, rgba(239, 181, 9, 0.07), transparent 70%), var(--nuit);
+}
+.ap-phrase__titre {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  text-align: center;
+  font-variation-settings: "opsz" 144;
+}
+.ap-phrase__a {
+  display: block;
+  font-size: clamp(3.4rem, 0.6rem + 12vw, 15rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  transform: scale(calc(1.12 - var(--sc-p, 1) * 0.12));
+}
+.ap-phrase__b {
+  display: block;
+  margin-top: 1.6rem;
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.6rem);
+  letter-spacing: -0.02em;
+  color: var(--clair-doux);
+}
+
+/* le parcours : petits caractères après le très grand */
+.ap-parcours {
+  padding: clamp(5rem, 10vw, 9rem) var(--gout);
+  background: var(--papier);
+  color: var(--encre);
+}
+.ap-parcours .ap-label {
+  color: var(--encre-douce);
+}
+.ap-parcours__corps {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 40rem);
+  gap: clamp(2rem, 6vw, 6rem);
+  margin-top: 2.5rem;
+  justify-content: center;
+}
+.ap-portrait {
+  margin: 0;
+}
+.ap-portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.ap-portrait figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--encre-douce);
+}
+.ap-texte p {
+  margin: 0 0 1.3rem;
+  font-size: 1.12rem;
+  line-height: 1.7;
+}
+.ap-texte p:first-child {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 1.1rem + 0.9vw, 1.9rem);
+  line-height: 1.3;
+}
+
+/* les valeurs : grands titres, chiffres en mono */
+.ap-valeurs {
+  padding: clamp(5rem, 10vw, 9rem) var(--gout);
+}
+.ap-h2 {
+  margin: 1rem 0 0;
+  max-width: 18ch;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 1.3rem + 3vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.ap-liste {
+  margin: 3.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ap-liste li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ap-num {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--or);
+}
+.ap-valeur {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.ap-valeur__texte {
+  color: var(--clair-doux);
+  line-height: 1.55;
+}
+
+/* la fin s'inverse : les plus petits caractères du site */
+.ap-fin {
+  padding: clamp(4rem, 8vw, 6rem) var(--gout) clamp(4rem, 8vw, 6rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+}
+.ap-bref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+  margin: 0;
+}
+.ap-bref dt {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clair-doux);
+}
+.ap-bref dd {
+  margin: 0.3rem 0 0;
+}
+.ap-suite {
+  margin: 3rem 0 0;
+  font-size: 0.95rem;
+}
+.ap-suite a {
+  color: var(--clair);
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+  text-underline-offset: 0.25em;
+}
+.ap-suite a:hover {
+  color: var(--or);
+}
+
+@media (max-width: 859px) {
+  .ap-parcours__corps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ap-portrait {
+    max-width: 11rem;
+  }
+  .ap-liste li {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+  }
+  .ap-valeur__texte {
+    grid-column: 2;
+  }
+}

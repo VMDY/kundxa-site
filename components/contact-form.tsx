@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { contact, site } from "@/content/site";
+import { contact, offreParSlug, site, type SlugOffre } from "@/content/site";
 
 /**
  * Formulaire de contact — acheminé par Netlify Forms.
@@ -29,6 +29,18 @@ const etiquette = "block font-mono text-label uppercase text-gold";
 export function ContactForm() {
   const [etat, setEtat] = useState<Etat>(null);
   const [envoi, setEnvoi] = useState(false);
+  const message = useRef<HTMLTextAreaElement>(null);
+
+  // Venu du sélecteur de /offres (?offre=audit) : le message commence par
+  // l'offre choisie, pour que le choix ne se perde pas en route.
+  useEffect(() => {
+    const slug = new URLSearchParams(location.search).get("offre") as SlugOffre | null;
+    const titre = slug && offreParSlug[slug];
+    if (titre && message.current && !message.current.value) {
+      message.current.value = `Offre qui m'intéresse : ${titre}.
+`;
+    }
+  }, []);
 
   async function envoyer(evenement: React.FormEvent<HTMLFormElement>) {
     evenement.preventDefault();
@@ -111,6 +123,7 @@ export function ContactForm() {
           {contact.champs.message}
         </label>
         <textarea
+          ref={message}
           id="contact-message"
           name="message"
           required

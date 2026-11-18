@@ -10,19 +10,12 @@ import { IconClose, IconMenu } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { cta, nav, site } from "@/content/site";
 
-// Header fixe : transparent en haut de page, il se condense en barre opaque
-// floutee des 40px de scroll. Sous 1024px, le menu passe dans un panneau.
+// Header fixe, toujours opaque : plusieurs pages commencent sur fond papier.
+// Sous 1024px, le menu passe dans un panneau.
 export function SiteHeader() {
   const pathname = usePathname();
-  const [condense, setCondense] = useState(false);
   const [ouvert, setOuvert] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setCondense(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Le panneau se ferme a chaque navigation, et Echap le ferme aussi.
   useEffect(() => setOuvert(false), [pathname]);
@@ -37,12 +30,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 transition-[background-color,border-color] duration-200",
-        condense || ouvert
-          ? "border-b border-white/10 bg-deep/90 backdrop-blur-md"
-          : "border-b border-transparent",
-      )}
+      className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-deep/90 backdrop-blur-md"
     >
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link
