@@ -30,15 +30,15 @@ export function SiteHeader() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-deep/90 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-md"
     >
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link
           href="/"
-          className="flex shrink-0 items-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+          className="flex shrink-0 items-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dusk"
         >
           <Image
-            src="/logos/kundxa-lockup-golden.png"
+            src="/logos/kundxa-lockup-midnight.png"
             alt={`${site.nom}, accueil`}
             width={871}
             height={269}
@@ -54,8 +54,8 @@ export function SiteHeader() {
               href={item.href}
               aria-current={actif(item.href) ? "page" : undefined}
               className={cn(
-                "rounded-sm text-small transition-colors hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
-                actif(item.href) ? "text-paper" : "text-muted",
+                "rounded-sm text-[0.9375rem] transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dusk",
+                actif(item.href) ? "text-ink" : "text-muted",
               )}
             >
               {item.libelle}
@@ -72,7 +72,7 @@ export function SiteHeader() {
             onClick={() => setOuvert((v) => !v)}
             aria-expanded={ouvert}
             aria-controls="menu-mobile"
-            className="-mr-2 rounded-sm p-2 text-paper focus-visible:outline-2 focus-visible:outline-gold lg:hidden"
+            className="-mr-2 rounded-sm p-2 text-ink focus-visible:outline-2 focus-visible:outline-dusk lg:hidden"
           >
             <span className="sr-only">{ouvert ? "Fermer le menu" : "Ouvrir le menu"}</span>
             {ouvert ? <IconClose className="h-6 w-6" /> : <IconMenu className="h-6 w-6" />}
@@ -83,16 +83,16 @@ export function SiteHeader() {
       <div
         id="menu-mobile"
         hidden={!ouvert}
-        className="border-t border-white/10 bg-deep lg:hidden"
+        className="border-t border-ink/10 bg-raised lg:hidden"
       >
         <Container className="py-6">
-          <ul className="divide-y divide-white/10">
+          <ul className="divide-y divide-ink/10">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   aria-current={actif(item.href) ? "page" : undefined}
-                  className="block py-4 font-serif text-h3 text-paper"
+                  className="block py-4 font-serif text-h3 text-ink"
                 >
                   {item.libelle}
                 </Link>

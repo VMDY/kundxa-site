@@ -3,12 +3,12 @@
 
 .mt {
   --papier: #f4f2ed;
-  --nuit: #0f1c31;
+  --nuit: #ffffff;
   --encre: #16253d;
   --encre-douce: #4f5b70;
-  --clair: #f5f3ee;
-  --clair-doux: #aab6c7;
-  --or: #efb509;
+  --clair: #16253d;
+  --clair-doux: #4f5b70;
+  --or: #002c54;
   --dusk: #002c54;
   --gout: clamp(1.25rem, 4.2vw, 4.5rem);
   --serif: var(--font-fraunces), Georgia, serif;

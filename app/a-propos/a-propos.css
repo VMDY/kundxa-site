@@ -1,13 +1,13 @@
 /* À propos : une affiche. L'échelle fait tout le travail. */
 
 .ap {
-  --nuit: #0f1c31;
+  --nuit: #f7f5f0;
   --papier: #f4f2ed;
   --encre: #16253d;
   --encre-douce: #4f5b70;
-  --clair: #f5f3ee;
-  --clair-doux: #aab6c7;
-  --or: #efb509;
+  --clair: #16253d;
+  --clair-doux: #4f5b70;
+  --or: #002c54;
   --gout: clamp(1.25rem, 4.2vw, 4.5rem);
   --serif: var(--font-fraunces), Georgia, serif;
   --mono: var(--font-plex-mono), ui-monospace, monospace;
@@ -58,7 +58,7 @@
   display: grid;
   place-items: center;
   padding-inline: var(--gout);
-  background: radial-gradient(60% 50% at 50% 50%, rgba(239, 181, 9, 0.07), transparent 70%), var(--nuit);
+  background: var(--nuit);
 }
 .ap-phrase__titre {
   margin: 0;
@@ -85,7 +85,7 @@
 /* le parcours : petits caractères après le très grand */
 .ap-parcours {
   padding: clamp(5rem, 10vw, 9rem) var(--gout);
-  background: var(--papier);
+  background: #ffffff;
   color: var(--encre);
 }
 .ap-parcours .ap-label {
@@ -149,7 +149,7 @@
   gap: 1.5rem;
   align-items: baseline;
   padding: 1.6rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(22, 37, 61, 0.12);
 }
 .ap-num {
   font-family: var(--mono);
@@ -170,7 +170,7 @@
 /* la fin s'inverse : les plus petits caractères du site */
 .ap-fin {
   padding: clamp(4rem, 8vw, 6rem) var(--gout) clamp(4rem, 8vw, 6rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(22, 37, 61, 0.12);
   font-size: 0.85rem;
 }
 .ap-bref {

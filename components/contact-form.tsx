@@ -23,8 +23,8 @@ import { contact, offreParSlug, site, type SlugOffre } from "@/content/site";
 type Etat = { ok: boolean; message: string } | null;
 
 const champ =
-  "w-full rounded-sm border border-white/15 bg-white/5 px-4 py-3 text-body text-paper placeholder:text-muted/70 focus-visible:border-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
-const etiquette = "block font-mono text-label uppercase text-gold";
+  "w-full rounded-sm border border-ink/15 bg-white px-4 py-3 text-body text-ink placeholder:text-muted/70 focus-visible:border-dusk focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dusk";
+const etiquette = "block font-mono text-label uppercase text-dusk";
 
 export function ContactForm() {
   const [etat, setEtat] = useState<Etat>(null);
@@ -144,7 +144,7 @@ export function ContactForm() {
           {contact.ouEmail}{" "}
           <a
             href={`mailto:${site.email}`}
-            className="rounded-sm text-gold underline underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            className="rounded-sm text-dusk underline underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dusk"
           >
             {site.email}
           </a>
@@ -155,7 +155,7 @@ export function ContactForm() {
       <p
         id="contact-retour"
         aria-live="polite"
-        className={etat ? `mt-4 text-caption ${etat.ok ? "text-gold" : "text-muted"}` : "sr-only"}
+        className={etat ? `mt-4 text-caption ${etat.ok ? "text-dusk" : "text-muted"}` : "sr-only"}
       >
         {etat?.message ?? ""}
       </p>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-// primary : dore, texte midnight (regle de marque : texte sur dore = midnight).
+// primary : bleu nuit, texte blanc (site en fond clair : le dore est reserve aux filets).
 // ghost : contour sur fond sombre. ghostLight / dark : equivalents sur fond blanc,
 // ou le dore est interdit (1,9:1).
 type Variant = "primary" | "ghost" | "ghostLight" | "dark";
@@ -16,18 +16,20 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-gold text-midnight hover:bg-gold-hover active:translate-y-px focus-visible:outline-paper",
+    "bg-midnight text-white hover:bg-dusk active:translate-y-px focus-visible:outline-dusk",
   ghost:
-    "border border-white/25 text-paper hover:border-gold hover:text-gold focus-visible:outline-gold",
+    "border border-midnight/30 text-midnight hover:border-dusk hover:text-dusk focus-visible:outline-dusk",
   ghostLight:
     "border border-midnight/30 text-midnight hover:border-dusk hover:text-dusk focus-visible:outline-dusk",
   dark: "bg-midnight text-paper hover:bg-dusk focus-visible:outline-dusk",
 };
 
+// Tailles en valeurs explicites : tailwind-merge prend `text-small` pour une
+// couleur et supprimait la couleur du texte du bouton (texte invisible).
 const sizes: Record<Size, string> = {
-  sm: "px-4 py-2.5 text-small",
-  md: "px-6 py-3.5 text-body",
-  lg: "px-7 py-4 text-body",
+  sm: "px-4 py-2.5 text-[0.9375rem]",
+  md: "px-6 py-3.5 text-[1.0625rem]",
+  lg: "px-7 py-4 text-[1.0625rem]",
 };
 
 type Common = { variant?: Variant; size?: Size; className?: string };

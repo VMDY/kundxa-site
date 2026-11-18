@@ -24,7 +24,7 @@ export function CalEmbed() {
 
   if (charge) {
     return (
-      <div className="overflow-hidden rounded-xl border border-white/12 bg-midnight">
+      <div className="overflow-hidden rounded-xl border border-ink/12 bg-white">
         <iframe
           src={CAL_SRC}
           title="Réserver un appel de cadrage avec Kundxa"
@@ -36,7 +36,7 @@ export function CalEmbed() {
 
   return (
     <div className="glass flex flex-col items-start justify-center rounded-xl p-8 sm:p-10 lg:min-h-[28rem]">
-      <p className="font-mono text-label uppercase text-gold">{cal.surtitre}</p>
+      <p className="font-mono text-label uppercase text-dusk">{cal.surtitre}</p>
       <p className="mt-4 font-serif text-h3">{cal.titre}</p>
       <p className="mt-4 max-w-md text-small text-muted">{cal.texte}</p>
 
@@ -49,7 +49,7 @@ export function CalEmbed() {
         href={site.calcomUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-5 rounded-sm text-caption text-muted underline underline-offset-4 transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+        className="mt-5 rounded-sm text-caption text-muted underline underline-offset-4 transition-colors hover:text-dusk focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dusk"
       >
         {cal.lien}
       </a>

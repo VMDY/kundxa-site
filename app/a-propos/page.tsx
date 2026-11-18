@@ -35,9 +35,9 @@ export default function APropos() {
         <div data-sc-stage className="ap-phrase__scene">
           <h2 id="ap-phrase" className="ap-phrase__titre">
             <span className="ap-phrase__a">
-              <span data-sc-cue="0 1 0">Par nécessité,</span>
+              <span data-sc-cue="0">Par nécessité,</span>
             </span>
-            <span className="ap-phrase__b" data-sc-cue="0.3 1 0.42">
+            <span className="ap-phrase__b" data-sc-cue="0.3">
               pas par <em>curiosité</em>.
             </span>
           </h2>

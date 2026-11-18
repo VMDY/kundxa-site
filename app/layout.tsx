@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { fraunces, plexMono, plexSans } from "./fonts";
 import "./globals.css";
-import "./scrollcraft.css";
 import { RevealProvider } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";

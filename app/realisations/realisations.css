@@ -2,10 +2,10 @@
    une étiquette identique sous chacun. */
 
 .rz {
-  --nuit: #0f1c31;
-  --clair: #f5f3ee;
-  --clair-doux: #aab6c7;
-  --or: #efb509;
+  --nuit: #f7f5f0;
+  --clair: #16253d;
+  --clair-doux: #4f5b70;
+  --or: #002c54;
   --gout: clamp(1.25rem, 4.2vw, 4.5rem);
   --serif: var(--font-fraunces), Georgia, serif;
   --mono: var(--font-plex-mono), ui-monospace, monospace;
@@ -13,9 +13,7 @@
   color: var(--clair);
 }
 .rz-scene {
-  background:
-    radial-gradient(70% 55% at 50% 100%, rgba(239, 181, 9, 0.07), transparent 70%),
-    linear-gradient(170deg, #0f1c31 0%, #0b1628 60%, #002c54 140%);
+  background: var(--nuit);
 }
 /* le sol de la salle */
 .rz-scene::after {
@@ -25,7 +23,7 @@
   right: 0;
   bottom: 14vh;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1) 20%, rgba(255, 255, 255, 0.1) 80%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(22, 37, 61, 0.1) 20%, rgba(22, 37, 61, 0.1) 80%, transparent);
   pointer-events: none;
 }
 .rz-rail {
@@ -80,13 +78,13 @@
   padding-top: 2.5rem;
   border: 1px solid rgba(239, 181, 9, 0.5);
   border-radius: 14px;
-  background: rgba(19, 33, 58, 0.7);
+  background: #ffffff;
   margin-top: var(--header-h);
 }
 .rz-objet__image {
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 10px hsl(218 60% 4% / 0.4), 0 40px 80px -24px hsl(218 60% 4% / 0.8);
+  box-shadow: 0 4px 10px hsl(218 40% 20% / 0.14), 0 40px 80px -24px hsl(218 40% 20% / 0.2);
 }
 .rz-objet__image img {
   display: block;
@@ -107,14 +105,14 @@
 }
 .rz-etiquette dl {
   margin: 1.4rem 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(22, 37, 61, 0.12);
 }
 .rz-etiquette dl > div {
   display: grid;
   grid-template-columns: 8.5rem minmax(0, 1fr);
   gap: 1rem;
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(22, 37, 61, 0.08);
 }
 .rz-etiquette dt {
   font-family: var(--mono);
@@ -128,7 +126,7 @@
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.5;
-  color: #d5dce6;
+  color: #4f5b70;
 }
 .rz-revient dt {
   color: var(--or);
@@ -169,12 +167,12 @@
   padding: 0.9rem 1.4rem;
   border-radius: 8px;
   background: var(--or);
-  color: #16253d;
+  color: #ffffff;
   font-weight: 600;
   transition: background-color 160ms;
 }
 .rz-bouton:hover {
-  background: #f6c635;
+  background: #16253d;
 }
 .rz-bouton:focus-visible {
   outline: 2px solid var(--clair);
@@ -211,9 +209,9 @@
 }
 .rz-index button {
   padding: 0.45rem 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(22, 37, 61, 0.14);
   border-radius: 6px;
-  background: rgba(15, 28, 49, 0.7);
+  background: #ffffff;
   color: var(--clair-doux);
   font-family: var(--mono);
   font-size: 0.68rem;

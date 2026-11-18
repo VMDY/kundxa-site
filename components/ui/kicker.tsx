@@ -16,7 +16,7 @@ export function Kicker({
     <p
       className={cn(
         "font-mono text-label font-medium uppercase",
-        light ? "text-dusk" : "text-gold",
+        light ? "text-dusk" : "text-dusk",
         className,
       )}
     >

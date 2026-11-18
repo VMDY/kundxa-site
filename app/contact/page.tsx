@@ -26,17 +26,17 @@ export default function Contact() {
             <li key={canal.ancre}>
               <a
                 href={"href" in canal ? canal.href : `#${canal.ancre}`}
-                className="glass flex h-full flex-col rounded-lg p-6 transition-colors hover:border-gold/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="glass flex h-full flex-col rounded-lg p-6 transition-colors hover:border-dusk/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dusk"
               >
-                <span className="font-mono text-label uppercase text-gold">{canal.surtitre}</span>
+                <span className="font-mono text-label uppercase text-dusk">{canal.surtitre}</span>
                 <span className="mt-3 font-serif text-h3">{canal.titre}</span>
                 <span className="mt-3 grow text-small text-muted">{canal.pourQui}</span>
                 <span className="mt-5 inline-flex items-center gap-2 text-small font-semibold">
                   {canal.repere}
                   {"href" in canal ? (
-                    <IconPhone className="h-[1.1em] w-[1.1em] text-gold" />
+                    <IconPhone className="h-[1.1em] w-[1.1em] text-dusk" />
                   ) : (
-                    <IconArrowDown className="h-[1.1em] w-[1.1em] text-gold" />
+                    <IconArrowDown className="h-[1.1em] w-[1.1em] text-dusk" />
                   )}
                 </span>
               </a>
@@ -83,7 +83,7 @@ export default function Contact() {
           <div className="lg:pt-4">
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex items-center gap-3 rounded-sm bg-midnight px-7 py-4 font-semibold text-paper transition-colors hover:bg-dusk focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-dusk"
+              className="inline-flex items-center gap-3 rounded-sm bg-white px-7 py-4 font-semibold text-ink transition-colors hover:bg-dusk focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-dusk"
             >
               {pageContact.email.bouton}
               <IconArrowRight className="h-[1.1em] w-[1.1em]" />
