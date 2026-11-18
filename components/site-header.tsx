@@ -10,7 +10,8 @@ import { IconClose, IconMenu } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { cta, nav, site } from "@/content/site";
 
-// Header fixe, toujours opaque : plusieurs pages commencent sur fond papier.
+// Header fixe, bleu nuit, logo dore en couleur (le dore sur blanc est interdit
+// par la charte, 1,9:1).
 // Sous 1024px, le menu passe dans un panneau.
 export function SiteHeader() {
   const pathname = usePathname();
@@ -30,7 +31,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-md"
+      className="kx-tete fixed inset-x-0 top-0 z-40 border-b border-ink/10"
     >
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link
@@ -38,7 +39,7 @@ export function SiteHeader() {
           className="flex shrink-0 items-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dusk"
         >
           <Image
-            src="/logos/kundxa-lockup-midnight.png"
+            src="/logos/kundxa-lockup-golden.png"
             alt={`${site.nom}, accueil`}
             width={871}
             height={269}
@@ -83,7 +84,7 @@ export function SiteHeader() {
       <div
         id="menu-mobile"
         hidden={!ouvert}
-        className="border-t border-ink/10 bg-raised lg:hidden"
+        className="border-t border-ink/10 lg:hidden"
       >
         <Container className="py-6">
           <ul className="divide-y divide-ink/10">

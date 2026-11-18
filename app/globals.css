@@ -269,3 +269,21 @@ html.sc-off [data-sc-cue] {
 .kx-pied button[type="submit"] {
   color: #16253d !important;
 }
+
+/* Barre du haut bleu nuit : le logo doré y garde ses couleurs. */
+.kx-tete {
+  background: rgba(15, 28, 49, 0.96);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #f5f3ee;
+  --color-ink: #f5f3ee;
+  --color-muted: #c3cdda;
+  --color-midnight: #efb509;
+  --color-dusk: #f6c635;
+}
+.kx-tete #menu-mobile {
+  background: #0f1c31;
+}
+.kx-tete a.bg-midnight {
+  color: #16253d;
+}
