@@ -38,7 +38,7 @@ export function SiteFooter() {
               alt={site.nom}
               width={871}
               height={269}
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
             <p className="mt-5 font-serif text-h3 italic text-ink">{site.signature}</p>
             <ul className="mt-8 flex gap-3">
