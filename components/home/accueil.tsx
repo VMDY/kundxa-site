@@ -8,6 +8,8 @@ import "./accueil.css";
 
 /*
   Accueil Kundxa, version claire et épurée (skill viz-scroll-craft).
+  Variante B « palette » : mêmes contenus, plus de bleu nuit, de dusk et de doré
+  (blocs .ac-nuit : le panneau « Pour vous », le système de relance, l'appel final).
 
   Ouverture calme : le titre, le portrait encadré, le résumé du matin.
   Signature : le tri. La semaine type se lit comme une liste ; au fil du scroll,
@@ -94,6 +96,7 @@ export function Accueil() {
             </div>
           </div>
           <div className="ac-une__visuel">
+            <div className="ac-une__fond" aria-hidden="true" />
             <figure className="ac-portrait">
               <Image
                 src={site.photo}
@@ -153,7 +156,7 @@ export function Accueil() {
               );
             })}
           </ol>
-          <aside className="ac-pourvous" aria-live="polite">
+          <aside className="ac-pourvous ac-nuit" aria-live="polite">
             <p className="ac-label">
               {tri.droite.libelle} · {recues.length}
             </p>
@@ -174,7 +177,7 @@ export function Accueil() {
       </section>
 
       {/* ------------------------------------------------- 3 · LE SYSTÈME RÉEL */}
-      <section className="ac-section" data-sc-act="flow" aria-labelledby="ac-systeme">
+      <section className="ac-section ac-nuit" data-sc-act="flow" aria-labelledby="ac-systeme">
         <div className="ac-wrap ac-grille">
           <div>
             <p className="ac-label">{s.surtitre}</p>
@@ -311,7 +314,7 @@ export function Accueil() {
       </section>
 
       {/* ------------------------------------------------- 7 · LA FIN : L'APPEL */}
-      <section className="ac-fin" aria-labelledby="ac-fin">
+      <section className="ac-fin ac-nuit" aria-labelledby="ac-fin">
         <div className="ac-fin__contenu" data-sc-in>
           <Titre id="ac-fin" parts={appel.titre} className="ac-h2 ac-fin__titre" />
           <p className="ac-texte">{appel.texte}</p>

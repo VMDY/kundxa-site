@@ -29,12 +29,12 @@ const lien =
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink/10 bg-raised pt-20 pb-10">
+    <footer className="kx-pied pt-20 pb-10">
       <Container>
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.6fr_1.3fr] lg:gap-16">
           <div>
             <Image
-              src="/logos/kundxa-lockup-midnight.png"
+              src="/logos/kundxa-lockup-golden.png"
               alt={site.nom}
               width={871}
               height={269}

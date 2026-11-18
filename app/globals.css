@@ -252,3 +252,20 @@ html.sc-off [data-sc-cue] {
   opacity: 1;
   transform: none;
 }
+
+/* Variante B : pied de page bleu nuit, la marque en sortie de page. */
+.kx-pied {
+  background: linear-gradient(165deg, #0f1c31, #16253d);
+  color: #f5f3ee;
+  --color-ink: #f5f3ee;
+  --color-muted: #b4c0d0;
+  --color-dusk: #efb509;
+  --color-midnight: #efb509;
+}
+.kx-pied input {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #f5f3ee !important;
+}
+.kx-pied button[type="submit"] {
+  color: #16253d !important;
+}

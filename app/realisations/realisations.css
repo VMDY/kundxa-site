@@ -314,3 +314,25 @@
     display: none;
   }
 }
+
+/* Variante B : le dernier objet, « votre boîte », sur la nuit */
+.rz-objet--vous {
+  --clair: #f5f3ee;
+  --clair-doux: #b4c0d0;
+  --or: #efb509;
+  background: linear-gradient(160deg, #16253d, #002c54);
+  border-color: rgba(239, 181, 9, 0.55);
+  color: var(--clair);
+}
+.rz-objet--vous .rz-etiquette dd {
+  color: #d5dce6;
+}
+.rz-objet--vous .rz-revient dd {
+  color: var(--clair);
+}
+.rz-objet--vous .rz-bouton {
+  color: #16253d;
+}
+.rz-objet--vous .rz-bouton:hover {
+  background: #f6c635;
+}

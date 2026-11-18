@@ -653,3 +653,138 @@
     grid-column: 1 / -1;
   }
 }
+
+/* ============================================== VARIANTE B : LA PALETTE
+   Fond clair conservé, mais la marque se voit : blocs bleu nuit → dusk,
+   le doré en accent sur ces blocs (texte doré seulement sur fond sombre). */
+.ac-label::before {
+  content: "";
+  display: inline-block;
+  width: 1.4rem;
+  height: 2px;
+  margin-right: 0.6rem;
+  background: var(--or);
+  vertical-align: middle;
+}
+.ac-une__fond {
+  position: absolute;
+  top: -2.5rem;
+  bottom: -2.5rem;
+  left: 18%;
+  right: calc(-1 * var(--gout) - 50vw);
+  border-radius: 24px 0 0 24px;
+  background:
+    radial-gradient(60% 50% at 45% 40%, rgba(239, 181, 9, 0.28), transparent 70%),
+    linear-gradient(160deg, #16253d 0%, #002c54 100%);
+}
+.ac-une {
+  overflow-x: clip;
+}
+.ac-portrait {
+  position: relative;
+  box-shadow: 0 30px 60px -20px hsl(218 60% 6% / 0.6);
+}
+.ac-resume dl > div:last-child dd::before {
+  width: 7px;
+  height: 7px;
+}
+
+.ac-nuit {
+  --doux: #b4c0d0;
+  --ligne: rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(55% 60% at 85% 10%, rgba(239, 181, 9, 0.1), transparent 70%),
+    linear-gradient(160deg, #16253d 0%, #002c54 100%);
+  color: #f5f3ee;
+}
+.ac-nuit .ac-h2,
+.ac-nuit .ac-h3,
+.ac-nuit .ac-retour__titre,
+.ac-nuit .ac-faits dd,
+.ac-nuit .ac-paliers__texte {
+  color: #f5f3ee;
+}
+.ac-nuit em,
+.ac-nuit .ac-label,
+.ac-nuit .ac-faits dt {
+  color: var(--or);
+}
+.ac-nuit .ac-lien {
+  color: #f5f3ee;
+}
+.ac-nuit .ac-lien:hover {
+  color: var(--or);
+}
+.ac-nuit .ac-bouton {
+  background: var(--or);
+  color: #16253d;
+}
+.ac-nuit .ac-bouton:hover {
+  background: #f6c635;
+}
+.ac-nuit .ac-bouton:focus-visible {
+  outline-color: #f5f3ee;
+}
+.ac-nuit .ac-paliers__trait line {
+  stroke: var(--or);
+}
+.ac-nuit .ac-paliers li::before {
+  background: #16253d;
+  border-color: var(--or);
+}
+.ac-nuit .ac-retour {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(239, 181, 9, 0.6);
+  border-top-color: var(--or);
+  box-shadow: none;
+}
+.ac-nuit .ac-retour__cle,
+.ac-nuit .ac-paliers__cle {
+  color: #b4c0d0;
+}
+
+/* le panneau « Pour vous » en bleu nuit : ce qui mérite un dirigeant */
+.ac-pourvous.ac-nuit {
+  border: 0;
+  border-top: 3px solid var(--or);
+  box-shadow: 0 30px 60px -24px hsl(218 60% 6% / 0.55);
+}
+.ac-pourvous.ac-nuit .ac-pourvous__vide {
+  color: #b4c0d0;
+}
+.ac-pourvous.ac-nuit li {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(239, 181, 9, 0.45);
+  box-shadow: none;
+}
+.ac-pourvous.ac-nuit li span,
+.ac-pourvous.ac-nuit .ac-pourvous__compte b {
+  color: var(--or);
+}
+.ac-pourvous.ac-nuit .ac-pourvous__compte {
+  color: #b4c0d0;
+}
+.ac-semaine li[data-etat="pour-vous"] .ac-semaine__d {
+  color: #002c54;
+}
+
+/* l'appel final sur la nuit, bouton doré */
+.ac-fin.ac-nuit {
+  border-top: 0;
+  background:
+    radial-gradient(50% 60% at 50% 40%, rgba(239, 181, 9, 0.16), transparent 70%),
+    linear-gradient(165deg, #16253d, #002c54);
+}
+.ac-fin.ac-nuit .ac-fin__closer {
+  color: #b4c0d0;
+}
+
+@media (max-width: 859px) {
+  .ac-une__fond {
+    left: -1.5rem;
+    right: -1.5rem;
+    top: 18%;
+    bottom: -1.5rem;
+    border-radius: 20px;
+  }
+}

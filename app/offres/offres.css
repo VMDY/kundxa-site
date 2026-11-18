@@ -299,3 +299,25 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Variante B : l'offre choisie sur la nuit, accents dorés */
+.of-offre {
+  --clair: #f5f3ee;
+  --clair-doux: #b4c0d0;
+  --or: #efb509;
+  background:
+    radial-gradient(60% 50% at 85% 0%, rgba(239, 181, 9, 0.14), transparent 70%),
+    linear-gradient(160deg, #16253d, #002c54);
+  border-color: rgba(239, 181, 9, 0.55);
+  color: var(--clair);
+}
+.of-offre .of-bouton {
+  color: #16253d;
+}
+.of-offre .of-bouton:hover {
+  background: #f6c635;
+}
+.of-situation[data-actif] {
+  border-color: #002c54;
+  box-shadow: inset 3px 0 0 #efb509;
+}
