@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { contact, site } from "@/content/site";
+import { contact, offreParSlug, site, type SlugOffre } from "@/content/site";
 
 /**
  * Formulaire de contact — acheminé par Netlify Forms.
@@ -23,12 +23,24 @@ import { contact, site } from "@/content/site";
 type Etat = { ok: boolean; message: string } | null;
 
 const champ =
-  "w-full rounded-sm border border-white/15 bg-white/5 px-4 py-3 text-body text-paper placeholder:text-muted/70 focus-visible:border-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
-const etiquette = "block font-mono text-label uppercase text-gold";
+  "w-full rounded-sm border border-ink/15 bg-white px-4 py-3 text-body text-ink placeholder:text-muted/70 focus-visible:border-dusk focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dusk";
+const etiquette = "block font-mono text-label uppercase text-dusk";
 
 export function ContactForm() {
   const [etat, setEtat] = useState<Etat>(null);
   const [envoi, setEnvoi] = useState(false);
+  const message = useRef<HTMLTextAreaElement>(null);
+
+  // Venu du sélecteur de /offres (?offre=audit) : le message commence par
+  // l'offre choisie, pour que le choix ne se perde pas en route.
+  useEffect(() => {
+    const slug = new URLSearchParams(location.search).get("offre") as SlugOffre | null;
+    const titre = slug && offreParSlug[slug];
+    if (titre && message.current && !message.current.value) {
+      message.current.value = `Offre qui m'intéresse : ${titre}.
+`;
+    }
+  }, []);
 
   async function envoyer(evenement: React.FormEvent<HTMLFormElement>) {
     evenement.preventDefault();
@@ -111,6 +123,7 @@ export function ContactForm() {
           {contact.champs.message}
         </label>
         <textarea
+          ref={message}
           id="contact-message"
           name="message"
           required
@@ -131,7 +144,7 @@ export function ContactForm() {
           {contact.ouEmail}{" "}
           <a
             href={`mailto:${site.email}`}
-            className="rounded-sm text-gold underline underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            className="rounded-sm text-dusk underline underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dusk"
           >
             {site.email}
           </a>
@@ -142,7 +155,7 @@ export function ContactForm() {
       <p
         id="contact-retour"
         aria-live="polite"
-        className={etat ? `mt-4 text-caption ${etat.ok ? "text-gold" : "text-muted"}` : "sr-only"}
+        className={etat ? `mt-4 text-caption ${etat.ok ? "text-dusk" : "text-muted"}` : "sr-only"}
       >
         {etat?.message ?? ""}
       </p>

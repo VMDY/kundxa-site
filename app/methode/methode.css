@@ -1,0 +1,308 @@
+/* Méthode : un article imprimé. Papier et nuit en coupes franches, folio dans
+   la marge, le plan du système qui se dessine chapitre après chapitre. */
+
+.mt {
+  --papier: #f4f2ed;
+  --nuit: #ffffff;
+  --encre: #16253d;
+  --encre-douce: #4f5b70;
+  --clair: #16253d;
+  --clair-doux: #4f5b70;
+  --or: #002c54;
+  --dusk: #002c54;
+  --gout: clamp(1.25rem, 4.2vw, 4.5rem);
+  --serif: var(--font-fraunces), Georgia, serif;
+  --mono: var(--font-plex-mono), ui-monospace, monospace;
+  background: var(--papier);
+  color: var(--encre);
+}
+.mt-folio {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--encre-douce);
+}
+.mt-folio--espace {
+  margin-top: 2.2rem;
+}
+
+/* page de titre */
+.mt-titre {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: calc(var(--header-h) + 3rem) var(--gout) clamp(3rem, 8vh, 6rem);
+  background:
+    linear-gradient(var(--papier), var(--papier)) padding-box,
+    var(--papier);
+}
+.mt-h1 {
+  margin: 1.4rem 0 0;
+  max-width: 14ch;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3rem, 1.4rem + 6vw, 7.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.mt-h1 em,
+.mt-h2 em,
+.mt-colophon__intro em {
+  font-style: italic;
+  color: var(--dusk);
+}
+.mt-chapeau {
+  margin: 2rem 0 0 auto;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--encre-douce);
+}
+.mt-sommaire {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin: 3rem 0 0;
+  padding: 1.2rem 0 0;
+  list-style: none;
+  border-top: 1px solid rgba(22, 37, 61, 0.15);
+}
+.mt-sommaire a {
+  color: var(--encre);
+  text-decoration: none;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+.mt-sommaire a:hover {
+  color: var(--dusk);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.mt-sommaire span {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--encre-douce);
+  margin-right: 0.3rem;
+}
+
+/* chapitres */
+.mt-chapitre {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  padding: clamp(5rem, 10vw, 9rem) var(--gout);
+  background: var(--papier);
+  color: var(--encre);
+}
+.mt-chapitre--nuit {
+  background: var(--nuit);
+  color: var(--clair);
+}
+.mt-chapitre--nuit .mt-folio,
+.mt-chapitre--nuit dt {
+  color: var(--clair-doux);
+}
+.mt-chapitre--nuit .mt-h2 em {
+  color: var(--or);
+}
+.mt-marge {
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+  align-self: start;
+}
+.mt-h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3rem, 1.6rem + 5vw, 6.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+.mt-lede {
+  margin: 2rem 0 0;
+  max-width: 30ch;
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.mt-planche {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 2rem clamp(1.5rem, 3vw, 3rem);
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+}
+.mt-planche dt {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--encre-douce);
+}
+.mt-planche dd {
+  margin: 0.6rem 0 0;
+  line-height: 1.6;
+}
+.mt-recevez dd {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+.mt-chapitre--nuit .mt-recevez dt {
+  color: var(--or);
+}
+.mt-chapitre:not(.mt-chapitre--nuit) .mt-recevez dt {
+  color: var(--dusk);
+}
+
+/* le plan */
+.mt-plan {
+  display: block;
+  width: 100%;
+  max-width: 17rem;
+  margin-top: 1.6rem;
+  overflow: visible;
+  color: inherit;
+}
+.mt-plan :is(rect, circle, path) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--draw, 1));
+}
+.mt-plan .mt-fort {
+  stroke: var(--dusk);
+  stroke-width: 2;
+}
+.mt-chapitre--nuit .mt-plan .mt-fort {
+  stroke: var(--or);
+}
+.mt-plan .mt-fin {
+  stroke-dasharray: 0.012 0.012;
+  stroke-dashoffset: 0;
+  opacity: calc(var(--draw, 1));
+}
+.mt-plan text {
+  fill: currentColor;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.mt-c {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+/* la couche du chapitre se dessine avec la lecture */
+.mt-plan[data-chapitre="1"] .mt-c1,
+.mt-plan[data-chapitre="2"] .mt-c2,
+.mt-plan[data-chapitre="3"] .mt-c3,
+.mt-plan[data-chapitre="4"] .mt-c4 {
+  opacity: 1;
+  --draw: clamp(0, (var(--sc-p, 1) - 0.12) / 0.4, 1);
+}
+/* les couches déjà posées restent, en retrait */
+.mt-plan[data-chapitre="2"] .mt-c1,
+.mt-plan[data-chapitre="3"] :is(.mt-c1, .mt-c2),
+.mt-plan[data-chapitre="4"] :is(.mt-c1, .mt-c2, .mt-c3) {
+  opacity: 0.38;
+  --draw: 1;
+}
+.mt-plan[data-chapitre="5"] .mt-c {
+  opacity: 1;
+  --draw: 1;
+}
+
+/* colophon */
+.mt-colophon {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 46rem);
+  gap: clamp(2rem, 6vw, 7rem);
+  padding: clamp(5rem, 9vw, 8rem) var(--gout) clamp(4rem, 7vw, 6rem);
+  background: var(--papier);
+  border-top: 1px solid rgba(22, 37, 61, 0.15);
+  font-size: 0.95rem;
+}
+.mt-colophon__intro {
+  margin: 1rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+.mt-regles {
+  margin: 1.2rem 0 0;
+  padding-left: 1.2rem;
+  line-height: 1.6;
+  color: var(--encre-douce);
+}
+.mt-regles li + li {
+  margin-top: 0.4rem;
+}
+.mt-regles strong,
+.mt-outils strong {
+  color: var(--encre);
+  font-weight: 600;
+}
+.mt-outils {
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  color: var(--encre-douce);
+}
+.mt-outils li + li {
+  margin-top: 0.4rem;
+}
+.mt-suite {
+  margin: 2.6rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+.mt-suite a {
+  color: var(--dusk);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.mt-suite a:hover {
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 859px) {
+  .mt-chapitre,
+  .mt-colophon {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mt-marge {
+    position: static;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+    align-items: start;
+    gap: 1rem;
+  }
+  .mt-plan {
+    margin-top: 0;
+  }
+  .mt-planche {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mt-colophon__plan {
+    max-width: 10rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mt-plan :is(rect, circle, path) {
+    stroke-dashoffset: 0 !important;
+  }
+}

@@ -38,7 +38,7 @@ export function NewsletterForm() {
           autoComplete="email"
           placeholder={footer.newsletter.placeholder}
           aria-describedby={etat ? "newsletter-retour" : undefined}
-          className="w-full rounded-sm border border-white/15 bg-white/5 px-4 py-3 text-small text-paper placeholder:text-muted/70 focus-visible:border-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          className="w-full rounded-sm border border-ink/15 bg-white px-4 py-3 text-small text-ink placeholder:text-muted/70 focus-visible:border-dusk focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dusk"
         />
         <Soumettre />
       </div>
@@ -47,7 +47,7 @@ export function NewsletterForm() {
       <p
         id="newsletter-retour"
         aria-live="polite"
-        className={etat ? `mt-3 text-caption ${etat.ok ? "text-gold" : "text-muted"}` : "sr-only"}
+        className={etat ? `mt-3 text-caption ${etat.ok ? "text-dusk" : "text-muted"}` : "sr-only"}
       >
         {etat?.message ?? ""}
       </p>

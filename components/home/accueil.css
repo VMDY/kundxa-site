@@ -1,0 +1,790 @@
+/* Accueil, version claire et épurée. Fond blanc cassé, encre bleu nuit,
+   accent dusk ; le doré n'apparaît qu'en filets et en points, jamais en texte. */
+
+.ac {
+  --fond: #f7f5f0;
+  --blanc: #ffffff;
+  --encre: #16253d;
+  --doux: #4f5b70;
+  --ligne: rgba(22, 37, 61, 0.12);
+  --accent: #002c54;
+  --or: #efb509;
+  --gout: clamp(1.25rem, 4.2vw, 4.5rem);
+  --serif: var(--font-fraunces), Georgia, serif;
+  --mono: var(--font-plex-mono), ui-monospace, monospace;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --ombre: 0 1px 2px hsl(218 40% 20% / 0.06), 0 12px 32px -12px hsl(218 40% 20% / 0.18);
+  background: var(--fond);
+  color: var(--encre);
+}
+
+/* ----------------------------------------------------------------- textes */
+.ac-wrap {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: var(--gout);
+}
+.ac-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ac-h1,
+.ac-h2,
+.ac-h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  text-wrap: balance;
+  color: var(--encre);
+}
+.ac em {
+  font-style: italic;
+  color: var(--accent);
+}
+.ac-h1 {
+  margin-top: 1.3rem;
+  font-size: clamp(2.6rem, 1.3rem + 3.6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+}
+.ac-h2 {
+  margin-top: 1rem;
+  max-width: 22ch;
+  font-size: clamp(1.9rem, 1.25rem + 1.9vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.ac-h3 {
+  margin-top: 0.5rem;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.ac-sous {
+  margin: 1.4rem 0 0;
+  max-width: 40ch;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: var(--doux);
+}
+.ac-texte {
+  margin: 1.1rem 0 0;
+  max-width: 56ch;
+  line-height: 1.65;
+  color: var(--doux);
+  text-wrap: pretty;
+}
+.ac-texte--court {
+  margin-top: 0.6rem;
+}
+.ac-note {
+  margin: 0.8rem 0 0;
+  font-size: 0.8rem;
+  color: var(--doux);
+}
+.ac-source {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+.ac-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  margin-top: 2.2rem;
+}
+.ac-actions--centre {
+  justify-content: center;
+}
+.ac-bouton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  border-radius: 8px;
+  background: var(--encre);
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 160ms var(--ease), transform 120ms var(--ease);
+}
+.ac-bouton:hover {
+  background: var(--accent);
+}
+.ac-bouton:active {
+  transform: translateY(1px);
+}
+.ac-bouton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.ac-lien {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--encre);
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition: color 160ms var(--ease);
+}
+.ac-lien:hover {
+  color: var(--accent);
+}
+.ac-section .ac-lien,
+.ac-cas .ac-lien {
+  margin-top: 2rem;
+}
+.ac-actions .ac-lien {
+  margin-top: 0;
+}
+
+/* ------------------------------------------------------------ ouverture */
+.ac-une {
+  padding: calc(var(--header-h) + clamp(3rem, 8vh, 6rem)) 0 clamp(4rem, 9vh, 7rem);
+}
+.ac-une__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+.ac-une__visuel {
+  position: relative;
+  justify-self: end;
+  width: min(28rem, 100%);
+}
+.ac-portrait {
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--ombre);
+}
+.ac-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.ac-resume {
+  position: absolute;
+  left: -3.5rem;
+  bottom: 2.5rem;
+  width: 15.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ligne);
+  border-radius: 12px;
+  background: var(--blanc);
+  box-shadow: 0 2px 4px hsl(218 40% 20% / 0.06), 0 24px 48px -16px hsl(218 40% 20% / 0.28);
+}
+.ac-resume__tete {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ac-resume dl {
+  margin: 0.6rem 0 0;
+}
+.ac-resume dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--ligne);
+  font-size: 0.88rem;
+}
+.ac-resume dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.ac-resume dl > div:last-child dd {
+  color: var(--accent);
+  font-weight: 500;
+}
+.ac-resume dl > div:last-child dd::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: var(--or);
+  vertical-align: middle;
+}
+
+/* ------------------------------------------------------------- sections */
+.ac-section {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+.ac-blanc {
+  background: var(--blanc);
+}
+.ac-grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+.ac-colle {
+  position: sticky;
+  top: calc(var(--header-h) + 3rem);
+}
+
+/* le tri : une liste qui se coche */
+.ac-tri__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.ac-semaine {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ligne);
+}
+.ac-semaine li {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 0 1rem 1.8rem;
+  border-bottom: 1px solid var(--ligne);
+  transition: opacity 400ms var(--ease);
+}
+/* la case : vide, cochée, ou point doré pour ce qui vous revient */
+.ac-semaine li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.3rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1.5px solid rgba(22, 37, 61, 0.3);
+  border-radius: 3px;
+  transition: background-color 300ms var(--ease), border-color 300ms var(--ease);
+}
+.ac-semaine li[data-etat="fait"] {
+  opacity: 0.42;
+}
+.ac-semaine li[data-etat="fait"]::before {
+  background: var(--accent)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+    center / 80% no-repeat;
+  border-color: var(--accent);
+}
+.ac-semaine li[data-etat="pour-vous"]::before {
+  border-color: var(--or);
+  background: var(--or);
+  border-radius: 50%;
+}
+.ac-semaine li[data-etat="pour-vous"] .ac-semaine__t {
+  font-weight: 600;
+}
+.ac-semaine__t {
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+.ac-semaine__d {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--doux);
+  text-align: right;
+}
+.ac-semaine li[data-etat="pour-vous"] .ac-semaine__d {
+  color: var(--accent);
+}
+.ac-pourvous {
+  position: sticky;
+  top: calc(var(--header-h) + 2.5rem);
+  padding: 1.6rem;
+  border: 1px solid var(--ligne);
+  border-top: 2px solid var(--or);
+  border-radius: 12px;
+  background: var(--fond);
+}
+.ac-pourvous__vide {
+  margin: 0.8rem 0 0;
+  color: var(--doux);
+}
+.ac-pourvous ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-pourvous li {
+  margin-top: 0.8rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  background: var(--blanc);
+  box-shadow: var(--ombre);
+  animation: ac-entree 360ms var(--ease);
+}
+.ac-pourvous li p {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.ac-pourvous li span {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ac-pourvous__compte {
+  margin: 1.2rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--ligne);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--doux);
+  font-variant-numeric: tabular-nums;
+}
+.ac-pourvous__compte b {
+  font-weight: 500;
+  color: var(--accent);
+}
+@keyframes ac-entree {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* système de relance */
+.ac-paliers {
+  position: relative;
+  margin: 2.5rem 0 0;
+  padding: 0 0 0 1.6rem;
+  list-style: none;
+}
+.ac-paliers__trait {
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 2px;
+  height: calc(100% - 0.8rem);
+  overflow: visible;
+}
+.ac-paliers__trait line {
+  stroke: var(--accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - min(1, var(--sc-p, 1) * 2.2));
+}
+.ac-paliers li {
+  position: relative;
+  padding: 0.5rem 0 0.85rem;
+}
+.ac-paliers li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.6rem - 4px);
+  top: 0.8rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fond);
+  border: 2px solid var(--accent);
+}
+.ac-paliers__cle {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--doux);
+}
+.ac-paliers__texte {
+  display: block;
+  margin-top: 0.15rem;
+}
+.ac-retour {
+  padding: 1.6rem 1.7rem;
+  border: 1px solid var(--ligne);
+  border-top: 2px solid var(--or);
+  border-radius: 12px;
+  background: var(--blanc);
+  box-shadow: var(--ombre);
+}
+.ac-retour__titre {
+  margin: 0.6rem 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  line-height: 1.12;
+}
+.ac-retour__cle {
+  margin: 0.5rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--doux);
+}
+.ac-faits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2.5rem;
+  margin: 2.4rem 0 0;
+}
+.ac-faits dt {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ac-faits dd {
+  margin: 0.35rem 0 0;
+  line-height: 1.5;
+}
+
+/* réalisations */
+.ac-chez {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-chez li {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--ligne);
+  color: var(--doux);
+  line-height: 1.5;
+}
+.ac-chez span {
+  display: block;
+  color: var(--encre);
+  font-weight: 600;
+}
+.ac-cas {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+.ac-cas__ligne {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  padding-block: 2rem;
+  border-top: 1px solid var(--ligne);
+}
+.ac-cas__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.ac-cas__revient p:last-child {
+  margin: 0.5rem 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.05rem + 0.4vw, 1.4rem);
+  line-height: 1.3;
+}
+
+/* limites et fondateur */
+.ac-limites {
+  margin: 2.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-limites li {
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--ligne);
+}
+.ac-limites__titre {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+.ac-citation {
+  margin: 0;
+  max-width: 26ch;
+  padding-left: 1.4rem;
+  border-left: 2px solid var(--or);
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.ac-signature {
+  margin: 1.6rem 0 0;
+  font-weight: 600;
+}
+.ac-signature span {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--doux);
+}
+
+/* FAQ */
+.ac-faq {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.ac-faq__liste details {
+  border-top: 1px solid var(--ligne);
+  padding: 1.1rem 0;
+}
+.ac-faq__liste details:last-child {
+  border-bottom: 1px solid var(--ligne);
+}
+.ac-faq__liste summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.ac-faq__liste summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--mono);
+  color: var(--accent);
+  transition: transform 200ms var(--ease);
+}
+.ac-faq__liste details[open] summary::after {
+  transform: rotate(45deg);
+}
+.ac-faq__liste summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.ac-faq__liste p {
+  margin: 0.7rem 0 0;
+  max-width: 60ch;
+  color: var(--doux);
+  line-height: 1.65;
+}
+
+/* la fin */
+.ac-fin {
+  padding: clamp(6rem, 12vw, 10rem) var(--gout);
+  border-top: 1px solid var(--ligne);
+}
+.ac-fin__contenu {
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+}
+.ac-fin__titre {
+  margin-inline: auto;
+  margin-top: 0;
+  font-size: clamp(2.3rem, 1.3rem + 3vw, 4.2rem);
+}
+.ac-fin .ac-texte {
+  margin-inline: auto;
+}
+.ac-fin__closer {
+  margin: 2rem 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--doux);
+}
+
+/* ============================================================== TÉLÉPHONE */
+@media (max-width: 859px) {
+  .ac-une {
+    padding-top: calc(var(--header-h) + 2rem);
+  }
+  .ac-une__grille,
+  .ac-grille,
+  .ac-tri__grille,
+  .ac-faq {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ac-une__visuel {
+    justify-self: center;
+    width: min(20rem, 82vw);
+  }
+  .ac-resume {
+    left: -1.25rem;
+    bottom: 1.5rem;
+    width: 13.5rem;
+  }
+  .ac-colle,
+  .ac-pourvous {
+    position: static;
+  }
+  .ac-semaine li {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.85rem 0 0.85rem 1.8rem;
+  }
+  .ac-semaine__d {
+    text-align: left;
+  }
+  .ac-cas__ligne {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+  .ac-cas__revient {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ============================================== VARIANTE B : LA PALETTE
+   Fond clair conservé, mais la marque se voit : blocs bleu nuit → dusk,
+   le doré en accent sur ces blocs (texte doré seulement sur fond sombre). */
+.ac-label::before {
+  content: "";
+  display: inline-block;
+  width: 1.4rem;
+  height: 2px;
+  margin-right: 0.6rem;
+  background: var(--or);
+  vertical-align: middle;
+}
+.ac-une__fond {
+  position: absolute;
+  top: -2.5rem;
+  bottom: -2.5rem;
+  left: 18%;
+  right: calc(-1 * var(--gout) - 50vw);
+  border-radius: 24px 0 0 24px;
+  background:
+    radial-gradient(60% 50% at 45% 40%, rgba(239, 181, 9, 0.28), transparent 70%),
+    linear-gradient(160deg, #16253d 0%, #002c54 100%);
+}
+.ac-une {
+  overflow-x: clip;
+}
+.ac-portrait {
+  position: relative;
+  box-shadow: 0 30px 60px -20px hsl(218 60% 6% / 0.6);
+}
+.ac-resume dl > div:last-child dd::before {
+  width: 7px;
+  height: 7px;
+}
+
+.ac-nuit {
+  --doux: #b4c0d0;
+  --ligne: rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(55% 60% at 85% 10%, rgba(239, 181, 9, 0.1), transparent 70%),
+    linear-gradient(160deg, #16253d 0%, #002c54 100%);
+  color: #f5f3ee;
+}
+.ac-nuit .ac-h2,
+.ac-nuit .ac-h3,
+.ac-nuit .ac-retour__titre,
+.ac-nuit .ac-faits dd,
+.ac-nuit .ac-paliers__texte {
+  color: #f5f3ee;
+}
+.ac-nuit em,
+.ac-nuit .ac-label,
+.ac-nuit .ac-faits dt {
+  color: var(--or);
+}
+.ac-nuit .ac-lien {
+  color: #f5f3ee;
+}
+.ac-nuit .ac-lien:hover {
+  color: var(--or);
+}
+.ac-nuit .ac-bouton {
+  background: var(--or);
+  color: #16253d;
+}
+.ac-nuit .ac-bouton:hover {
+  background: #f6c635;
+}
+.ac-nuit .ac-bouton:focus-visible {
+  outline-color: #f5f3ee;
+}
+.ac-nuit .ac-paliers__trait line {
+  stroke: var(--or);
+}
+.ac-nuit .ac-paliers li::before {
+  background: #16253d;
+  border-color: var(--or);
+}
+.ac-nuit .ac-retour {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(239, 181, 9, 0.6);
+  border-top-color: var(--or);
+  box-shadow: none;
+}
+.ac-nuit .ac-retour__cle,
+.ac-nuit .ac-paliers__cle {
+  color: #b4c0d0;
+}
+
+/* le panneau « Pour vous » en bleu nuit : ce qui mérite un dirigeant */
+.ac-pourvous.ac-nuit {
+  border: 0;
+  border-top: 3px solid var(--or);
+  box-shadow: 0 30px 60px -24px hsl(218 60% 6% / 0.55);
+}
+.ac-pourvous.ac-nuit .ac-pourvous__vide {
+  color: #b4c0d0;
+}
+.ac-pourvous.ac-nuit li {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(239, 181, 9, 0.45);
+  box-shadow: none;
+}
+.ac-pourvous.ac-nuit li span,
+.ac-pourvous.ac-nuit .ac-pourvous__compte b {
+  color: var(--or);
+}
+.ac-pourvous.ac-nuit .ac-pourvous__compte {
+  color: #b4c0d0;
+}
+.ac-semaine li[data-etat="pour-vous"] .ac-semaine__d {
+  color: #002c54;
+}
+
+/* l'appel final sur la nuit, bouton doré */
+.ac-fin.ac-nuit {
+  border-top: 0;
+  background:
+    radial-gradient(50% 60% at 50% 40%, rgba(239, 181, 9, 0.16), transparent 70%),
+    linear-gradient(165deg, #16253d, #002c54);
+}
+.ac-fin.ac-nuit .ac-fin__closer {
+  color: #b4c0d0;
+}
+
+@media (max-width: 859px) {
+  .ac-une__fond {
+    left: -1.5rem;
+    right: -1.5rem;
+    top: 18%;
+    bottom: -1.5rem;
+    border-radius: 20px;
+  }
+}

@@ -7,10 +7,11 @@ import { cn } from "@/lib/cn";
 export type Tone = "midnight" | "deep" | "night" | "light" | "raised";
 
 const tones: Record<Tone, string> = {
-  midnight: "bg-midnight text-paper",
-  deep: "bg-deep text-paper",
-  night: "bg-gradient-night text-paper",
-  light: "bg-paper text-ink",
+  // Site en fond clair (18/11/2026) : les anciens tons sombres pointent vers le clair.
+  midnight: "bg-bg text-ink",
+  deep: "bg-white text-ink",
+  night: "bg-bg text-ink",
+  light: "bg-white text-ink",
   raised: "bg-raised text-ink",
 };
 
@@ -32,4 +33,3 @@ export function Section({
   );
 }
 
-export const isLight = (tone: Tone) => tone === "light" || tone === "raised";

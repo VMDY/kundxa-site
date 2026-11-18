@@ -232,6 +232,45 @@ export const accueil = fr({
   },
 } as const);
 
+/* ------------------------------------------------- ACCUEIL : LE TRI (split) */
+// Signature de l'accueil : la semaine type defile a gauche, le systeme la prend,
+// seules les decisions de dirigeant passent la ligne. Donnees d'illustration,
+// affichees comme telles (`note`). Aucun chiffre ici n'est un resultat client.
+
+export const tri = fr({
+  gauche: {
+    libelle: "Votre semaine",
+    titre: ["Tout ce qui revient chaque ", "semaine", "."],
+  },
+  droite: {
+    libelle: "Pour vous",
+    titre: ["Gardez votre énergie pour ce qui mérite un ", "dirigeant", "."],
+    texte: "Vos tâches répétitives et vos recherches tournent sans vous. Les décisions restent les vôtres.",
+  },
+  ligne: { repos: "Ligne de tri", fin: "fait par le système" },
+  journal: "Journal du système",
+  plateauVide: "Rien pour l'instant.",
+  bilan: ["Trois décisions. Le reste a tourné sans ", "vous", "."],
+  note: "Illustration : une semaine type, pas un client réel.",
+  taches: [
+    { t: "Relance de la facture n° 2026-114", d: "Palier 2 · J+10" },
+    { t: "Saisie de 12 bons de commande", d: "Lundi · 08:04" },
+    { t: "« Où en est ma commande ? »", d: "Réponse envoyée" },
+    { t: "Veille : les prix de 3 concurrents", d: "Synthèse prête" },
+    { t: "Échéancier ou mise en demeure pour ce client fidèle ?", d: "Dossier complet à J+45", decision: true },
+    { t: "Rapport des ventes de la semaine", d: "Vendredi · 07:30" },
+    { t: "Rappel du rendez-vous de demain", d: "SMS envoyé" },
+    { t: "Tri de 48 e-mails", d: "3 urgents signalés" },
+    { t: "Accepter une grosse commande payée à 90 jours ?", d: "Trésorerie simulée", decision: true },
+    { t: "Relance du devis sans réponse", d: "J+5" },
+    { t: "Export comptable du mois", d: "Envoyé au cabinet" },
+    { t: "Synthèse d'un appel d'offres", d: "Critères comparés" },
+    { t: "Mise à jour du stock", d: "Mercredi · 18:00" },
+    { t: "Votre fournisseur augmente ses prix : renégocier ou changer ?", d: "3 options comparées", decision: true },
+    { t: "Compte rendu de la réunion d'équipe", d: "Partagé à 10:12" },
+  ],
+} as const);
+
 export const faq = fr([
   {
     q: "Je ne suis pas technique. Est-ce que je saurai m'en servir ?",
@@ -437,6 +476,16 @@ export const offres = fr({
   },
 } as const);
 
+// Identifiants stables des offres : le sélecteur de /offres les passe au
+// formulaire de contact (?offre=...), qui pré-remplit le message.
+export const offreParSlug = {
+  build: offres.principale.titre,
+  audit: offres.secondaires[0].titre,
+  accompagnement: offres.secondaires[1].titre,
+  maintenance: offres.secondaires[2].titre,
+} as const;
+export type SlugOffre = keyof typeof offreParSlug;
+
 /* ----------------------------------------------------------- RÉALISATIONS */
 
 export const cas = fr([
@@ -503,6 +552,23 @@ export const realisations = fr({
     ],
   },
   suite: { titre: ["Le prochain cas peut être le ", "vôtre", "."] },
+  // Catalogue : chaque objet suit la même étiquette (situation, système, ce qui revient).
+  catalogue: {
+    index: "Index des cas",
+    chezNous: {
+      surtitre: "Chez nous · Kundxa",
+      titre: "Ce que nous installons tourne d'abord chez nous.",
+      situation: "Une petite structure qui doit produire, prospecter et publier sans équipe.",
+      revient: "Les choix éditoriaux, les rendez-vous, les devis.",
+    },
+    vous: {
+      surtitre: "Cas suivant · Votre boîte",
+      titre: "Le prochain cas peut être le vôtre.",
+      situation: "Ce qui vous prend le plus de temps aujourd'hui.",
+      systeme: "Celui que nous construisons ensemble, après l'appel de cadrage.",
+      revient: "Vos décisions. Le reste tourne.",
+    },
+  },
 } as const);
 
 /* --------------------------------------------------------------- À PROPOS */

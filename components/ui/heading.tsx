@@ -60,6 +60,6 @@ export function Titre({
 
 export function Accent({ light = false, children }: { light?: boolean; children: ReactNode }) {
   return (
-    <em className={cn("font-serif italic", light ? "text-dusk" : "text-gold")}>{children}</em>
+    <em className={cn("font-serif italic", light ? "text-dusk" : "text-dusk")}>{children}</em>
   );
 }

@@ -8,6 +8,10 @@
    Texte sur dore : toujours midnight. Bronze : petits details, jamais du texte.
 */
 @import "tailwindcss";
+/* Moteur scroll-craft, rangé dans la couche base : ses règles génériques
+   (a { color: inherit }, body, :root) ne doivent jamais battre les utilitaires
+   Tailwind ni les jetons de marque définis plus bas. */
+@import "./scrollcraft.css" layer(base);
 
 @theme {
   /* palette de marque */
@@ -26,13 +30,13 @@
   --color-line-light: #e3e6eb;
 
   /* alias semantiques (pages legales, formulaires) */
-  --color-bg: #16253d;
-  --color-surface: #1c2c46;
-  --color-fg: #ffffff;
-  --color-muted: #a9b4c4;
-  --color-accent: #efb509;
-  --color-accent-hover: #f6c635;
-  --color-border: rgba(255, 255, 255, 0.12);
+  --color-bg: #f7f5f0;
+  --color-surface: #ffffff;
+  --color-fg: #16253d;
+  --color-muted: #4f5b70;
+  --color-accent: #002c54;
+  --color-accent-hover: #16253d;
+  --color-border: rgba(22, 37, 61, 0.12);
 
   /* rayons */
   --radius-sm: 6px;
@@ -92,13 +96,24 @@
 }
 
 :root {
-  color-scheme: dark;
+  /* Jetons du moteur scroll-craft, aux couleurs et polices de la marque. */
+  --sc-canvas: #f7f5f0;
+  --sc-surface: #ffffff;
+  --sc-ink: #16253d;
+  --sc-ink-soft: #4f5b70;
+  --sc-accent: #002c54;
+  --sc-accent-ink: #ffffff;
+  --sc-font-display: var(--font-fraunces), Georgia, serif;
+  --sc-font-text: var(--font-plex-sans), system-ui, sans-serif;
+  --sc-font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --sc-shadow-color: 218 40% 20%;
+  color-scheme: light;
   scroll-behavior: smooth;
   --header-h: 5rem;
 }
 
 body {
-  background: var(--color-midnight);
+  background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
   font-size: var(--text-body);
@@ -142,9 +157,7 @@ p {
   background: linear-gradient(160deg, #16253d 0%, #002c54 100%);
 }
 .bg-hero {
-  background:
-    radial-gradient(70% 60% at 78% 38%, rgba(239, 181, 9, 0.13), transparent 60%),
-    linear-gradient(170deg, #0f1c31 0%, #002c54 100%);
+  background: var(--color-bg);
 }
 .bg-cta {
   background:
@@ -158,10 +171,9 @@ p {
 
 /* Verre depoli : cartes flottantes et panneaux sur fond sombre. */
 .glass {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  background: #ffffff;
+  border: 1px solid rgba(22, 37, 61, 0.12);
+  box-shadow: 0 1px 2px hsl(218 40% 20% / 0.06), 0 12px 32px -12px hsl(218 40% 20% / 0.18);
 }
 
 /* ---------------------------------------------------------------
@@ -231,4 +243,47 @@ summary::-webkit-details-marker {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Si le moteur ne se charge pas, rien ne reste masque. */
+html.sc-off [data-sc-in],
+html.sc-off [data-sc-stagger] > *,
+html.sc-off [data-sc-cue] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Variante B : pied de page bleu nuit, la marque en sortie de page. */
+.kx-pied {
+  background: linear-gradient(165deg, #0f1c31, #16253d);
+  color: #f5f3ee;
+  --color-ink: #f5f3ee;
+  --color-muted: #b4c0d0;
+  --color-dusk: #efb509;
+  --color-midnight: #efb509;
+}
+.kx-pied input {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #f5f3ee !important;
+}
+.kx-pied button[type="submit"] {
+  color: #16253d !important;
+}
+
+/* Barre du haut bleu nuit : le logo doré y garde ses couleurs. */
+.kx-tete {
+  background: rgba(15, 28, 49, 0.96);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #f5f3ee;
+  --color-ink: #f5f3ee;
+  --color-muted: #c3cdda;
+  --color-midnight: #efb509;
+  --color-dusk: #f6c635;
+}
+.kx-tete #menu-mobile {
+  background: #0f1c31;
+}
+.kx-tete a.bg-midnight {
+  color: #16253d;
 }

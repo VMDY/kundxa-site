@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { Appel } from "@/components/blocks/appel";
-import { PageHero } from "@/components/blocks/page-hero";
-import { Reveal } from "@/components/reveal";
-import { Container } from "@/components/ui/container";
-import { Heading, Titre } from "@/components/ui/heading";
-import { IconArrowUpRight } from "@/components/ui/icons";
-import { Kicker } from "@/components/ui/kicker";
-import { Section } from "@/components/ui/section";
-import { cn } from "@/lib/cn";
-import { cas, realisations, site } from "@/content/site";
+import Link from "next/link";
+import { IndexCas } from "@/components/realisations/index-cas";
+import { cas, cta, realisations, site } from "@/content/site";
+import "./realisations.css";
 
 export const metadata: Metadata = {
   title: realisations.meta.titre,
@@ -17,83 +10,149 @@ export const metadata: Metadata = {
   alternates: { canonical: "/realisations" },
 };
 
+/*
+  Grammaire « gallery / catalog » : une collection qu'on parcourt de côté. Chaque
+  objet porte la même étiquette (situation, système, ce qui revient) ; c'est le
+  schéma qui fait la collection. La fin est un objet de plus, typographié comme
+  les autres : le vôtre.
+*/
+
+type Objet = {
+  id: string;
+  numero: string;
+  surtitre: string;
+  titre: string;
+  image?: string;
+  situation: string;
+  systeme: React.ReactNode;
+  revient: string;
+};
+
 export default function Realisations() {
-  const { libelles } = realisations;
+  const { libelles, catalogue, chezNous } = realisations;
+
+  const objets: Objet[] = [
+    ...cas.map((c, i) => ({
+      id: c.slug,
+      numero: String(i + 1).padStart(2, "0"),
+      surtitre: c.surtitre,
+      titre: c.titre,
+      image: c.image,
+      situation: c.situation,
+      systeme: c.systeme,
+      revient: c.revient,
+    })),
+    {
+      id: "chez-nous",
+      numero: String(cas.length + 1).padStart(2, "0"),
+      surtitre: catalogue.chezNous.surtitre,
+      titre: catalogue.chezNous.titre,
+      image: "/images/3d/chaine.webp",
+      situation: catalogue.chezNous.situation,
+      systeme: (
+        <ul className="rz-liste">
+          {chezNous.items.map((it) => (
+            <li key={it.titre}>
+              <strong>{it.titre}</strong> {it.texte}
+            </li>
+          ))}
+        </ul>
+      ),
+      revient: catalogue.chezNous.revient,
+    },
+  ];
+
   return (
-    <>
-      <PageHero {...realisations.hero} />
+    <div className="rz">
+      <section className="rz-acte" data-sc-act="pan" data-sc-span="5.4" aria-labelledby="rz-h1">
+        <div data-sc-stage className="rz-scene">
+          <div className="rz-rail" data-sc-pan="0">
+            <div className="rz-tete">
+              <p className="rz-label">{realisations.hero.surtitre}</p>
+              <h1 id="rz-h1" className="rz-h1">
+                {realisations.hero.titre[0]}
+                <em>{realisations.hero.titre[1]}</em>
+                {realisations.hero.titre[2]}
+              </h1>
+              <p className="rz-texte">{realisations.hero.texte}</p>
+            </div>
 
-      {cas.map((c, i) => (
-        <Section key={c.slug} id={c.slug} tone={i % 2 ? "midnight" : "deep"}>
-          <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-            <Reveal
-              className={cn(
-                "relative h-[22rem] overflow-hidden rounded-xl sm:h-[30rem]",
-                i % 2 && "lg:order-2",
-              )}
-            >
-              <Image src={c.image} alt="" fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" />
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="font-mono text-label uppercase text-gold">
-                Cas {String(i + 1).padStart(2, "0")} · {c.surtitre}
-              </p>
-              <Heading as="h2" level="h2" className="mt-5 text-[clamp(1.85rem,1.4rem+1.6vw,2.75rem)] leading-[1.12]">
-                {c.titre}
-              </Heading>
-              <dl className="mt-8 divide-y divide-white/10 border-y border-white/10">
-                {(
-                  [
-                    [libelles.situation, c.situation],
-                    [libelles.systeme, c.systeme],
-                    [libelles.revient, c.revient],
-                  ] as const
-                ).map(([libelle, texte], j) => (
-                  <div key={libelle} className="grid gap-2 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-                    <dt className={cn("font-mono text-label uppercase", j === 2 ? "text-gold" : "text-muted")}>
-                      {libelle}
-                    </dt>
-                    <dd className={cn("text-small", j === 2 ? "text-paper" : "text-paper/85")}>{texte}</dd>
+            {objets.map((o) => (
+              <article key={o.id} id={o.id} className="rz-objet" aria-labelledby={`${o.id}-t`}>
+                {o.image && (
+                  <div className="rz-objet__image" data-sc-tilt="4">
+                    <img src={o.image} alt="" width={933} height={1400} loading="lazy" />
                   </div>
-                ))}
-              </dl>
-            </Reveal>
-          </Container>
-        </Section>
-      ))}
-
-      <Section tone="light">
-        <Container>
-          <Reveal>
-            <Kicker light>{realisations.chezNous.surtitre}</Kicker>
-            <Heading className="mt-5 max-w-4xl text-ink">
-              <Titre parts={realisations.chezNous.titre} light />
-            </Heading>
-          </Reveal>
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2">
-            {realisations.chezNous.items.map((it, i) => (
-              <Reveal as="li" key={it.titre} delay={i * 70} className="rounded-lg bg-raised p-8">
-                <h3 className="text-h3 text-ink">{it.titre}</h3>
-                <p className="mt-3 text-ink-muted">{it.texte}</p>
-                {"lien" in it && (
-                  <a
-                    href={site.videoRelance}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 rounded-sm font-semibold text-dusk underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-dusk"
-                  >
-                    {it.lien}
-                    <IconArrowUpRight className="h-4 w-4" />
-                  </a>
                 )}
-              </Reveal>
+                <div className="rz-etiquette">
+                  <p className="rz-label rz-label--or">
+                    Cas {o.numero} · {o.surtitre}
+                  </p>
+                  <h2 id={`${o.id}-t`} className="rz-h2">
+                    {o.titre}
+                  </h2>
+                  <dl>
+                    <div>
+                      <dt>{libelles.situation}</dt>
+                      <dd>{o.situation}</dd>
+                    </div>
+                    <div>
+                      <dt>{libelles.systeme}</dt>
+                      <dd>{o.systeme}</dd>
+                    </div>
+                    <div className="rz-revient">
+                      <dt>{libelles.revient}</dt>
+                      <dd>{o.revient}</dd>
+                    </div>
+                  </dl>
+                  {o.id === "chez-nous" && (
+                    <a href={site.videoRelance} target="_blank" rel="noopener noreferrer" className="rz-lien">
+                      {chezNous.items[0].lien}
+                    </a>
+                  )}
+                </div>
+              </article>
             ))}
-          </ul>
-        </Container>
-      </Section>
 
-      <Appel titre={realisations.suite.titre} />
-    </>
+            {/* La fin : un objet de plus, avec la même étiquette. */}
+            <article id="votre-cas" className="rz-objet rz-objet--vous" aria-labelledby="votre-cas-t">
+              <div className="rz-etiquette">
+                <p className="rz-label rz-label--or">
+                  Cas {String(objets.length + 1).padStart(2, "0")} · {catalogue.vous.surtitre.split(" · ")[1]}
+                </p>
+                <h2 id="votre-cas-t" className="rz-h2">
+                  {catalogue.vous.titre}
+                </h2>
+                <dl>
+                  <div>
+                    <dt>{libelles.situation}</dt>
+                    <dd>{catalogue.vous.situation}</dd>
+                  </div>
+                  <div>
+                    <dt>{libelles.systeme}</dt>
+                    <dd>{catalogue.vous.systeme}</dd>
+                  </div>
+                  <div className="rz-revient">
+                    <dt>{libelles.revient}</dt>
+                    <dd>{catalogue.vous.revient}</dd>
+                  </div>
+                </dl>
+                <Link href="/contact#appeler" className="rz-bouton">
+                  {cta.court}
+                </Link>
+              </div>
+            </article>
+          </div>
+
+          <IndexCas
+            titre={catalogue.index}
+            items={[
+              ...objets.map((o) => ({ id: o.id, libelle: `${o.numero} · ${o.surtitre.split(" · ")[0]}` })),
+              { id: "votre-cas", libelle: `${String(objets.length + 1).padStart(2, "0")} · Votre boîte` },
+            ]}
+          />
+        </div>
+      </section>
+    </div>
   );
 }
