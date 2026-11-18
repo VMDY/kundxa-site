@@ -1,5 +1,5 @@
-import { SplitHome } from "@/components/home/split-home";
+import { Accueil } from "@/components/home/accueil";
 
-export default function Accueil() {
-  return <SplitHome />;
+export default function Page() {
+  return <Accueil />;
 }
